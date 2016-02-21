@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
-using Mono.Cecil;
+
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace Fody.SemVer
 {
@@ -18,42 +20,110 @@ namespace Fody.SemVer
                         };
     }
 
-    public string AddinDirectoryPath { get; set; }
-    public string AssemblyFilePath { get; set; }
-    public XElement Config { get; set; }
     public Action<string> LogInfo { get; set; }
     public Action<string> LogWarning { get; set; }
-    public ModuleDefinition ModuleDefinition { get; set; }
-    public string ProjectDirectoryPath { get; set; }
-    public string SolutionDirectoryPath { get; set; }
 
-    public abstract void Execute();
-
-    public void AfterWeaving()
-    {
-    }
-
-    /// <exception cref="ArgumentNullException"><paramref name="assemblyVersion" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="assemblyVersionInfo" /> is <see langword="null" />.</exception>
-    /// <exception cref="InvalidOperationException">
+    /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="addinDirectoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="solutionPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="projectPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="WeavingException">
+    ///   If 'UseProject' could not be read from <see cref="XElement.Attributes" /> of
+    ///   <see cref="config" />.
+    /// </exception>
+    /// <exception cref="WeavingException">If 'UseProject' could not be parsed as <see cref="bool" />.</exception>
+    /// <exception cref="WeavingException">
     ///   If the assembly defined in <see cref="AssemblyFilePath" /> cannot be
     ///   SemVer'ed.
     /// </exception>
-    private void PatchVersionOfAssembly(string assemblyVersion,
-                                        string assemblyVersionInfo)
+    /// <exception cref="WeavingException">If a <see cref="Process" /> instance for verpatch.exe cannot be created.</exception>
+    protected void Execute(XElement config,
+                           string assemblyFullFileName,
+                           string addinDirectoryPath,
+                           string solutionPath,
+                           string projectPath)
     {
+      if (config == null)
+      {
+        throw new ArgumentNullException(nameof(config));
+      }
+      if (assemblyFullFileName == null)
+      {
+        throw new ArgumentNullException(nameof(assemblyFullFileName));
+      }
+      if (addinDirectoryPath == null)
+      {
+        throw new ArgumentNullException(nameof(addinDirectoryPath));
+      }
+      if (projectPath == null)
+      {
+        throw new ArgumentNullException(nameof(projectPath));
+      }
+      if (solutionPath == null)
+      {
+        throw new ArgumentNullException(nameof(solutionPath));
+      }
+
+      var configuration = new Configuration(config);
+
+      string repositoryLocationLevel;
+      if (configuration.UseProject)
+      {
+        repositoryLocationLevel = "ProjectDir"; // Not L10N
+      }
+      else
+      {
+        repositoryLocationLevel = "SolutionDir"; // Not L10N
+      }
+
+      this.LogInfo($"Starting search for repository in {repositoryLocationLevel}");
+
+      var version = this.GetVersion(solutionPath,projectPath);
+      if (version == null)
+      {
+        this.LogWarning($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
+        return;
+      }
+
+      this.PatchVersionOfAssembly(assemblyFullFileName,
+                                  version,
+                                  addinDirectoryPath);
+    }
+
+    /// <exception cref="ArgumentNullException"><paramref name="solutionPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="projectPath" /> is <see langword="null" />.</exception>
+    protected abstract Version GetVersion(string solutionPath,
+                                          string projectPath);
+
+    /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="assemblyVersion" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="addinDirectoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="WeavingException">
+    ///   If the assembly defined in <paramref name="assemblyFullFileName" /> cannot be
+    ///   SemVer'ed.
+    /// </exception>
+    /// <exception cref="WeavingException">If a <see cref="Process" /> instance for verpatch.exe cannot be created.</exception>
+    private void PatchVersionOfAssembly(string assemblyFullFileName,
+                                        Version assemblyVersion,
+                                        string addinDirectoryPath)
+    {
+      if (assemblyFullFileName == null)
+      {
+        throw new ArgumentNullException(nameof(assemblyFullFileName));
+      }
       if (assemblyVersion == null)
       {
         throw new ArgumentNullException(nameof(assemblyVersion));
       }
-      if (assemblyVersionInfo == null)
+      if (addinDirectoryPath == null)
       {
-        throw new ArgumentNullException(nameof(assemblyVersionInfo));
+        throw new ArgumentNullException(nameof(addinDirectoryPath));
       }
 
-      var verpatchPathPath = Path.Combine(this.AddinDirectoryPath,
+      var verpatchPathPath = Path.Combine(addinDirectoryPath,
                                           "verpatch.exe"); // Not L10N
-      var arguments = $@"""{this.AssemblyFilePath}"" /pv ""{assemblyVersionInfo}"" /high {assemblyVersion}";
+      var arguments = $@"""{assemblyFullFileName}"" /high {assemblyVersion}";
 
       this.LogInfo($"Patching version using: {verpatchPathPath} {arguments}");
 
@@ -72,7 +142,7 @@ namespace Fody.SemVer
       {
         if (process == null)
         {
-          throw new InvalidOperationException($"{nameof(typeof (Process).FullName)} could not be created");
+          throw new WeavingException($"{typeof (Process).FullName} could not be created");
         }
 
         if (process.ExitCode == 0)
@@ -87,7 +157,7 @@ namespace Fody.SemVer
                                   $"Output: {output}",
                                   $"Error: {error}");
 
-        throw new InvalidOperationException(message);
+        throw new WeavingException(message);
       }
     }
   }
