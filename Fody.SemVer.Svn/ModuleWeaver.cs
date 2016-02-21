@@ -46,8 +46,12 @@ namespace Fody.SemVer.Svn
       Collection<SvnLogEventArgs> logItems;
       using (var svnClient = new SvnClient())
       {
+        var svnLogArgs = new SvnLogArgs
+                         {
+                           StrictNodeHistory = true
+                         };
         if (!svnClient.GetLog(repositoryPath,
-                              new SvnLogArgs(),
+                              svnLogArgs,
                               out logItems) ||
             logItems == null)
         {
