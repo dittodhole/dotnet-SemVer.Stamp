@@ -78,11 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\bin&quot; &quot;$(SolutionDir)\bin&quot; SharpPlink-Win32.svnExe" IgnoreExitCode="true" />
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\bin&quot; &quot;$(SolutionDir)\bin&quot; SharpSvn.dll" IgnoreExitCode="true" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)\bin\Fody.SemVer.Svn.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)Fody.SemVer.dll&quot;  /target:library /targetplatform:v4" />
   </Target>
-  -->
 </Project>
