@@ -2,7 +2,7 @@
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
-![Icon][https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png]
+![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png)
 
 Versions your assemblies according to SemVer based on your CVS commit messages.
 
