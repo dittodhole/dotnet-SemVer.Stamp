@@ -5,6 +5,9 @@ using System.Xml.Linq;
 using Mono.Cecil;
 using SharpSvn;
 
+// ReSharper disable ExceptionNotDocumented
+// ReSharper disable ExceptionNotDocumentedOptional
+// ReSharper disable EventExceptionNotDocumented
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
