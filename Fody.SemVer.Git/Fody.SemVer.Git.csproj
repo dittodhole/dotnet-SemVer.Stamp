@@ -83,11 +83,10 @@
     <Error Condition="!Exists('..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props'))" />
     <Error Condition="!Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.119\build\LibGit2Sharp.NativeBinaries.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.NativeBinaries.1.0.119\build\LibGit2Sharp.NativeBinaries.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\NativeBinaries&quot; &quot;$(SolutionDir)\NativeBinaries&quot; *.* /E" IgnoreExitCode="true" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)bin\Fody.SemVer.Git.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)LibGit2Sharp.dll&quot; &quot;$(TargetDir)Fody.SemVer.dll&quot;  /target:library /targetplatform:v4" />
   </Target>
-  -->
 </Project>

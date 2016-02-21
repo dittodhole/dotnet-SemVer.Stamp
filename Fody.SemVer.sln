@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Svn", "Fody.Sem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Git", "Fody.SemVer.Git\Fody.SemVer.Git.csproj", "{9674AAF9-2107-4BB6-9F93-129C2021296E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Git.nupkg", "Fody.SemVer.Git.nupkg\Fody.SemVer.Git.nupkg.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
@@ -33,6 +35,10 @@ Global
 		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
