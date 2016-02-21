@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Xml.Linq;
 using Mono.Cecil;
+using SharpSvn;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
@@ -19,17 +22,47 @@ namespace Fody.SemVer.Svn
 
     public void Execute()
     {
-      this.Execute(this.Config,
-                   this.AssemblyFilePath,
-                   this.AddinDirectoryPath,
-                   this.SolutionDirectoryPath,
-                   this.ProjectDirectoryPath);
+      this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
+                                              this.AssemblyFilePath,
+                                              this.AddinDirectoryPath,
+                                              this.SolutionDirectoryPath,
+                                              this.ProjectDirectoryPath);
     }
 
-    protected override Version GetVersion(string solutionPath,
-                                          string projectPath)
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
+    protected override Version GetVersion(string repositoryPath,
+                                          string patchFormat,
+                                          string featureFormat,
+                                          string breakingChangeFormat)
     {
-      throw new NotImplementedException();
+      if (repositoryPath == null)
+      {
+        throw new ArgumentNullException(nameof(repositoryPath));
+      }
+
+      Collection<SvnLogEventArgs> logItems;
+      using (var svnClient = new SvnClient())
+      {
+        if (!svnClient.GetLog(repositoryPath,
+                              new SvnLogArgs(),
+                              out logItems) ||
+            logItems == null)
+        {
+          this.LogError($"Could not get log for repository in {repositoryPath}");
+          return null;
+        }
+      }
+
+      var commitMessages = logItems.Select(arg => arg.LogMessage);
+      var version = this.GetVersionAccordingToSemVer(commitMessages,
+                                                     patchFormat,
+                                                     featureFormat,
+                                                     breakingChangeFormat);
+
+      return version;
     }
   }
 }
