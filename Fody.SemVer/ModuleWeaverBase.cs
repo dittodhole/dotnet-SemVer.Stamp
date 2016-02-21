@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
+// ReSharper disable ExceptionNotDocumentedOptional
 // ReSharper disable EventExceptionNotDocumented
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
