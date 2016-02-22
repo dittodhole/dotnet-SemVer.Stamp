@@ -19,7 +19,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\Fody.SemVer.Svn.dll"
+    <file src="..\bin\SemVer.Svn.Fody.dll"
           target="lib" />
     <file src="..\bin\SharpPlink-Win32.svnExe"
           target="" />

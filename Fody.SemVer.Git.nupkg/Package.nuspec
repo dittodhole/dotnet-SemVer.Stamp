@@ -19,7 +19,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\Fody.SemVer.Git.dll"
+    <file src="..\bin\SemVer.Git.Fody.dll"
           target="lib" />
     <file src="..\tools\verpatch.exe"
           target="" />
