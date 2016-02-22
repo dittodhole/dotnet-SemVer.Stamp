@@ -66,11 +66,11 @@ namespace SemVer.Fody
 
     public void Execute()
     {
-      this.Prerequisites();
     }
 
     public void AfterWeaving()
     {
+      this.Prerequisites();
       this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
                                               this.AssemblyFilePath,
                                               this.AddinDirectoryPath,
