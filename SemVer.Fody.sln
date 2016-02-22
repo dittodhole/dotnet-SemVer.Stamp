@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Fody", "SemVer.Fody\SemVer.Fody.csproj", "{6F06DF70-4769-4081-9970-B8C2E0314577}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody", "SemVer.Svn.Fody\SemVer.Svn.Fody.csproj", "{A421CB55-CE9A-4804-B2AF-3C4915B462A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody", "SemVer.Git.Fody\SemVer.Git.Fody.csproj", "{9674AAF9-2107-4BB6-9F93-129C2021296E}"
@@ -25,8 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F06DF70-4769-4081-9970-B8C2E0314577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F06DF70-4769-4081-9970-B8C2E0314577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Release|Any CPU.ActiveCfg = Release|Any CPU

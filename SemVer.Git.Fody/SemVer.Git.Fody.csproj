@@ -62,17 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SemVer.Fody\Configuration.cs">
-      <Link>Configuration.cs</Link>
-    </Compile>
-    <Compile Include="..\SemVer.Fody\ModuleWeaverBase.cs">
-      <Link>ModuleWeaverBase.cs</Link>
-    </Compile>
-    <Compile Include="..\SemVer.Fody\WeavingException.cs">
-      <Link>WeavingException.cs</Link>
-    </Compile>
+    <Compile Include="Configuration.cs" />
     <Compile Include="ModuleWeaver.cs" />
+    <Compile Include="ModuleWeaverBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeavingException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
