@@ -4,31 +4,34 @@
 
 ![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png)
 
-Versions your assemblies according to [SemVer](http://semver.org/) based on your CVS commit messages.
+Version your assemblies according to [SemVer](http://semver.org/) based on your CVS commit messages.
 
 Supported CVS:
-- Git [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
+
+### Git [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
+
     PM > Install-Package SemVer.Git.Fody
-- Svn [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.Fody/)
+
+### Svn [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.Fody/)
     PM > Install-Package SemVer.Svn.Fody
 
 ## Commit message formats
 
-The default commit message formats are:
+The default formats - for parsing the level of a commit - are:
 
 - PatchFormat `^fix(\(.*\))*: `
 - FeatureFormat `^feat(\(.*\))*: `
 - BreakingChangeFormat `^perf(\(.*\))*: `
 
-The can be changed in the *FodyWeavers.xml* as following:
+These formats can be changed in the *FodyWeavers.xml* file as following:
 
-    <SemVer.Git PatchFormat=""
+    <SemVer.??? PatchFormat=""
                 FeatureFormat=""
                 BreakingChangeFormat="" />
 
-By default, the project directorie's history is taken into account when versioning. This behaviour can be changed in the *FodyWeavers.xml* as well:
+By default, the project directory's history is taken into account when calculating the version. This behaviour can be changed in the *FodyWeavers.xml* file as well:
 
-    <SemVer.Git UseProject="False" />
+    <SemVer.??? UseProject="False" />
 
 ## Icon
 
