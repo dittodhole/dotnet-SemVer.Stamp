@@ -4,7 +4,7 @@
 
 ![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png)
 
-Versions your assemblies according to SemVer based on your CVS commit messages.
+Versions your assemblies according to [SemVer](http://semver.org/) based on your CVS commit messages.
 
 Supported CVS:
 - Git [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
