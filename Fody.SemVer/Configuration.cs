@@ -34,6 +34,10 @@ namespace Fody.SemVer
                                        exception);
           }
         }
+        else
+        {
+          this.UseProject = true;
+        }
       }
 
       {
