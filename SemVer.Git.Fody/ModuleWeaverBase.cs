@@ -178,7 +178,7 @@ namespace SemVer.Fody
 
       var verpatchPathPath = Path.Combine(addinDirectoryPath,
                                           "verpatch.exe"); // Not L10N
-      var arguments = $@"""{assemblyFullFileName}"" /high {assemblyVersion}";
+      var arguments = $@"""{assemblyFullFileName}"" /high {assemblyVersion.ToString(3)}";
 
       this.LogInfo($"Patching version using: {verpatchPathPath} {arguments}");
 
