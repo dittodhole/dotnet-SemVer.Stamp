@@ -21,6 +21,8 @@
   <files>
     <file src="..\bin\SemVer.Svn.Fody.dll"
           target="" />
+    <file src="..\bin\SharpSvn.dll"
+          target="" />
     <file src="..\bin\SharpPlink-Win32.svnExe"
           target="" />
     <file src="..\bin\SharpSvn.dll"
