@@ -23,9 +23,9 @@
           target="" />
     <file src="..\tools\verpatch.exe"
           target="" />
-    <file src="..\NativeBinaries\amd64\git2-e0902fb.dll"
+    <file src="..\NativeBinaries\amd64\git2-a99f33e.dll"
           target="NativeBinaries\amd64" />
-    <file src="..\NativeBinaries\x86\git2-e0902fb.dll"
+    <file src="..\NativeBinaries\x86\git2-a99f33e.dll"
           target="NativeBinaries\x86" />
     <file src="tools\"
           target="tools" />
