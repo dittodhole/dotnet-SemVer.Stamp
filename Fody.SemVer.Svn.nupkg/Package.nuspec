@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>Fody.SemVer.Svn</id>
+    <version>1.0.0-alpha</version>
+    <title>Fody.SemVer.Svn</title>
+    <authors>Andreas Niedermair</authors>
+    <description>
+      Versions your assemblies according to SemVer based on your SVN commit messages.
+    </description>
+    <projectUrl>https://github.com/dittodhole/csharp-Fody.SemVer</projectUrl>
+    <iconUrl>https://raw.github.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png</iconUrl>
+    <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>
+    <tags>Git, Versioning, ILWeaving, Fody, Stamp, Cecil</tags>
+    <dependencies>
+      <dependency id="Fody"
+                  version="1.29.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\Fody.SemVer.Svn.dll"
+          target="lib" />
+    <file src="..\bin\SharpPlink-Win32.svnExe"
+          target="" />
+    <file src="..\bin\SharpSvn.dll"
+          target="" />
+    <file src="..\tools\verpatch.exe"
+          target="" />
+    <file src="tools\"
+          target="tools" />
+    <file src="lib\"
+          target="lib" />
+    <file src="tools\"
+          target="tools" />
+    <file src="content\"
+          target="content" />
+  </files>
+</package>
