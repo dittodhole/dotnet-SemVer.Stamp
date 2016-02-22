@@ -63,17 +63,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SemVer.Fody\Configuration.cs">
+      <Link>Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\SemVer.Fody\ModuleWeaverBase.cs">
+      <Link>ModuleWeaverBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SemVer.Fody\WeavingException.cs">
+      <Link>WeavingException.cs</Link>
+    </Compile>
     <Compile Include="ModuleWeaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SemVer.Fody\SemVer.Fody.csproj">
-      <Project>{6f06df70-4769-4081-9970-b8c2e0314577}</Project>
-      <Name>SemVer.Fody</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -87,6 +90,6 @@
   </Target>
   <Target Name="AfterBuild">
     <Exec Command="ROBOCOPY &quot;$(OutDir)\NativeBinaries&quot; &quot;$(SolutionDir)\NativeBinaries&quot; *.* /E" IgnoreExitCode="true" />
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)bin\SemVer.Git.Fody.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)LibGit2Sharp.dll&quot; &quot;$(TargetDir)SemVer.Fody.dll&quot;  /target:library /targetplatform:v4" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)bin\SemVer.Git.Fody.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)LibGit2Sharp.dll&quot; /target:library /targetplatform:v4" />
   </Target>
 </Project>

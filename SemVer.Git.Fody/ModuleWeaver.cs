@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using LibGit2Sharp;
-using Mono.Cecil;
-using SemVer.Fody;
 using Version = System.Version;
 
+// ReSharper disable CheckNamespace
 // ReSharper disable EventExceptionNotDocumented
 // ReSharper disable ExceptionNotDocumented
 // ReSharper disable ExceptionNotDocumentedOptional
@@ -14,34 +12,18 @@ using Version = System.Version;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace SemVer.Git.Fody
+namespace SemVer.Fody
 {
-  public sealed class ModuleWeaver : ModuleWeaverBase
+  public sealed partial class ModuleWeaver
   {
-    public string AddinDirectoryPath { get; set; }
-    public string AssemblyFilePath { get; set; }
-    public XElement Config { get; set; }
-    public ModuleDefinition ModuleDefinition { get; set; }
-    public string ProjectDirectoryPath { get; set; }
-    public string SolutionDirectoryPath { get; set; }
-
-    public void AfterWeaving()
-    {
-      this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
-                                              this.AssemblyFilePath,
-                                              this.AddinDirectoryPath,
-                                              this.SolutionDirectoryPath,
-                                              this.ProjectDirectoryPath);
-    }
-
     /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    protected override Version GetVersion(string repositoryPath,
-                                          string patchFormat,
-                                          string featureFormat,
-                                          string breakingChangeFormat)
+    private Version GetVersion(string repositoryPath,
+                               string patchFormat,
+                               string featureFormat,
+                               string breakingChangeFormat)
     {
       if (repositoryPath == null)
       {

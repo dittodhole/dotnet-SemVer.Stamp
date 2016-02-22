@@ -65,17 +65,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SemVer.Fody\Configuration.cs">
+      <Link>Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\SemVer.Fody\ModuleWeaverBase.cs">
+      <Link>ModuleWeaverBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SemVer.Fody\WeavingException.cs">
+      <Link>WeavingException.cs</Link>
+    </Compile>
     <Compile Include="ModuleWeaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SemVer.Fody\SemVer.Fody.csproj">
-      <Project>{6f06df70-4769-4081-9970-b8c2e0314577}</Project>
-      <Name>SemVer.Fody</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
@@ -83,6 +86,6 @@
   <Target Name="AfterBuild">
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SharpPlink-Win32.svnExe" IgnoreExitCode="true" />
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SharpSvn.dll" IgnoreExitCode="true" />
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)\bin\SemVer.Svn.Fody.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)SemVer.Fody.dll&quot;  /target:library /targetplatform:v4" />
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SemVer.Svn.Fody.dll" IgnoreExitCode="true" />
   </Target>
 </Project>

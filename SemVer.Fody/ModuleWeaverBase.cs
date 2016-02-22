@@ -5,7 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Mono.Cecil;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable ExceptionNotDocumented
 // ReSharper disable UnusedMember.Global
 // ReSharper disable ExceptionNotDocumentedOptional
 // ReSharper disable EventExceptionNotDocumented
@@ -15,9 +18,9 @@ using System.Xml.Linq;
 
 namespace SemVer.Fody
 {
-  public abstract class ModuleWeaverBase
+  public sealed partial class ModuleWeaver
   {
-    protected ModuleWeaverBase()
+    public ModuleWeaver()
     {
       this.LogInfo = s =>
                      {
@@ -33,9 +36,24 @@ namespace SemVer.Fody
     public Action<string> LogError { get; set; }
     public Action<string> LogInfo { get; set; }
     public Action<string> LogWarning { get; set; }
+    public string AddinDirectoryPath { get; set; }
+    public string AssemblyFilePath { get; set; }
+    public XElement Config { get; set; }
+    public ModuleDefinition ModuleDefinition { get; set; }
+    public string ProjectDirectoryPath { get; set; }
+    public string SolutionDirectoryPath { get; set; }
 
     public void Execute()
     {
+    }
+
+    public void AfterWeaving()
+    {
+      this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
+                                              this.AssemblyFilePath,
+                                              this.AddinDirectoryPath,
+                                              this.SolutionDirectoryPath,
+                                              this.ProjectDirectoryPath);
     }
 
     /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
@@ -53,11 +71,11 @@ namespace SemVer.Fody
     ///   SemVer'ed.
     /// </exception>
     /// <exception cref="WeavingException">If a <see cref="Process" /> instance for verpatch.exe cannot be created.</exception>
-    protected void PatchVersionOfAssemblyTheSemVerWay(XElement config,
-                                                      string assemblyFullFileName,
-                                                      string addinDirectoryPath,
-                                                      string solutionPath,
-                                                      string projectPath)
+    private void PatchVersionOfAssemblyTheSemVerWay(XElement config,
+                                                    string assemblyFullFileName,
+                                                    string addinDirectoryPath,
+                                                    string solutionPath,
+                                                    string projectPath)
     {
       if (config == null)
       {
@@ -111,15 +129,6 @@ namespace SemVer.Fody
                                   version,
                                   addinDirectoryPath);
     }
-
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    protected abstract Version GetVersion(string repositoryPath,
-                                          string patchFormat,
-                                          string featureFormat,
-                                          string breakingChangeFormat);
 
     /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="assemblyVersion" /> is <see langword="null" />.</exception>
@@ -190,10 +199,10 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    protected Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
-                                                  string patchFormat,
-                                                  string featureFormat,
-                                                  string breakingChangeFormat)
+    private Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+                                                string patchFormat,
+                                                string featureFormat,
+                                                string breakingChangeFormat)
     {
       if (commitMessages == null)
       {
