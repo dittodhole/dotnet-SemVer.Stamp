@@ -14,7 +14,21 @@ Supported CVS:
 
 ## Commit message formats
 
-TBD
+The default commit message formats are:
+
+- PatchFormat `^fix(\(.*\))*: `
+- FeatureFormat `^feat(\(.*\))*: `
+- BreakingChangeFormat `^perf(\(.*\))*: `
+
+The can be changed in the *FodyWeavers.xml* as following:
+
+    <Fody.SemVer.Git PatchFormat=""
+                     FeatureFormat=""
+                     BreakingChangeFormat="" />
+
+By default, the project directorie's history is taken into account when versioning. This behaviour can be changed in the *FodyWeavers.xml* as well:
+
+    <Fody.SemVer.Git UseProject="False" />
 
 ## Icon
 
