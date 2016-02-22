@@ -113,7 +113,7 @@ namespace SemVer.Fody
         repositoryPath = solutionPath;
       }
 
-      this.LogInfo($"Starting search for repository in {repositoryLocationLevel}");
+      this.LogInfo($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
 
       var version = this.GetVersion(repositoryPath,
                                     configuration.PatchFormat,
