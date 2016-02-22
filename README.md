@@ -1,4 +1,4 @@
-# csharp-Fody.SemVer
+# csharp-SemVer.Fody
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
