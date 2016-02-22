@@ -84,20 +84,35 @@ namespace SemVer.Fody
         return null;
       }
 
-      this.LogInfo($"found git repository in {repositoryPath}");
+      this.LogInfo($"found git repository in {repositoryPath}: {gitDirectory}");
+
+      var relativePath = this.GetRelativePath(gitDirectory,
+                                              repositoryPath);
+
+      this.LogInfo($"relative path to {nameof(repositoryPath)}: {relativePath}");
 
       ICollection<string> commitMessages;
       using (var repository = new Repository(gitDirectory))
       {
-        var commitFilter = new CommitFilter
-                           {
-                             FirstParentOnly = false,
-                             SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Topological | CommitSortStrategies.Time
-                           };
-        var commits = repository.Commits.QueryBy(commitFilter);
-        commitMessages = commits.Select(arg => string.Join(Environment.NewLine,
-                                                           arg.Message,
-                                                           arg.MessageShort))
+        var branch = repository.Head;
+
+        IEnumerable<Commit> commits;
+        if (string.IsNullOrEmpty(relativePath))
+        {
+          var commitFilter = new CommitFilter
+                             {
+                               IncludeReachableFrom = branch,
+                               SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
+                             };
+          commits = repository.Commits.QueryBy(commitFilter);
+        }
+        else
+        {
+          commits = repository.Commits.QueryBy(relativePath)
+                              .Select(arg => arg.Commit);
+        }
+
+        commitMessages = commits.Select(arg => arg.Message)
                                 .ToArray();
       }
 
@@ -108,6 +123,17 @@ namespace SemVer.Fody
                                                      breakingChangeFormat);
 
       return version;
+    }
+
+    public string GetRelativePath(string gitDirectoryPath,
+                                  string targetPath)
+    {
+      var repositoryPath = Directory.GetParent(gitDirectoryPath)
+                                    .Parent.FullName;
+      var result = targetPath.Substring(repositoryPath.Length)
+                             .TrimStart(Path.DirectorySeparatorChar);
+
+      return result;
     }
   }
 }
