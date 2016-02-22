@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using LibGit2Sharp;
 using Version = System.Version;
 
+// ReSharper disable ThrowingSystemException
+// ReSharper disable CatchAllClause
 // ReSharper disable CheckNamespace
 // ReSharper disable EventExceptionNotDocumented
 // ReSharper disable ExceptionNotDocumented
@@ -16,6 +19,34 @@ namespace SemVer.Fody
 {
   public sealed partial class ModuleWeaver
   {
+    private void Prerequisites()
+    {
+      this.IncludeNativeBinariesFolderInPathEnvironmentVariable();
+    }
+
+    private void IncludeNativeBinariesFolderInPathEnvironmentVariable()
+    {
+      string architectureSubFolder;
+      if (Environment.Is64BitProcess)
+      {
+        architectureSubFolder = "amd64"; // Not L10N
+      }
+      else
+      {
+        architectureSubFolder = "x86"; // Not L10N
+      }
+
+      var nativeBinariesPath = Path.Combine(this.AddinDirectoryPath,
+                                            "NativeBinaries", // Not L10N
+                                            architectureSubFolder);
+      var existingPath = Environment.GetEnvironmentVariable("PATH"); // Not L10N
+      var newPath = string.Concat(nativeBinariesPath,
+                                  Path.PathSeparator,
+                                  existingPath);
+      Environment.SetEnvironmentVariable("PATH", // Not L10N
+                                         newPath);
+    }
+
     /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
@@ -42,7 +73,22 @@ namespace SemVer.Fody
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
-      var gitDirectory = Repository.Discover(repositoryPath);
+      string gitDirectory;
+      try
+      {
+        gitDirectory = Repository.Discover(repositoryPath);
+      }
+      catch (Exception exception)
+      {
+        if (exception.Message.Contains("LibGit2Sharp.Core.NativeMethods") // Not L10N
+            || exception.Message.Contains("FilePathMarshaler")) // Not L10N
+        {
+          throw new WeavingException("Restart of Visual Studio required due to update of SemVer.Git.Fody", // Not L10N
+                                     exception);
+        }
+        throw;
+      }
+
       if (gitDirectory == null)
       {
         this.LogWarning($"found no git repository in {repositoryPath}");
