@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable ExceptionNotDocumentedOptional
 // ReSharper disable EventExceptionNotDocumented
 // ReSharper disable MemberCanBeProtected.Global
@@ -30,9 +31,12 @@ namespace SemVer.Fody
     }
 
     public Action<string> LogError { get; set; }
-
     public Action<string> LogInfo { get; set; }
     public Action<string> LogWarning { get; set; }
+
+    public void Execute()
+    {
+    }
 
     /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
