@@ -1,8 +1,6 @@
-# csharp-SemVer.Fody
+# ![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png) csharp-SemVer.Fody
 
-## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
-
-![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png)
+**This is an add-in for [Fody](https://github.com/Fody/Fody/)**
 
 Version your assemblies according to [SemVer](http://semver.org/) based on your CVS commit messages.
 
