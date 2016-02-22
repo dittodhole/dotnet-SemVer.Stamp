@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Mono.Cecil;
@@ -31,7 +32,27 @@ namespace SemVer.Fody
       this.LogError = s =>
                       {
                       };
+      AppDomain.CurrentDomain.AssemblyResolve += this.HandleAssemblyResolveFailed;
     }
+
+    private Assembly HandleAssemblyResolveFailed(object sender,
+                                                 ResolveEventArgs args)
+    {
+      this.LogWarning($"could not resolve assembly for {args.Name}");
+      var assemblyName = args.Name.Split(',')
+                             .First();
+      var assemblyFileName = string.Concat(assemblyName,
+                                           ".dll"); // Not L10N
+      var assemblyFullFileName = Path.Combine(this.AddinDirectoryPath,
+                                              assemblyFileName);
+
+      this.LogInfo($"loading assembly {args.Name} from {assemblyFullFileName}");
+
+      var assembly = Assembly.LoadFrom(assemblyFullFileName);
+
+      return assembly;
+    }
+
 
     public Action<string> LogError { get; set; }
     public Action<string> LogInfo { get; set; }
