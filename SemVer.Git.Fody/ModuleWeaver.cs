@@ -55,6 +55,7 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
     private Version GetVersion(string repositoryPath,
+                               Version baseVersion,
                                string patchFormat,
                                string featureFormat,
                                string breakingChangeFormat)
@@ -116,6 +117,7 @@ namespace SemVer.Fody
       }
 
       var version = this.GetVersionAccordingToSemVer(commitMessages,
+                                                     baseVersion,
                                                      patchFormat,
                                                      featureFormat,
                                                      breakingChangeFormat);

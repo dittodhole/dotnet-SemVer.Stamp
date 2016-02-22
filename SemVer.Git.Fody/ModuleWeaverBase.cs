@@ -138,6 +138,7 @@ namespace SemVer.Fody
       this.LogInfo($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
 
       var version = this.GetVersion(repositoryPath,
+                                    configuration.BaseVersion,
                                     configuration.PatchFormat,
                                     configuration.FeatureFormat,
                                     configuration.BreakingChangeFormat);
@@ -224,6 +225,7 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
     private Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+                                                Version baseVersion,
                                                 string patchFormat,
                                                 string featureFormat,
                                                 string breakingChangeFormat)
@@ -245,9 +247,9 @@ namespace SemVer.Fody
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
-      var patch = 0;
-      var feature = 0;
-      var breakingChange = 0;
+      var patch = baseVersion?.Build ?? 0;
+      var feature = baseVersion?.Minor ?? 0;
+      var breakingChange = baseVersion?.Major ?? 0;
 
       foreach (var commitMessage in commitMessages)
       {

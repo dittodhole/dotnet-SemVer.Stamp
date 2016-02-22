@@ -33,6 +33,10 @@ By default, the project directory's history is taken into account when calculati
 
     <SemVer.??? UseProject="False" />
 
+If you decide to introduce SemVer later on in a project, you can provide a base version:
+
+    <SemVer.??? BaseVersion="17.1.3.5" />
+
 ## Icon
 
 [Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.

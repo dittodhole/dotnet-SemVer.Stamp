@@ -8,11 +8,8 @@ namespace SemVer.Fody
   public sealed class Configuration
   {
     /// <exception cref="ArgumentNullException"><paramref name="element" /> is <see langword="null" />.</exception>
-    /// <exception cref="WeavingException">
-    ///   If 'UseProject' could not be read from <see cref="XElement.Attributes" /> of
-    ///   <see cref="element" />.
-    /// </exception>
     /// <exception cref="WeavingException">If 'UseProject' could not be parsed as <see cref="bool" />.</exception>
+    /// <exception cref="WeavingException">If 'BaseVersion' could not be parsed as <see cref="Version" />.</exception>
     public Configuration(XElement element)
     {
       if (element == null)
@@ -30,7 +27,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as boolean from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
                                        exception);
           }
         }
@@ -75,11 +72,28 @@ namespace SemVer.Fody
           this.BreakingChangeFormat = @"^perf(\(.*\))*: ";
         }
       }
+
+      {
+        var attribute = element.Attribute("BaseVersion"); // Not L10N
+        if (attribute != null)
+        {
+          try
+          {
+            this.BaseVersion = Version.Parse(attribute.Value);
+          }
+          catch (Exception exception)
+          {
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(Version).FullName} from configuartion",
+                                       exception);
+          }
+        }
+      }
     }
 
     public bool UseProject { get; }
     public string PatchFormat { get; }
     public string FeatureFormat { get; }
     public string BreakingChangeFormat { get; }
+    public Version BaseVersion { get; }
   }
 }
