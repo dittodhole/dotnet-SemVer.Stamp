@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>SemVer.Git.Fody</id>
-    <version>1.0.0-alpha5</version>
+    <version>1.0.0-alpha6</version>
     <title>SemVer.Git.Fody</title>
     <authors>Andreas Niedermair</authors>
     <description>
@@ -20,7 +20,7 @@
   </metadata>
   <files>
     <file src="..\bin\SemVer.Git.Fody.dll"
-          target="lib" />
+          target="" />
     <file src="..\tools\verpatch.exe"
           target="" />
     <file src="..\NativeBinaries\amd64\git2-6aa06b6.dll"

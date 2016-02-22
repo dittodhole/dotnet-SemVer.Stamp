@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>SemVer.Svn.Fody</id>
-    <version>1.0.0-alpha5</version>
+    <version>1.0.0-alpha6</version>
     <title>SemVer.Svn.Fody</title>
     <authors>Andreas Niedermair</authors>
     <description>
@@ -20,7 +20,7 @@
   </metadata>
   <files>
     <file src="..\bin\SemVer.Svn.Fody.dll"
-          target="lib" />
+          target="" />
     <file src="..\bin\SharpPlink-Win32.svnExe"
           target="" />
     <file src="..\bin\SharpSvn.dll"
