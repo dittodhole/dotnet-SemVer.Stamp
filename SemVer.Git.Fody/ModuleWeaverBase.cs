@@ -251,6 +251,8 @@ namespace SemVer.Fody
       var feature = baseVersion?.Minor ?? 0;
       var breakingChange = baseVersion?.Major ?? 0;
 
+      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}");
+
       foreach (var commitMessage in commitMessages)
       {
         if (string.IsNullOrEmpty(commitMessage))
