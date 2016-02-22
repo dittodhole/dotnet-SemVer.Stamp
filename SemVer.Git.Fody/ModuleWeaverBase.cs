@@ -66,6 +66,7 @@ namespace SemVer.Fody
 
     public void Execute()
     {
+      this.Prerequisites();
     }
 
     public void AfterWeaving()

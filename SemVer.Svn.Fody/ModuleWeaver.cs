@@ -14,6 +14,10 @@ namespace SemVer.Fody
 {
   public sealed partial class ModuleWeaver
   {
+    private void Prerequisites()
+    {
+    }
+
     /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
