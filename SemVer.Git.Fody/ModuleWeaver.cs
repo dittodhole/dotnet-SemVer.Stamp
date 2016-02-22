@@ -87,8 +87,8 @@ namespace SemVer.Fody
         if (exception.Message.Contains("LibGit2Sharp.Core.NativeMethods") // Not L10N
             || exception.Message.Contains("FilePathMarshaler")) // Not L10N
         {
-          throw new WeavingException("Restart of Visual Studio required due to update of SemVer.Git.Fody", // Not L10N
-                                     exception);
+          //throw new WeavingException("Restart of Visual Studio required due to update of SemVer.Git.Fody", // Not L10N
+          //                           exception);
         }
         throw;
       }
