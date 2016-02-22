@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using LibGit2Sharp;
 using Mono.Cecil;
+using SemVer.Fody;
 using Version = System.Version;
 
 // ReSharper disable EventExceptionNotDocumented
@@ -13,7 +14,7 @@ using Version = System.Version;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Fody.SemVer.Git
+namespace SemVer.Git.Fody
 {
   public sealed class ModuleWeaver : ModuleWeaverBase
   {

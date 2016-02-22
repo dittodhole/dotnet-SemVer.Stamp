@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer", "Fody.SemVer\Fody.SemVer.csproj", "{6F06DF70-4769-4081-9970-B8C2E0314577}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Fody", "SemVer.Fody\SemVer.Fody.csproj", "{6F06DF70-4769-4081-9970-B8C2E0314577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Svn", "Fody.SemVer.Svn\Fody.SemVer.Svn.csproj", "{A421CB55-CE9A-4804-B2AF-3C4915B462A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody", "SemVer.Svn.Fody\SemVer.Svn.Fody.csproj", "{A421CB55-CE9A-4804-B2AF-3C4915B462A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Git", "Fody.SemVer.Git\Fody.SemVer.Git.csproj", "{9674AAF9-2107-4BB6-9F93-129C2021296E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody", "SemVer.Git.Fody\SemVer.Git.Fody.csproj", "{9674AAF9-2107-4BB6-9F93-129C2021296E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Git.nupkg", "Fody.SemVer.Git.nupkg\Fody.SemVer.Git.nupkg.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody.nupkg", "SemVer.Git.Fody.nupkg\SemVer.Git.Fody.nupkg.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fody.SemVer.Svn.nupkg", "Fody.SemVer.Svn.nupkg\Fody.SemVer.Svn.nupkg.csproj", "{61AC4173-090B-482C-80B8-032E0C86F8A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.nupkg", "SemVer.Svn.Fody.nupkg\SemVer.Svn.Fody.nupkg.csproj", "{61AC4173-090B-482C-80B8-032E0C86F8A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

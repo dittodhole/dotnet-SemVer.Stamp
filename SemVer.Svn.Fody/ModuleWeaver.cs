@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
 using Mono.Cecil;
+using SemVer.Fody;
 using SharpSvn;
 
 // ReSharper disable ExceptionNotDocumented
@@ -12,7 +13,7 @@ using SharpSvn;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Fody.SemVer.Svn
+namespace SemVer.Svn.Fody
 {
   public sealed class ModuleWeaver : ModuleWeaverBase
   {

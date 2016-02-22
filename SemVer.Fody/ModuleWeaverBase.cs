@@ -12,7 +12,7 @@ using System.Xml.Linq;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Fody.SemVer
+namespace SemVer.Fody
 {
   public abstract class ModuleWeaverBase
   {

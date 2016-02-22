@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 // ReSharper disable CatchAllClause
 
-namespace Fody.SemVer
+namespace SemVer.Fody
 {
   public sealed class Configuration
   {

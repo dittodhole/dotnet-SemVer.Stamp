@@ -7,8 +7,8 @@
     <ProjectGuid>{A421CB55-CE9A-4804-B2AF-3C4915B462A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fody.SemVer.Svn</RootNamespace>
-    <AssemblyName>Fody.SemVer.Svn</AssemblyName>
+    <RootNamespace>SemVer.Svn.Fody</RootNamespace>
+    <AssemblyName>SemVer.Svn.Fody</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -72,9 +72,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fody.SemVer\Fody.SemVer.csproj">
+    <ProjectReference Include="..\SemVer.Fody\SemVer.Fody.csproj">
       <Project>{6f06df70-4769-4081-9970-b8c2e0314577}</Project>
-      <Name>Fody.SemVer</Name>
+      <Name>SemVer.Fody</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -83,6 +83,6 @@
   <Target Name="AfterBuild">
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SharpPlink-Win32.svnExe" IgnoreExitCode="true" />
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SharpSvn.dll" IgnoreExitCode="true" />
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)\bin\SemVer.Svn.Fody.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)Fody.SemVer.dll&quot;  /target:library /targetplatform:v4" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(SolutionDir)\bin\SemVer.Svn.Fody.dll&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)SemVer.Fody.dll&quot;  /target:library /targetplatform:v4" />
   </Target>
 </Project>
