@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>Fody.SemVer.Git</id>
-    <version>1.0.0-alpha</version>
+    <version>1.0.0-alpha2</version>
     <title>Fody.SemVer.Git</title>
     <authors>Andreas Niedermair</authors>
     <description>
