@@ -77,22 +77,7 @@ namespace SemVer.Fody
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
-      string gitDirectory;
-      try
-      {
-        gitDirectory = Repository.Discover(repositoryPath);
-      }
-      catch (Exception exception)
-      {
-        if (exception.Message.Contains("LibGit2Sharp.Core.NativeMethods") // Not L10N
-            || exception.Message.Contains("FilePathMarshaler")) // Not L10N
-        {
-          //throw new WeavingException("Restart of Visual Studio required due to update of SemVer.Git.Fody", // Not L10N
-          //                           exception);
-        }
-        throw;
-      }
-
+      var gitDirectory = Repository.Discover(repositoryPath);
       if (gitDirectory == null)
       {
         this.LogWarning($"found no git repository in {repositoryPath}");

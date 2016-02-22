@@ -35,6 +35,17 @@ namespace SemVer.Fody
       AppDomain.CurrentDomain.AssemblyResolve += this.HandleAssemblyResolveFailed;
     }
 
+    public string AddinDirectoryPath { get; set; }
+    public string AssemblyFilePath { get; set; }
+    public XElement Config { get; set; }
+
+    public Action<string> LogError { get; set; }
+    public Action<string> LogInfo { get; set; }
+    public Action<string> LogWarning { get; set; }
+    public ModuleDefinition ModuleDefinition { get; set; }
+    public string ProjectDirectoryPath { get; set; }
+    public string SolutionDirectoryPath { get; set; }
+
     private Assembly HandleAssemblyResolveFailed(object sender,
                                                  ResolveEventArgs args)
     {
@@ -52,17 +63,6 @@ namespace SemVer.Fody
 
       return assembly;
     }
-
-
-    public Action<string> LogError { get; set; }
-    public Action<string> LogInfo { get; set; }
-    public Action<string> LogWarning { get; set; }
-    public string AddinDirectoryPath { get; set; }
-    public string AssemblyFilePath { get; set; }
-    public XElement Config { get; set; }
-    public ModuleDefinition ModuleDefinition { get; set; }
-    public string ProjectDirectoryPath { get; set; }
-    public string SolutionDirectoryPath { get; set; }
 
     public void Execute()
     {
@@ -224,11 +224,11 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    private Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
-                                                Version baseVersion,
-                                                string patchFormat,
-                                                string featureFormat,
-                                                string breakingChangeFormat)
+    public Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+                                               Version baseVersion,
+                                               string patchFormat,
+                                               string featureFormat,
+                                               string breakingChangeFormat)
     {
       if (commitMessages == null)
       {
@@ -267,7 +267,7 @@ namespace SemVer.Fody
                                 .ToArray();
         if (patchMatches.Any())
         {
-          patch += patchMatches.Length - 1;
+          patch += patchMatches.Length;
         }
 
         var featureMatches = Regex.Matches(commitMessage,
@@ -278,7 +278,7 @@ namespace SemVer.Fody
         if (featureMatches.Any())
         {
           patch = 0;
-          feature = featureMatches.Length - 1;
+          feature += featureMatches.Length;
         }
 
         var breakingChangeMatches = Regex.Matches(commitMessage,
@@ -290,7 +290,7 @@ namespace SemVer.Fody
         {
           patch = 0;
           feature = 0;
-          breakingChange = breakingChangeMatches.Length - 1;
+          breakingChange += breakingChangeMatches.Length;
         }
       }
 

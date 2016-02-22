@@ -27,7 +27,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof (bool).FullName} from configuartion",
                                        exception);
           }
         }
@@ -83,17 +83,18 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(Version).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof (Version).FullName} from configuartion",
                                        exception);
           }
         }
       }
     }
 
-    public bool UseProject { get; }
-    public string PatchFormat { get; }
-    public string FeatureFormat { get; }
-    public string BreakingChangeFormat { get; }
     public Version BaseVersion { get; }
+    public string BreakingChangeFormat { get; }
+    public string FeatureFormat { get; }
+    public string PatchFormat { get; }
+
+    public bool UseProject { get; }
   }
 }
