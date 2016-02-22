@@ -39,6 +39,9 @@ namespace SemVer.Fody
       var nativeBinariesPath = Path.Combine(this.AddinDirectoryPath,
                                             "NativeBinaries", // Not L10N
                                             architectureSubFolder);
+
+      this.LogInfo($"NativeBinaries path: {nativeBinariesPath}");
+
       var existingPath = Environment.GetEnvironmentVariable("PATH"); // Not L10N
       var newPath = string.Concat(nativeBinariesPath,
                                   Path.PathSeparator,
