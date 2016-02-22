@@ -265,7 +265,7 @@ namespace SemVer.Fody
                                 .ToArray();
         if (patchMatches.Any())
         {
-          patch += patchMatches.Length;
+          patch += patchMatches.Length - 1;
         }
 
         var featureMatches = Regex.Matches(commitMessage,
@@ -276,7 +276,7 @@ namespace SemVer.Fody
         if (featureMatches.Any())
         {
           patch = 0;
-          feature = featureMatches.Length;
+          feature = featureMatches.Length - 1;
         }
 
         var breakingChangeMatches = Regex.Matches(commitMessage,
@@ -288,7 +288,7 @@ namespace SemVer.Fody
         {
           patch = 0;
           feature = 0;
-          breakingChange = breakingChangeMatches.Length;
+          breakingChange = breakingChangeMatches.Length - 1;
         }
       }
 
