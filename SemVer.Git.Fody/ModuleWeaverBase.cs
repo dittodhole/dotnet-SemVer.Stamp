@@ -200,6 +200,8 @@ namespace SemVer.Fody
           throw new WeavingException($"{typeof (Process).FullName} could not be created");
         }
 
+        process.WaitForExit();
+
         if (process.ExitCode == 0)
         {
           return;
