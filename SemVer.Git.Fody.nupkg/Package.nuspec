@@ -23,6 +23,8 @@
           target="" />
     <file src="..\tools\verpatch.exe"
           target="" />
+    <file src="..\bin\LibGit2Sharp.dll"
+          target="" />
     <file src="..\NativeBinaries\amd64\git2-a99f33e.dll"
           target="NativeBinaries\amd64" />
     <file src="..\NativeBinaries\x86\git2-a99f33e.dll"
