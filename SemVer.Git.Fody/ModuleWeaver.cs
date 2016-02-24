@@ -56,6 +56,7 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
     private Version GetVersion(string repositoryPath,
                                Version baseVersion,
+                               string baseRevision,
                                string patchFormat,
                                string featureFormat,
                                string breakingChangeFormat)
@@ -97,19 +98,29 @@ namespace SemVer.Fody
         var branch = repository.Head;
 
         IEnumerable<Commit> commits;
-        if (string.IsNullOrEmpty(relativePath))
-        {
-          var commitFilter = new CommitFilter
-                             {
-                               IncludeReachableFrom = branch,
-                               SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
-                             };
-          commits = repository.Commits.QueryBy(commitFilter);
-        }
-        else
+        if (string.IsNullOrEmpty(baseRevision))
         {
           commits = repository.Commits.QueryBy(relativePath)
                               .Select(arg => arg.Commit);
+        }
+        else
+        {
+          var includeReachableFrom = new List<string>
+                                     {
+                                       branch.CanonicalName,
+                                       baseRevision
+                                     };
+          if (!string.IsNullOrEmpty(relativePath))
+          {
+            throw new WeavingException($"retrieving the commits from a {nameof(relativePath)} and a {nameof(baseRevision)} is currently not implemented");
+          }
+
+          var commitFilter = new CommitFilter
+                             {
+                               IncludeReachableFrom = includeReachableFrom,
+                               SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
+                             };
+          commits = repository.Commits.QueryBy(commitFilter);
         }
 
         commitMessages = commits.Select(arg => arg.Message)

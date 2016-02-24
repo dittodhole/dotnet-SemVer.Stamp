@@ -139,6 +139,7 @@ namespace SemVer.Fody
 
       var version = this.GetVersion(repositoryPath,
                                     configuration.BaseVersion,
+                                    configuration.BaseRevision,
                                     configuration.PatchFormat,
                                     configuration.FeatureFormat,
                                     configuration.BreakingChangeFormat);

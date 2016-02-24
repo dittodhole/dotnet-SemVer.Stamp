@@ -11,6 +11,7 @@ namespace SemVer.Fody
 
     private Version GetVersion(string repositoryPath,
                                Version baseVersion,
+                               string baseRevision,
                                string patchFormat,
                                string featureFormat,
                                string breakingChangeFormat)

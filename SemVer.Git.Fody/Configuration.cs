@@ -88,13 +88,21 @@ namespace SemVer.Fody
           }
         }
       }
+
+      {
+        var attribute = element.Attribute("BaseRevision");
+        if (attribute != null)
+        {
+          this.BaseRevision = attribute.Value;
+        }
+      }
     }
 
     public Version BaseVersion { get; }
+    public string BaseRevision { get; }
     public string BreakingChangeFormat { get; }
     public string FeatureFormat { get; }
     public string PatchFormat { get; }
-
     public bool UseProject { get; }
   }
 }
