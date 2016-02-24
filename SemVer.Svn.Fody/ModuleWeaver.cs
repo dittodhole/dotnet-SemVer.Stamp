@@ -50,7 +50,8 @@ namespace SemVer.Fody
         }
       }
 
-      var commitMessages = logItems.Select(arg => arg.LogMessage);
+      var commitMessages = logItems.OrderBy(arg => arg.Revision)
+                                   .Select(arg => arg.LogMessage);
       var version = this.GetVersionAccordingToSemVer(commitMessages,
                                                      baseVersion,
                                                      patchFormat,
