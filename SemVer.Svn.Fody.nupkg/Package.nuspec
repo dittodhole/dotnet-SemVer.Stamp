@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>SemVer.Svn.Fody</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>SemVer.Svn.Fody</title>
     <authors>Andreas Niedermair</authors>
     <description>
