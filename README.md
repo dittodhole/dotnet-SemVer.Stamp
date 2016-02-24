@@ -33,7 +33,8 @@ By default, the project directory's history is taken into account when calculati
 
 If you decide to introduce SemVer later on in a project, you can provide a base version:
 
-    <SemVer.??? BaseVersion="17.1.3.5" />
+    <SemVer.??? BaseVersion="17.1.3.5"
+                BaseRevision="BaseVersion got introduced in" />
 
 ## Icon
 
