@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
+// ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString
 // ReSharper disable CatchAllClause
 

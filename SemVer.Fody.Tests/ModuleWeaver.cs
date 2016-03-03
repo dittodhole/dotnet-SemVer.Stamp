@@ -1,5 +1,8 @@
 ﻿using System;
 
+// ReSharper disable UnusedParameter.Local
+// ReSharper disable CheckNamespace
+
 namespace SemVer.Fody
 {
   public sealed partial class ModuleWeaver

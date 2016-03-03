@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Mono.Cecil;
 
+// ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ExceptionNotDocumented
