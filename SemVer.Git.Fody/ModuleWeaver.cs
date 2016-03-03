@@ -96,6 +96,27 @@ namespace SemVer.Fody
       ICollection<string> commitMessages;
       using (var repository = new Repository(gitDirectory))
       {
+        var statusOptions = new StatusOptions
+                            {
+                              ExcludeSubmodules = true,
+                              IncludeUnaltered = false,
+                              DetectRenamesInIndex = false,
+                              DetectRenamesInWorkDir = false,
+                              DisablePathSpecMatch = true,
+                              PathSpec = new[]
+                                         {
+                                           relativePath
+                                         },
+                              RecurseIgnoredDirs = false,
+                              Show = StatusShowOption.IndexAndWorkDir
+                            };
+        var status = repository.RetrieveStatus(statusOptions);
+        if (status.IsDirty)
+        {
+          this.LogWarning($"Could not calculate version for {relativePath} due to local uncommitted changes");
+          return new Version();
+        }
+
         var branch = repository.Head;
 
         IEnumerable<Commit> commits;
