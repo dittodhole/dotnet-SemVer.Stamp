@@ -29,6 +29,8 @@
           target="NativeBinaries\amd64" />
     <file src="..\bin\NativeBinaries\x86\git2-821131f.dll"
           target="NativeBinaries\x86" />
+    <file src="build\"
+          target="build" />
     <file src="tools\"
           target="tools" />
     <file src="lib\"

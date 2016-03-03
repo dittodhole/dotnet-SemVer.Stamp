@@ -29,6 +29,8 @@
           target="" />
     <file src="..\tools\verpatch.exe"
           target="" />
+    <file src="build\"
+          target="build" />
     <file src="tools\"
           target="tools" />
     <file src="lib\"
