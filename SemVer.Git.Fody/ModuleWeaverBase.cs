@@ -180,9 +180,19 @@ namespace SemVer.Fody
         throw new ArgumentNullException(nameof(addinDirectoryPath));
       }
 
+      string versionString;
+      if (assemblyVersion.Revision == 0)
+      {
+        versionString = assemblyVersion.ToString(3);
+      }
+      else
+      {
+        versionString = assemblyVersion.ToString();
+      }
+
       var verpatchPathPath = Path.Combine(addinDirectoryPath,
                                           "verpatch.exe");
-      var arguments = $@"""{assemblyFullFileName}"" /pv {assemblyVersion.ToString(3)} /high /va {assemblyVersion.ToString(3)}";
+      var arguments = $@"""{assemblyFullFileName}"" /pv {versionString} /high /va {versionString}";
 
       this.LogInfo($"Patching version using: {verpatchPathPath} {arguments}");
 
