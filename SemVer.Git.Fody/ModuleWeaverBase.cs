@@ -324,19 +324,17 @@ namespace SemVer.Fody
 
     private void PatchAssemblyAttribution(Version version)
     {
-      const string versionAttributeName = "AssemblyVersion";
-
       var versionString = version.ToString();
-      var customAttributes = this.ModuleDefinition.Assembly.CustomAttributes;
-      var customAttribute = customAttributes.FirstOrDefault(arg => arg.AttributeType.Name == versionAttributeName);
+      var customAttributes = this.ModuleDefinition.CustomAttributes;
+      var customAttribute = customAttributes.FirstOrDefault(arg => arg.AttributeType.Name == "AssemblyVersionAttribute");
       if (customAttribute == null)
       {
         var mscorlib = this.ModuleDefinition.AssemblyResolver.Resolve("mscorlib");
-        var versionAttribute = mscorlib.MainModule.Types.FirstOrDefault(arg => arg.Name == versionAttributeName);
+        var versionAttribute = mscorlib.MainModule.Types.FirstOrDefault(arg => arg.Name == "AssemblyVersionAttribute");
         if (versionAttribute == null)
         {
           var systemRuntime = this.ModuleDefinition.AssemblyResolver.Resolve("System.Runtime");
-          versionAttribute = systemRuntime.MainModule.Types.First(arg => arg.Name == versionAttributeName);
+          versionAttribute = systemRuntime.MainModule.Types.First(arg => arg.Name == "AssemblyInformationalVersionAttribute");
         }
 
         var constructor = this.ModuleDefinition.ImportReference(versionAttribute.Methods.First(arg => arg.IsConstructor));
