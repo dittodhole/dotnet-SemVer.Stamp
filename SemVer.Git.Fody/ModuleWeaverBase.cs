@@ -268,7 +268,8 @@ namespace SemVer.Fody
       var patch = baseVersion?.Build ?? 0;
       var feature = baseVersion?.Minor ?? 0;
       var breakingChange = baseVersion?.Major ?? 0;
-      var revision = baseVersion?.Revision ?? 0;
+      var revision = Math.Max(0,
+                              baseVersion?.Revision ?? 0);
 
       this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
 
