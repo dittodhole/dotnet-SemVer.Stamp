@@ -29,6 +29,8 @@
           target="NativeBinaries\amd64" />
     <file src="..\bin\NativeBinaries\x86\git2-821131f.dll"
           target="NativeBinaries\x86" />
+    <file src="..\bin\SemVer.Fody.Console.exe"
+          target="" />
     <file src="build\"
           target="build" />
     <file src="tools\"
