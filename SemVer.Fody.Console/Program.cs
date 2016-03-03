@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +14,6 @@ namespace SemVer.Fody.Console
   {
     static void Main(string[] args)
     {
-      Debugger.Launch();
-
       AppDomain.CurrentDomain.AssemblyResolve += (sender,
                                                   eventArgs) =>
                                                  {
