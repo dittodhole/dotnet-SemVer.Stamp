@@ -50,7 +50,7 @@ namespace SemVer.Fody
 
       if (svnWorkingCopyVersion.Modified)
       {
-        this.LogWarning($"Could not calculate version for {repositoryPath} due to local changes");
+        this.LogWarning($"Could not calculate version for {repositoryPath} due to local uncomitted changes");
         return new Version();
       }
 
