@@ -80,7 +80,7 @@
   <Target Name="AfterBuild">
     <Exec Command="ROBOCOPY &quot;$(OutDir)\NativeBinaries&quot; &quot;$(SolutionDir)\bin\NativeBinaries&quot; *.* /E" IgnoreExitCode="true" />
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; LibGit2Sharp.dll" IgnoreExitCode="true" />
-    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; SemVer.Git.Fody.dll" IgnoreExitCode="true" />
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; $(TargetFileName)" IgnoreExitCode="true" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
