@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +15,8 @@ namespace SemVer.Fody.Console
   {
     static void Main(string[] args)
     {
+      Debugger.Launch();
+
       AppDomain.CurrentDomain.AssemblyResolve += (sender,
                                                   eventArgs) =>
                                                  {
@@ -59,7 +62,13 @@ namespace SemVer.Fody.Console
                                             "FodyWeavers.xml");
 
       var xdocument = XDocument.Load(configFullFileName);
-      var xelement = xdocument.Element("SemVer.Git") ?? xdocument.Element("SemVer.Svn");
+      var xweavers = xdocument.Element("Weavers");
+      if (xweavers == null)
+      {
+        return;
+      }
+
+      var xelement = xweavers.Element("SemVer.Git") ?? xweavers.Element("SemVer.Svn");
       if (xelement == null)
       {
         return;
