@@ -6,10 +6,19 @@
   -->
   <PropertyGroup>
     <CompileDependsOn>
+      GetVersionAssembly;
       CommonBuildDefineModifiedAssemblyVersion;
       $(CompileDependsOn);
     </CompileDependsOn>
   </PropertyGroup>
+  <Target Name="GetVersionAssembly">
+    <Exec Command="SemVer.Fody.Console.exe &quot;$(SolutionDir)&quot; &quot;$(ProjectDir)&quot;"
+          WorkingDirectory="$(MSBuildThisFileDirectory)\.."
+          ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput"
+              PropertyName="VersionAssembly" />
+    </Exec>
+  </Target>
   <!--
       Creates modified version of AssemblyInfo.cs, replaces [AssemblyVersion] attribute with the one specifying actual build version (from MSBuild properties), and includes that file instead of the original AssemblyInfo.cs in the compilation.
 
