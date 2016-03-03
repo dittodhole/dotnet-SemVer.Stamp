@@ -252,8 +252,9 @@ namespace SemVer.Fody
       var patch = baseVersion?.Build ?? 0;
       var feature = baseVersion?.Minor ?? 0;
       var breakingChange = baseVersion?.Major ?? 0;
+      var revision = baseVersion?.Revision ?? 0;
 
-      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}");
+      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
 
       foreach (var commitMessage in commitMessages)
       {
@@ -299,7 +300,7 @@ namespace SemVer.Fody
       var version = new Version(breakingChange,
                                 feature,
                                 patch,
-                                0);
+                                revision);
 
       return version;
     }
