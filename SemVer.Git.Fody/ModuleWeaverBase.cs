@@ -39,7 +39,6 @@ namespace SemVer.Fody
     public string AddinDirectoryPath { get; set; }
     public string AssemblyFilePath { get; set; }
     public XElement Config { get; set; }
-
     public Action<string> LogError { get; set; }
     public Action<string> LogInfo { get; set; }
     public Action<string> LogWarning { get; set; }
