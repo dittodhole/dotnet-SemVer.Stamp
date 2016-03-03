@@ -36,9 +36,26 @@ namespace SemVer.Fody
         throw new ArgumentNullException(nameof(repositoryPath));
       }
 
+      SvnWorkingCopyVersion svnWorkingCopyVersion;
+      using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
+      {
+        if (!svnWorkingCopyClient.GetVersion(repositoryPath,
+                                             out svnWorkingCopyVersion) ||
+            svnWorkingCopyVersion == null)
+        {
+          this.LogError($"Could not get working copy version for {repositoryPath}");
+          return null;
+        }
+      }
+
+      if (svnWorkingCopyVersion.Modified)
+      {
+        this.LogWarning($"Could not calculate version for {repositoryPath} due to local uncomitted changes");
+        return new Version();
+      }
+
       Collection<SvnLogEventArgs> logItems;
       //SvnInfoEventArgs svnInfoEventArgs;
-      SvnWorkingCopyVersion svnWorkingCopyVersion;
       using (var svnClient = new SvnClient())
       {
         SvnRevision start;
@@ -81,17 +98,6 @@ namespace SemVer.Fody
         //  this.LogError($"Could not get info for repository in {repositoryPath}");
         //  return null;
         //}
-
-        using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
-        {
-          if (!svnWorkingCopyClient.GetVersion(repositoryPath,
-                                               out svnWorkingCopyVersion) ||
-              svnWorkingCopyVersion == null)
-          {
-            this.LogError($"Could not get working copy version for {repositoryPath}");
-            return null;
-          }
-        }
       }
 
       if (baseVersion == null)
