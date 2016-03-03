@@ -71,11 +71,15 @@ namespace SemVer.Fody
     public void AfterWeaving()
     {
       this.Prerequisites();
-      this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
-                                              this.AssemblyFilePath,
-                                              this.AddinDirectoryPath,
-                                              this.SolutionDirectoryPath,
-                                              this.ProjectDirectoryPath);
+      var version = this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
+                                                            this.AssemblyFilePath,
+                                                            this.AddinDirectoryPath,
+                                                            this.SolutionDirectoryPath,
+                                                            this.ProjectDirectoryPath);
+      if (version != null)
+      {
+        this.PatchAssemblyAttribution(version);
+      }
     }
 
     /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
@@ -93,11 +97,11 @@ namespace SemVer.Fody
     ///   SemVer'ed.
     /// </exception>
     /// <exception cref="WeavingException">If a <see cref="Process" /> instance for verpatch.exe cannot be created.</exception>
-    private void PatchVersionOfAssemblyTheSemVerWay(XElement config,
-                                                    string assemblyFullFileName,
-                                                    string addinDirectoryPath,
-                                                    string solutionPath,
-                                                    string projectPath)
+    private Version PatchVersionOfAssemblyTheSemVerWay(XElement config,
+                                                       string assemblyFullFileName,
+                                                       string addinDirectoryPath,
+                                                       string solutionPath,
+                                                       string projectPath)
     {
       if (config == null)
       {
@@ -146,12 +150,14 @@ namespace SemVer.Fody
       if (version == null)
       {
         this.LogWarning($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
-        return;
+        return null;
       }
 
       this.PatchVersionOfAssembly(assemblyFullFileName,
                                   version,
                                   addinDirectoryPath);
+
+      return version;
     }
 
     /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
@@ -312,6 +318,36 @@ namespace SemVer.Fody
                                 revision);
 
       return version;
+    }
+
+    private void PatchAssemblyAttribution(Version version)
+    {
+      const string versionAttributeName = "AssemblyVersion";
+
+      var versionString = version.ToString();
+      var customAttributes = this.ModuleDefinition.Assembly.CustomAttributes;
+      var customAttribute = customAttributes.FirstOrDefault(arg => arg.AttributeType.Name == versionAttributeName);
+      if (customAttribute == null)
+      {
+        var mscorlib = this.ModuleDefinition.AssemblyResolver.Resolve("mscorlib");
+        var versionAttribute = mscorlib.MainModule.Types.FirstOrDefault(arg => arg.Name == versionAttributeName);
+        if (versionAttribute == null)
+        {
+          var systemRuntime = this.ModuleDefinition.AssemblyResolver.Resolve("System.Runtime");
+          versionAttribute = systemRuntime.MainModule.Types.First(arg => arg.Name == versionAttributeName);
+        }
+
+        var constructor = this.ModuleDefinition.ImportReference(versionAttribute.Methods.First(arg => arg.IsConstructor));
+        customAttribute = new CustomAttribute(constructor);
+        customAttribute.ConstructorArguments.Add(new CustomAttributeArgument(this.ModuleDefinition.TypeSystem.String,
+                                                                             versionString));
+        customAttributes.Add(customAttribute);
+      }
+      else
+      {
+        customAttribute.ConstructorArguments[0] = new CustomAttributeArgument(this.ModuleDefinition.TypeSystem.String,
+                                                                              versionString);
+      }
     }
   }
 }
