@@ -25,9 +25,9 @@
           target="" />
     <file src="..\bin\LibGit2Sharp.dll"
           target="" />
-    <file src="..\NativeBinaries\amd64\git2-821131f.dll"
+    <file src="..\bin\NativeBinaries\amd64\git2-821131f.dll"
           target="NativeBinaries\amd64" />
-    <file src="..\NativeBinaries\x86\git2-821131f.dll"
+    <file src="..\bin\NativeBinaries\x86\git2-821131f.dll"
           target="NativeBinaries\x86" />
     <file src="tools\"
           target="tools" />
