@@ -37,6 +37,8 @@ namespace SemVer.Fody
       }
 
       Collection<SvnLogEventArgs> logItems;
+      //SvnInfoEventArgs svnInfoEventArgs;
+      SvnWorkingCopyVersion svnWorkingCopyVersion;
       using (var svnClient = new SvnClient())
       {
         SvnRevision start;
@@ -71,6 +73,40 @@ namespace SemVer.Fody
           this.LogError($"Could not get log for repository in {repositoryPath}");
           return null;
         }
+
+        //if (!svnClient.GetInfo(repositoryPath,
+        //                       out svnInfoEventArgs) ||
+        //    svnInfoEventArgs == null)
+        //{
+        //  this.LogError($"Could not get info for repository in {repositoryPath}");
+        //  return null;
+        //}
+
+        using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
+        {
+          if (!svnWorkingCopyClient.GetVersion(repositoryPath,
+                                               out svnWorkingCopyVersion) ||
+              svnWorkingCopyVersion == null)
+          {
+            this.LogError($"Could not get working copy version for {repositoryPath}");
+            return null;
+          }
+        }
+      }
+
+      if (baseVersion == null)
+      {
+        baseVersion = new Version(0,
+                                  0,
+                                  0,
+                                  (int) svnWorkingCopyVersion.End);
+      }
+      else
+      {
+        baseVersion = new Version(baseVersion.Major,
+                                  baseVersion.Minor,
+                                  baseVersion.Build,
+                                  (int) svnWorkingCopyVersion.End);
       }
 
       var commitMessages = logItems.OrderBy(arg => arg.Revision)

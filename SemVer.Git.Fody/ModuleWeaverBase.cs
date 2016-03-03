@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Mono.Cecil;
 
+// ReSharper disable NonLocalizedString
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ExceptionNotDocumented
 // ReSharper disable UnusedMember.Global
@@ -53,7 +54,7 @@ namespace SemVer.Fody
       var assemblyName = args.Name.Split(',')
                              .First();
       var assemblyFileName = string.Concat(assemblyName,
-                                           ".dll"); // Not L10N
+                                           ".dll");
       var assemblyFullFileName = Path.Combine(this.AddinDirectoryPath,
                                               assemblyFileName);
 
@@ -126,12 +127,12 @@ namespace SemVer.Fody
       string repositoryLocationLevel;
       if (configuration.UseProject)
       {
-        repositoryLocationLevel = "ProjectDir"; // Not L10N
+        repositoryLocationLevel = "ProjectDir";
         repositoryPath = projectPath;
       }
       else
       {
-        repositoryLocationLevel = "SolutionDir"; // Not L10N
+        repositoryLocationLevel = "SolutionDir";
         repositoryPath = solutionPath;
       }
 
@@ -180,7 +181,7 @@ namespace SemVer.Fody
       }
 
       var verpatchPathPath = Path.Combine(addinDirectoryPath,
-                                          "verpatch.exe"); // Not L10N
+                                          "verpatch.exe");
       var arguments = $@"""{assemblyFullFileName}"" /high {assemblyVersion.ToString(3)}";
 
       this.LogInfo($"Patching version using: {verpatchPathPath} {arguments}");
@@ -213,7 +214,7 @@ namespace SemVer.Fody
         var output = process.StandardOutput.ReadToEnd();
         var error = process.StandardError.ReadToEnd();
         var message = string.Join(Environment.NewLine,
-                                  "Failed to SemVer Win32 resources.", // Not L10N
+                                  "Failed to SemVer Win32 resources.",
                                   $"Output: {output}",
                                   $"Error: {error}");
 
@@ -251,8 +252,9 @@ namespace SemVer.Fody
       var patch = baseVersion?.Build ?? 0;
       var feature = baseVersion?.Minor ?? 0;
       var breakingChange = baseVersion?.Major ?? 0;
+      var revision = baseVersion?.Revision ?? 0;
 
-      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}");
+      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
 
       foreach (var commitMessage in commitMessages)
       {
@@ -298,7 +300,7 @@ namespace SemVer.Fody
       var version = new Version(breakingChange,
                                 feature,
                                 patch,
-                                0);
+                                revision);
 
       return version;
     }

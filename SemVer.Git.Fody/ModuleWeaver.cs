@@ -5,6 +5,7 @@ using System.Linq;
 using LibGit2Sharp;
 using Version = System.Version;
 
+// ReSharper disable NonLocalizedString
 // ReSharper disable ThrowingSystemException
 // ReSharper disable CatchAllClause
 // ReSharper disable CheckNamespace
@@ -29,24 +30,24 @@ namespace SemVer.Fody
       string architectureSubFolder;
       if (Environment.Is64BitProcess)
       {
-        architectureSubFolder = "amd64"; // Not L10N
+        architectureSubFolder = "amd64";
       }
       else
       {
-        architectureSubFolder = "x86"; // Not L10N
+        architectureSubFolder = "x86";
       }
 
       var nativeBinariesPath = Path.Combine(this.AddinDirectoryPath,
-                                            "NativeBinaries", // Not L10N
+                                            "NativeBinaries",
                                             architectureSubFolder);
 
       this.LogInfo($"NativeBinaries path: {nativeBinariesPath}");
 
-      var existingPath = Environment.GetEnvironmentVariable("PATH"); // Not L10N
+      var existingPath = Environment.GetEnvironmentVariable("PATH");
       var newPath = string.Concat(nativeBinariesPath,
                                   Path.PathSeparator,
                                   existingPath);
-      Environment.SetEnvironmentVariable("PATH", // Not L10N
+      Environment.SetEnvironmentVariable("PATH",
                                          newPath);
     }
 

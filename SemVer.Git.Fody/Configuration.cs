@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
+// ReSharper disable NonLocalizedString
 // ReSharper disable CatchAllClause
 
 namespace SemVer.Fody
@@ -18,7 +19,7 @@ namespace SemVer.Fody
       }
 
       {
-        var attribute = element.Attribute("UseProject"); // Not L10N
+        var attribute = element.Attribute("UseProject");
         if (attribute != null)
         {
           try
@@ -38,7 +39,7 @@ namespace SemVer.Fody
       }
 
       {
-        var attribute = element.Attribute("PatchFormat"); // Not L10N
+        var attribute = element.Attribute("PatchFormat");
         if (attribute != null)
         {
           this.PatchFormat = attribute.Value;
@@ -50,7 +51,7 @@ namespace SemVer.Fody
       }
 
       {
-        var attribute = element.Attribute("FeatureFormat"); // Not L10N
+        var attribute = element.Attribute("FeatureFormat");
         if (attribute != null)
         {
           this.FeatureFormat = attribute.Value;
@@ -62,7 +63,7 @@ namespace SemVer.Fody
       }
 
       {
-        var attribute = element.Attribute("BreakingChangeFormat"); // Not L10N
+        var attribute = element.Attribute("BreakingChangeFormat");
         if (attribute != null)
         {
           this.BreakingChangeFormat = attribute.Value;
@@ -74,7 +75,7 @@ namespace SemVer.Fody
       }
 
       {
-        var attribute = element.Attribute("BaseVersion"); // Not L10N
+        var attribute = element.Attribute("BaseVersion");
         if (attribute != null)
         {
           try
