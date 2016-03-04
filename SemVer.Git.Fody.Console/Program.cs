@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Linq;
 
 // ReSharper disable EmptyGeneralCatchClause
@@ -14,35 +12,6 @@ namespace SemVer.Fody.Console
   {
     static void Main(string[] args)
     {
-      AppDomain.CurrentDomain.AssemblyResolve += (sender,
-                                                  eventArgs) =>
-                                                 {
-                                                   var fileNames = new[]
-                                                                   {
-                                                                     "SemVer.Git.Fody.dll",
-                                                                     "SemVer.Svn.Fody.dll"
-                                                                   };
-
-                                                   foreach (var fileName in fileNames)
-                                                   {
-                                                     try
-                                                     {
-                                                       var assembly = Assembly.LoadFrom(fileName);
-                                                       if (assembly == null)
-                                                       {
-                                                         continue;
-                                                       }
-
-                                                       return assembly;
-                                                     }
-                                                     catch
-                                                     {
-                                                     }
-                                                   }
-
-                                                   return null;
-                                                 };
-
       var solutionPath = args.ElementAtOrDefault(0);
       if (solutionPath == null)
       {

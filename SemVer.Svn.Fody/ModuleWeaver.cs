@@ -24,12 +24,12 @@ namespace SemVer.Fody
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="WeavingException">If <paramref name="baseRevision" /> could not be parsed to <see cref="int"/>.</exception>
-    private Version GetVersion(string repositoryPath,
-                               Version baseVersion,
-                               string baseRevision,
-                               string patchFormat,
-                               string featureFormat,
-                               string breakingChangeFormat)
+    public Version GetVersion(string repositoryPath,
+                              Version baseVersion,
+                              string baseRevision,
+                              string patchFormat,
+                              string featureFormat,
+                              string breakingChangeFormat)
     {
       if (repositoryPath == null)
       {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{435C4313-47F4-4868-A3F7-438EB4141976}</ProjectGuid>
+    <ProjectGuid>{486B6663-A23B-4C7E-8738-74FD130DD823}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SemVer.Fody.Console</RootNamespace>
-    <AssemblyName>SemVer.Fody.Console</AssemblyName>
+    <AssemblyName>SemVer.Git.Fody.Console</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

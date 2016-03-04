@@ -12,7 +12,7 @@
     </CompileDependsOn>
   </PropertyGroup>
   <Target Name="GetVersionAssembly">
-    <Exec Command="SemVer.Fody.Console.exe &quot;$(SolutionDir)\&quot; &quot;$(ProjectDir)\&quot;"
+    <Exec Command="SemVer.Git.Fody.Console.exe &quot;$(SolutionDir)\&quot; &quot;$(ProjectDir)\&quot;"
           WorkingDirectory="$(MSBuildThisFileDirectory)\.."
           ConsoleToMSBuild="true">
       <Output TaskParameter="ConsoleOutput"

@@ -27,7 +27,7 @@
           target="" />
     <file src="..\bin\SharpSvn.dll"
           target="" />
-    <file src="..\bin\SemVer.Fody.Console.exe"
+    <file src="..\bin\SemVer.Svn.Fody.Console.exe"
           target="" />
     <file src="..\tools\verpatch.exe"
           target="" />
