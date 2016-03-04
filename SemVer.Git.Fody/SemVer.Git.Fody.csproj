@@ -88,6 +88,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.106\build\LibGit2Sharp.NativeBinaries.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.NativeBinaries.1.0.106\build\LibGit2Sharp.NativeBinaries.props'))" />
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets" Condition="Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" />
 </Project>

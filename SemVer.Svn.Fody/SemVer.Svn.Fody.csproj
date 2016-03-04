@@ -97,5 +97,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets'))" />
   </Target>
+  <Import Project="..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets" Condition="Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" />
 </Project>
