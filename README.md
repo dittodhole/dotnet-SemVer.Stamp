@@ -61,8 +61,8 @@ tbd
 
 ## License
 
-csharp-SemVer.Stamp is published under [WTFNMFPLv3](//andreas.niedermair.name/introducing-wtfnmfplv3).
+csharp-SemVer.Stamp is published under [WTFNMFPLv3](https://andreas.niedermair.name/introducing-wtfnmfplv3).
 
 ## Spotify Playlist
 
-Good in the mood, [listen to the playlist](//open.spotify.com/user/dittodhole/playlist/0KF2OFBoetcBt59qdHlbx7).
+Good in the mood, [listen to the playlist](https://open.spotify.com/user/dittodhole/playlist/0KF2OFBoetcBt59qdHlbx7).
