@@ -40,19 +40,19 @@
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\FodyCecil.1.29.4\lib\net40\Mono.Cecil.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\FodyCecil.1.29.4\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\FodyCecil.1.29.4\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\FodyCecil.1.29.4\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,7 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ILMerge.props" />
+    <None Include="ILMerge.props">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +88,11 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Exec Command="ROBOCOPY &quot;$(OutDir)\NativeBinaries&quot; &quot;$(SolutionDir)\bin\NativeBinaries&quot; *.* /E" IgnoreExitCode="true" />
-    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; LibGit2Sharp.dll" IgnoreExitCode="true" />
+    <CreateItem Include="@(None)" Condition=" '%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest' ">
+      <Output TaskParameter="Include" ItemName="NoneItems" />
+    </CreateItem>
+    <Copy SourceFiles="@(NoneItems)"
+          DestinationFiles="@(NoneItems->'$(SolutionDir)bin\%(Link)')" />
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; $(TargetFileName)" IgnoreExitCode="true" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
