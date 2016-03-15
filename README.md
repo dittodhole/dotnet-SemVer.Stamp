@@ -19,12 +19,10 @@ tbd
 tbd
 
 ## SemVer.MSBuild
-----------
 
 tbd
 
 ## [![Fody](https://camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67)](https://github.com/Fody/Fody/) SemVer.Fody
-----------
 
 ### SemVer.Git.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
 
