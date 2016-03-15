@@ -77,6 +77,12 @@
     <Content Include="FodyWeavers.xml" />
     <Content Include="ILMergeOrder.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
+      <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
+      <Name>SemVer.Stamp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
   </Target>
