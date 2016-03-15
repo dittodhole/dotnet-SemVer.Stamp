@@ -1,17 +1,6 @@
-# ![Icon](https://raw.githubusercontent.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png) csharp-SemVer.Fody
+# ![Icon](Icons/package_icon.png) csharp-SemVer.Stamp
 
-**This is an add-in for [Fody](https://github.com/Fody/Fody/)**
-
-Version your assemblies according to [SemVer](http://semver.org/) based on your CVS commit messages.
-
-Supported CVS:
-
-### Git [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
-
-    PM > Install-Package SemVer.Git.Fody
-
-### Svn [![NuGet Status](http://img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.Fody/)
-    PM > Install-Package SemVer.Svn.Fody
+This is a solution for various plugins to achieve SemVer'sioning your assemblies.
 
 ## Commit message formats
 
@@ -21,29 +10,59 @@ The default formats - for parsing the level of a commit - are:
 - FeatureFormat `^feat(\(.*\))*: `
 - BreakingChangeFormat `^perf(\(.*\))*: `
 
-These formats can be changed in the *FodyWeavers.xml* file as following:
+## Source of commits
 
-    <SemVer.??? PatchFormat=""
-                FeatureFormat=""
-                BreakingChangeFormat="" />
+tbd
 
-By default, the project directory's history is taken into account when calculating the version. This behaviour can be changed in the *FodyWeavers.xml* file as well:
+## Base version
 
-    <SemVer.??? UseProject="False" />
+tbd
 
-If you decide to introduce SemVer later on in a project, you can provide a base version:
+## SemVer.MSBuild
 
-    <SemVer.??? BaseVersion="17.1.3.5"
-                BaseRevision="BaseVersion got introduced in" />
+tbd
+
+## ![](//camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67) SemVer.Fody
+
+### SemVer.Git.Fody [![NuGet Status](//img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](//www.nuget.org/packages/SemVer.Git.Fody/)
+
+    PM > Install-Package SemVer.Git.Fody
+
+###  SemVer.Svn.Fody [![NuGet Status](//img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](//www.nuget.org/packages/SemVer.Svn.Fody/)
+    PM > Install-Package SemVer.Svn.Fody
+
+### Commit message formats
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <Weavers>
+      <SemVer.??? PatchFormat="^fix(\(.*\))*: "
+                  FeatureFormat="^feat(\(.*\))*: "
+                  BreakingChangeFormat="^perf(\(.*\))*: " />
+    </Weavers>
+
+### Source of commits
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <Weavers>
+      <SemVer.??? UseProject="False" />
+    </Weavers>
+
+### Base version
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <Weavers>
+      <SemVer.??? BaseVersion="17.1.3.5"
+                  BaseRevision="BaseVersion got introduced in" />
+    </Weavers>
 
 ## Icon
 
-[Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.
+[Cyclops](//thenounproject.com/term/cyclops/60203/) by [Mike Hince](//thenounproject.com/zer0mike) from the Noun Project.
 
 ## License
 
-csharp-Fody.SemVer is published under [WTFNMFPLv3](http://andreas.niedermair.name/introducing-wtfnmfplv3).
+csharp-SemVer.Stamp is published under [WTFNMFPLv3](//andreas.niedermair.name/introducing-wtfnmfplv3).
 
 ## Spotify Playlist
 
-Good in the mood, [listen to the playlist](https://open.spotify.com/user/dittodhole/playlist/0KF2OFBoetcBt59qdHlbx7).
+Good in the mood, [listen to the playlist](//open.spotify.com/user/dittodhole/playlist/0KF2OFBoetcBt59qdHlbx7).
