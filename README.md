@@ -22,13 +22,13 @@ tbd
 
 tbd
 
-## ![](//camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67) SemVer.Fody
+## ![](https://camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67) SemVer.Fody
 
-### SemVer.Git.Fody [![NuGet Status](//img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](//www.nuget.org/packages/SemVer.Git.Fody/)
+### SemVer.Git.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
 
     PM > Install-Package SemVer.Git.Fody
 
-###  SemVer.Svn.Fody [![NuGet Status](//img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](//www.nuget.org/packages/SemVer.Svn.Fody/)
+###  SemVer.Svn.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.Fody/)
     PM > Install-Package SemVer.Svn.Fody
 
 ### Commit message formats
@@ -57,7 +57,7 @@ tbd
 
 ## Icon
 
-[Cyclops](//thenounproject.com/term/cyclops/60203/) by [Mike Hince](//thenounproject.com/zer0mike) from the Noun Project.
+[Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.
 
 ## License
 
