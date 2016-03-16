@@ -57,18 +57,8 @@
     <None Include="Package.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="tools\init.ps1" />
-    <None Include="tools\install.ps1" />
-    <None Include="tools\uninstall.ps1" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="content\" />
-    <Folder Include="lib\" />
-    <Folder Include="src\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SemVer.Svn.Fody.Console\SemVer.Svn.Fody.Console.csproj">
       <Project>{49ff9f4d-f0b5-424f-b584-6ecfae117d31}</Project>

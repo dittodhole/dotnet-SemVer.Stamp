@@ -33,13 +33,5 @@
           target="" />
     <file src="build\"
           target="build" />
-    <file src="tools\"
-          target="tools" />
-    <file src="lib\"
-          target="lib" />
-    <file src="tools\"
-          target="tools" />
-    <file src="content\"
-          target="content" />
   </files>
 </package>
