@@ -7,24 +7,35 @@ using System.Text.RegularExpressions;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable NonLocalizedString
+// ReSharper disable ExceptionNotDocumentedOptional
+// ReSharper disable EventExceptionNotDocumented
 
 namespace SemVer.Stamp
 {
   public abstract class SemVersionGrabberBase
   {
-    public Action<string> LogError { get; set; }
-    public Action<string> LogInfo { get; set; }
-    public Action<string> LogWarning { get; set; }
+    protected SemVersionGrabberBase(Action<string> logInfo,
+                                    Action<string> logWarning,
+                                    Action<string> logError)
+    {
+      this.LogInfo = logInfo;
+      this.LogWarning = logWarning;
+      this.LogError = logError;
+    }
+
+    protected Action<string> LogError { get; }
+    protected Action<string> LogInfo { get; }
+    protected Action<string> LogWarning { get; }
 
     /// <exception cref="ArgumentNullException"><paramref name="commitMessages" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    public Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
-                                               Version baseVersion,
-                                               string patchFormat,
-                                               string featureFormat,
-                                               string breakingChangeFormat)
+    public Version CalculateVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+                                                     Version baseVersion,
+                                                     string patchFormat,
+                                                     string featureFormat,
+                                                     string breakingChangeFormat)
     {
       if (commitMessages == null)
       {
@@ -49,7 +60,7 @@ namespace SemVer.Stamp
       var revision = Math.Max(0,
                               baseVersion?.Revision ?? 0);
 
-      this?.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
+      this.LogInfo?.Invoke($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
 
       foreach (var commitMessage in commitMessages)
       {
@@ -60,7 +71,7 @@ namespace SemVer.Stamp
 
         var patchMatches = Regex.Matches(commitMessage,
                                          patchFormat,
-                                         RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
+                                         RegexOptions.Multiline | RegexOptions.IgnoreCase)
                                 .OfType<Match>()
                                 .ToArray();
         if (patchMatches.Any())
@@ -70,7 +81,7 @@ namespace SemVer.Stamp
 
         var featureMatches = Regex.Matches(commitMessage,
                                            featureFormat,
-                                           RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
+                                           RegexOptions.Multiline | RegexOptions.IgnoreCase)
                                   .OfType<Match>()
                                   .ToArray();
         if (featureMatches.Any())
@@ -81,7 +92,7 @@ namespace SemVer.Stamp
 
         var breakingChangeMatches = Regex.Matches(commitMessage,
                                                   breakingChangeFormat,
-                                                  RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
+                                                  RegexOptions.Multiline | RegexOptions.IgnoreCase)
                                          .OfType<Match>()
                                          .ToArray();
         if (breakingChangeMatches.Any())
