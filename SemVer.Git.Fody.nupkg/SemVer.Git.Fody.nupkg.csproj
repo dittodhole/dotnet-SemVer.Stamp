@@ -58,10 +58,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NativeBinaries\" />
-    <Folder Include="src\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SemVer.Git.Fody.Console\SemVer.Git.Fody.Console.csproj">
       <Project>{486b6663-a23b-4c7e-8738-74fd130dd823}</Project>
