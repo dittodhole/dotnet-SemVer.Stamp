@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Mono.Cecil;
+using SemVer.Stamp;
 using SemVer.Stamp.Fody;
 
-// ReSharper disable CheckNamespace
-// ReSharper disable NonLocalizedString
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable ExceptionNotDocumented
-// ReSharper disable UnusedMember.Global
-// ReSharper disable ExceptionNotDocumentedOptional
-// ReSharper disable EventExceptionNotDocumented
-// ReSharper disable MemberCanBeProtected.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable UnusedMember.Global
+// ReSharper disable NonLocalizedString
+// ReSharper disable CheckNamespace
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+// ReSharper disable ExceptionNotDocumentedOptional
+// ReSharper disable ExceptionNotDocumented
 
 namespace SemVer.Fody
 {
@@ -46,6 +43,8 @@ namespace SemVer.Fody
     public Action<string> LogWarning { get; set; }
     public ModuleDefinition ModuleDefinition { get; set; }
     public string ProjectDirectoryPath { get; set; }
+
+    private SemVersionGrabberBase SemVersionGrabber { get; set; }
     public string SolutionDirectoryPath { get; set; }
 
     private Assembly HandleAssemblyResolveFailed(object sender,
@@ -73,6 +72,7 @@ namespace SemVer.Fody
     public void AfterWeaving()
     {
       this.Prerequisites();
+
       var version = this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
                                                             this.AssemblyFilePath,
                                                             this.AddinDirectoryPath,
@@ -143,12 +143,12 @@ namespace SemVer.Fody
 
       this.LogInfo($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
 
-      var version = this.GetVersion(repositoryPath,
-                                    configuration.BaseVersion,
-                                    configuration.BaseRevision,
-                                    configuration.PatchFormat,
-                                    configuration.FeatureFormat,
-                                    configuration.BreakingChangeFormat);
+      var version = this.SemVersionGrabber.GetVersion(repositoryPath,
+                                                      configuration.BaseVersion,
+                                                      configuration.BaseRevision,
+                                                      configuration.PatchFormat,
+                                                      configuration.FeatureFormat,
+                                                      configuration.BreakingChangeFormat);
       if (version == null)
       {
         this.LogWarning($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
@@ -237,90 +237,6 @@ namespace SemVer.Fody
 
         throw new WeavingException(message);
       }
-    }
-
-    /// <exception cref="ArgumentNullException"><paramref name="commitMessages" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    public Version GetVersionAccordingToSemVer(IEnumerable<string> commitMessages,
-                                               Version baseVersion,
-                                               string patchFormat,
-                                               string featureFormat,
-                                               string breakingChangeFormat)
-    {
-      if (commitMessages == null)
-      {
-        throw new ArgumentNullException(nameof(commitMessages));
-      }
-      if (patchFormat == null)
-      {
-        throw new ArgumentNullException(nameof(patchFormat));
-      }
-      if (featureFormat == null)
-      {
-        throw new ArgumentNullException(nameof(featureFormat));
-      }
-      if (breakingChangeFormat == null)
-      {
-        throw new ArgumentNullException(nameof(breakingChangeFormat));
-      }
-
-      var patch = baseVersion?.Build ?? 0;
-      var feature = baseVersion?.Minor ?? 0;
-      var breakingChange = baseVersion?.Major ?? 0;
-      var revision = Math.Max(0,
-                              baseVersion?.Revision ?? 0);
-
-      this.LogInfo($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
-
-      foreach (var commitMessage in commitMessages)
-      {
-        if (string.IsNullOrEmpty(commitMessage))
-        {
-          continue;
-        }
-
-        var patchMatches = Regex.Matches(commitMessage,
-                                         patchFormat,
-                                         RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
-                                .OfType<Match>()
-                                .ToArray();
-        if (patchMatches.Any())
-        {
-          patch += patchMatches.Length;
-        }
-
-        var featureMatches = Regex.Matches(commitMessage,
-                                           featureFormat,
-                                           RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
-                                  .OfType<Match>()
-                                  .ToArray();
-        if (featureMatches.Any())
-        {
-          patch = 0;
-          feature += featureMatches.Length;
-        }
-
-        var breakingChangeMatches = Regex.Matches(commitMessage,
-                                                  breakingChangeFormat,
-                                                  RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled)
-                                         .OfType<Match>()
-                                         .ToArray();
-        if (breakingChangeMatches.Any())
-        {
-          patch = 0;
-          feature = 0;
-          breakingChange += breakingChangeMatches.Length;
-        }
-      }
-
-      var version = new Version(breakingChange,
-                                feature,
-                                patch,
-                                revision);
-
-      return version;
     }
 
     private void PatchAssemblyAttribution(Version version)
