@@ -69,6 +69,16 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SemVer.Svn.Fody.Console\SemVer.Svn.Fody.Console.csproj">
+      <Project>{49ff9f4d-f0b5-424f-b584-6ecfae117d31}</Project>
+      <Name>SemVer.Svn.Fody.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Svn.Fody\SemVer.Svn.Fody.csproj">
+      <Project>{a421cb55-ce9a-4804-b2af-3c4915b462a9}</Project>
+      <Name>SemVer.Svn.Fody</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

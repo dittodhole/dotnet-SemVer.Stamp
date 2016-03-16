@@ -67,6 +67,16 @@
     <Folder Include="NativeBinaries\" />
     <Folder Include="src\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SemVer.Git.Fody.Console\SemVer.Git.Fody.Console.csproj">
+      <Project>{486b6663-a23b-4c7e-8738-74fd130dd823}</Project>
+      <Name>SemVer.Git.Fody.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Git.Fody\SemVer.Git.Fody.csproj">
+      <Project>{9674aaf9-2107-4bb6-9f93-129c2021296e}</Project>
+      <Name>SemVer.Git.Fody</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
