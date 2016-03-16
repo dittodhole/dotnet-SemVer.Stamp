@@ -8,30 +8,18 @@ using Mono.Cecil;
 using SemVer.Stamp;
 using SemVer.Stamp.Fody;
 
-// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable NonLocalizedString
-// ReSharper disable CheckNamespace
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-// ReSharper disable ExceptionNotDocumentedOptional
-// ReSharper disable ExceptionNotDocumented
+// ReSharper disable UnusedMember.Global
 
 namespace SemVer.Fody
 {
-  public sealed partial class ModuleWeaver
+  public abstract class ModuleWeaverBase
   {
-    public ModuleWeaver()
+    protected ModuleWeaverBase()
     {
-      this.LogInfo = s =>
-                     {
-                     };
-      this.LogWarning = s =>
-                        {
-                        };
-      this.LogError = s =>
-                      {
-                      };
       AppDomain.CurrentDomain.AssemblyResolve += this.HandleAssemblyResolveFailed;
     }
 
@@ -43,14 +31,13 @@ namespace SemVer.Fody
     public Action<string> LogWarning { get; set; }
     public ModuleDefinition ModuleDefinition { get; set; }
     public string ProjectDirectoryPath { get; set; }
-
-    private SemVersionGrabberBase SemVersionGrabber { get; set; }
+    protected SemVersionGrabberBase SemVersionGrabber { get; set; }
     public string SolutionDirectoryPath { get; set; }
 
     private Assembly HandleAssemblyResolveFailed(object sender,
                                                  ResolveEventArgs args)
     {
-      this.LogWarning($"could not resolve assembly for {args.Name}");
+      this.LogWarning?.Invoke($"could not resolve assembly for {args.Name}");
       var assemblyName = args.Name.Split(',')
                              .First();
       var assemblyFileName = string.Concat(assemblyName,
@@ -58,7 +45,7 @@ namespace SemVer.Fody
       var assemblyFullFileName = Path.Combine(this.AddinDirectoryPath,
                                               assemblyFileName);
 
-      this.LogInfo($"loading assembly {args.Name} from {assemblyFullFileName}");
+      this.LogInfo?.Invoke($"loading assembly {args.Name} from {assemblyFullFileName}");
 
       var assembly = Assembly.LoadFrom(assemblyFullFileName);
 
@@ -73,16 +60,22 @@ namespace SemVer.Fody
     {
       this.Prerequisites();
 
+      // ReSharper disable ExceptionNotDocumentedOptional
+      // ReSharper disable ExceptionNotDocumented
       var version = this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
                                                             this.AssemblyFilePath,
                                                             this.AddinDirectoryPath,
                                                             this.SolutionDirectoryPath,
                                                             this.ProjectDirectoryPath);
+      // ReSharper restore ExceptionNotDocumented
+      // ReSharper restore ExceptionNotDocumentedOptional
       if (version != null)
       {
         this.PatchAssemblyAttribution(version);
       }
     }
+
+    protected abstract void Prerequisites();
 
     /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
@@ -141,7 +134,7 @@ namespace SemVer.Fody
         repositoryPath = solutionPath;
       }
 
-      this.LogInfo($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
+      this.LogInfo?.Invoke($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
 
       var version = this.SemVersionGrabber.GetVersion(repositoryPath,
                                                       configuration.BaseVersion,
@@ -151,7 +144,7 @@ namespace SemVer.Fody
                                                       configuration.BreakingChangeFormat);
       if (version == null)
       {
-        this.LogWarning($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
+        this.LogWarning?.Invoke($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
         return null;
       }
 
@@ -201,7 +194,7 @@ namespace SemVer.Fody
                                           "verpatch.exe");
       var arguments = $@"""{assemblyFullFileName}"" /pv {versionString} /high /va {versionString}";
 
-      this.LogInfo($"Patching version using: {verpatchPathPath} {arguments}");
+      this.LogInfo?.Invoke($"Patching version using: {verpatchPathPath} {arguments}");
 
       var processStartInfo = new ProcessStartInfo
                              {

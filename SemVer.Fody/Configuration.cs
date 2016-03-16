@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Xml.Linq;
-using SemVer.Stamp.Fody;
 
 // ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString
 // ReSharper disable CatchAllClause
 
-namespace SemVer.Fody
+namespace SemVer.Stamp.Fody
 {
   public sealed class Configuration
   {

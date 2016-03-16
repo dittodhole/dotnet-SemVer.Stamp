@@ -1,12 +1,13 @@
-﻿using SemVer.Stamp.Svn;
+﻿using SemVer.Fody;
+using SemVer.Stamp.Svn;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable UnusedMember.Global
 
-namespace SemVer.Fody
+namespace SemVer.Svn.Fody
 {
-  public sealed partial class ModuleWeaver
+  public sealed class ModuleWeaver : ModuleWeaverBase
   {
-    private void Prerequisites()
+    protected override void Prerequisites()
     {
       this.SemVersionGrabber = new SvnSemVersionGrabber(this.LogInfo,
                                                         this.LogWarning,

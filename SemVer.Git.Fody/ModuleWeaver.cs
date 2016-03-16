@@ -1,15 +1,16 @@
 ﻿using System;
 using System.IO;
+using SemVer.Fody;
 using SemVer.Stamp.Git;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable UnusedMember.Global
 // ReSharper disable NonLocalizedString
 
-namespace SemVer.Fody
+namespace SemVer.Git.Fody
 {
-  public sealed partial class ModuleWeaver
+  public sealed class ModuleWeaver : ModuleWeaverBase
   {
-    private void Prerequisites()
+    protected override void Prerequisites()
     {
       this.SemVersionGrabber = new GitSemVersionGrabber(this.LogInfo,
                                                         this.LogWarning,
@@ -34,7 +35,7 @@ namespace SemVer.Fody
                                             "NativeBinaries",
                                             architectureSubFolder);
 
-      this.LogInfo($"NativeBinaries path: {nativeBinariesPath}");
+      this.LogInfo?.Invoke($"NativeBinaries path: {nativeBinariesPath}");
 
       var existingPath = Environment.GetEnvironmentVariable("PATH");
       var newPath = string.Concat(nativeBinariesPath,

@@ -34,7 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.Console", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp", "SemVer.Stamp\SemVer.Stamp.csproj", "{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Fody", "SemVer.Stamp.Fody\SemVer.Stamp.Fody.csproj", "{B9087E54-C162-48D5-B8A6-699947CCA112}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Fody", "SemVer.Fody\SemVer.Fody.csproj", "{B9087E54-C162-48D5-B8A6-699947CCA112}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Git", "SemVer.Stamp.Git\SemVer.Stamp.Git.csproj", "{799A40A4-2AD7-43C4-B707-A729888D3A71}"
 EndProject
@@ -90,10 +90,10 @@ Global
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
