@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SemVer.Svn.Fody")]
+[assembly: AssemblyTitle("SemVer.Stamp.Fody")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("SemVer.Svn.Fody")]
+[assembly: AssemblyProduct("SemVer.Stamp.Fody")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a421cb55-ce9a-4804-b2af-3c4915b462a9")]
+[assembly: Guid("b9087e54-c162-48d5-b8a6-699947cca112")]
 
 // Version information for an assembly consists of the following four values:
 //

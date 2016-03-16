@@ -79,9 +79,9 @@
     <Content Include="ILMergeOrder.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
-      <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
-      <Name>SemVer.Stamp</Name>
+    <ProjectReference Include="..\SemVer.Stamp.Fody\SemVer.Stamp.Fody.csproj">
+      <Project>{b9087e54-c162-48d5-b8a6-699947cca112}</Project>
+      <Name>SemVer.Stamp.Fody</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

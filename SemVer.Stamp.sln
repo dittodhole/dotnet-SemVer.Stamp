@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody.nupkg", "Se
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
-		CopyAdditionalAssembliesToFinalOutput.targets = CopyAdditionalAssembliesToFinalOutput.targets
+		CopyAssembliesToFinalOutput.targets = CopyAssembliesToFinalOutput.targets
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -33,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.Console", "SemVer.Svn.Fody.Console\SemVer.Svn.Fody.Console.csproj", "{49FF9F4D-F0B5-424F-B584-6ECFAE117D31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp", "SemVer.Stamp\SemVer.Stamp.csproj", "{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Fody", "SemVer.Stamp.Fody\SemVer.Stamp.Fody.csproj", "{B9087E54-C162-48D5-B8A6-699947CCA112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,6 +104,14 @@ Global
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
