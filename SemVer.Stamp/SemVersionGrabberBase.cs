@@ -110,5 +110,17 @@ namespace SemVer.Stamp
 
       return version;
     }
+
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="Exception">Some exception occured.</exception>
+    public abstract Version GetVersion(string repositoryPath,
+                                       Version baseVersion,
+                                       string baseRevision,
+                                       string patchFormat,
+                                       string featureFormat,
+                                       string breakingChangeFormat);
   }
 }
