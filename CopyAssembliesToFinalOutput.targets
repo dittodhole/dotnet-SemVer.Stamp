@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="CopyAdditionalAssembliesToFinalOutput" AfterTargets="Build">
+    <CreateItem Include="@(None)" Condition=" '%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest' ">
+      <Output TaskParameter="Include" ItemName="NoneItems" />
+    </CreateItem>
+    <Message Text="None Files that will copied to $(SolutionDir)bin: @(NoneItems)" Importance="high" />
+    <Copy SourceFiles="@(NoneItems)"
+          DestinationFiles="@(NoneItems->'$(SolutionDir)bin\%(Link)')" />
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; $(TargetFileName)" IgnoreExitCode="true" />
+  </Target>
+</Project>
