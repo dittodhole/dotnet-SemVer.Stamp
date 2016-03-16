@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using SemVer.Stamp.Fody;
+using SemVer.Stamp.Git;
 
-// ReSharper disable EmptyGeneralCatchClause
-// ReSharper disable CatchAllClause
 // ReSharper disable NonLocalizedString
 
 namespace SemVer.Fody.Console
@@ -52,13 +52,16 @@ namespace SemVer.Fody.Console
         repositoryPath = solutionPath;
       }
 
-      var moduleWeaver = new ModuleWeaver();
-      var version = moduleWeaver.GetVersion(repositoryPath,
-                                            configuration.BaseVersion,
-                                            configuration.BaseRevision,
-                                            configuration.PatchFormat,
-                                            configuration.FeatureFormat,
-                                            configuration.BreakingChangeFormat);
+      var gitSemVersionGrabber = new GitSemVersionGrabber(null,
+                                                          null,
+                                                          null);
+
+      var version = gitSemVersionGrabber.GetVersion(repositoryPath,
+                                                    configuration.BaseVersion,
+                                                    configuration.BaseRevision,
+                                                    configuration.PatchFormat,
+                                                    configuration.FeatureFormat,
+                                                    configuration.BreakingChangeFormat);
 
       System.Console.WriteLine(version);
     }
