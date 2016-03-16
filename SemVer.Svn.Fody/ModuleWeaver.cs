@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using SemVer.Stamp;
+using SemVer.Stamp.Fody;
 using SharpSvn;
 
 // ReSharper disable CatchAllClause

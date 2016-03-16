@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 // ReSharper disable CheckNamespace
 // ReSharper disable UnusedMember.Global
 
-namespace SemVer.Stamp
+namespace SemVer.Stamp.Fody
 {
   [Serializable]
   public class WeavingException : Exception

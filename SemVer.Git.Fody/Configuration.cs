@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
-using SemVer.Stamp;
+using SemVer.Stamp.Fody;
 
 // ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Mono.Cecil;
-using SemVer.Stamp;
+using SemVer.Stamp.Fody;
 
 // ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString

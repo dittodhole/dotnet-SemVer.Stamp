@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LibGit2Sharp;
-using SemVer.Stamp;
+using SemVer.Stamp.Fody;
 using Version = System.Version;
 
 // ReSharper disable NonLocalizedString
