@@ -48,6 +48,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engines", "Engines", "{143F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.csproj", "{2C7A1440-5126-40C1-92B7-FBC203090462}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{14C7F382-B890-45AB-86A6-CF7D1A878F73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -102,6 +106,14 @@ Global
 		{2C7A1440-5126-40C1-92B7-FBC203090462}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{2C7A1440-5126-40C1-92B7-FBC203090462}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2C7A1440-5126-40C1-92B7-FBC203090462}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +129,7 @@ Global
 		{799A40A4-2AD7-43C4-B707-A729888D3A71} = {63AAEEB3-57BA-47C4-A52A-088C12BFB802}
 		{BC16772E-21F8-451F-9B16-B65BF5C289A1} = {956197C6-19C3-4A7C-A0C9-E18CF9B7BCDF}
 		{2C7A1440-5126-40C1-92B7-FBC203090462} = {143F9E15-63A9-43EA-B54A-B9079655E1AA}
+		{14C7F382-B890-45AB-86A6-CF7D1A878F73} = {956197C6-19C3-4A7C-A0C9-E18CF9B7BCDF}
+		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7} = {63AAEEB3-57BA-47C4-A52A-088C12BFB802}
 	EndGlobalSection
 EndGlobal

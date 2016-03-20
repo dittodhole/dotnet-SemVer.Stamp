@@ -7,17 +7,6 @@ namespace SemVer.MSBuild
 {
   public abstract class SemVerStampTaskBase : Task
   {
-    /// <exception cref="ArgumentNullException"><paramref name="semVersionGrabberBase" /> is <see langword="null" />.</exception>
-    protected SemVerStampTaskBase(SemVersionGrabberBase semVersionGrabberBase)
-    {
-      if (semVersionGrabberBase == null)
-      {
-        throw new ArgumentNullException(nameof(semVersionGrabberBase));
-      }
-
-      this.SemVersionGrabberBase = semVersionGrabberBase;
-    }
-
     [Required]
     public string BaseRevision { get; set; }
 
@@ -36,20 +25,23 @@ namespace SemVer.MSBuild
     [Required]
     public string RepositoryPath { get; set; }
 
-    private SemVersionGrabberBase SemVersionGrabberBase { get; }
-
     [Required]
     [Output]
     public Version Version { get; set; }
 
+    protected abstract SemVersionGrabberBase GetSemVersionGrabber();
+
     public sealed override bool Execute()
     {
-      this.Version = this.SemVersionGrabberBase.GetVersion(this.RepositoryPath,
-                                                           this.BaseVersion,
-                                                           this.BaseRevision,
-                                                           this.PatchFormat,
-                                                           this.FeatureFormat,
-                                                           this.BreakingChangeFormat);
+      var semVersionGrabber = this.GetSemVersionGrabber();
+      var version = semVersionGrabber.GetVersion(this.RepositoryPath,
+                                                 this.BaseVersion,
+                                                 this.BaseRevision,
+                                                 this.PatchFormat,
+                                                 this.FeatureFormat,
+                                                 this.BreakingChangeFormat);
+
+      this.Version = version;
 
       return true;
     }
