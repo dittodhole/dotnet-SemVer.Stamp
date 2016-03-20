@@ -66,6 +66,8 @@ namespace SemVer.Stamp.Svn
           start = startRevision;
         }
 
+        this.LogInfo?.Invoke($"retrieving commits from {repositoryPath} since {start}");
+
         var svnLogArgs = new SvnLogArgs
                          {
                            StrictNodeHistory = true,

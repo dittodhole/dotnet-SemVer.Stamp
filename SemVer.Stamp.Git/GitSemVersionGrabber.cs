@@ -71,6 +71,7 @@ namespace SemVer.Stamp.Git
         List<string> includeReachableFrom;
         if (string.IsNullOrEmpty(baseRevision))
         {
+          this.LogInfo?.Invoke($"retrieving commits from {branch.CanonicalName}");
           includeReachableFrom = new List<string>
                                  {
                                    branch.CanonicalName
@@ -83,6 +84,7 @@ namespace SemVer.Stamp.Git
         }
         else
         {
+          this.LogInfo?.Invoke($"retrieving commits from {branch.CanonicalName} since {baseRevision}");
           includeReachableFrom = new List<string>
                                  {
                                    branch.CanonicalName,
