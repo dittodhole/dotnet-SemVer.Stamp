@@ -70,7 +70,7 @@ namespace SemVer.Stamp.Svn
 
         var svnLogArgs = new SvnLogArgs
                          {
-                           StrictNodeHistory = true,
+                           StrictNodeHistory = false,
                            Range = new SvnRevisionRange(start,
                                                         SvnRevision.Head)
                          };
