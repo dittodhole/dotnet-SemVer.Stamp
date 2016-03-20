@@ -19,10 +19,10 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Git.Fody\"
+    <file src="..\bin\SemVer.Svn.Fody\"
           exclude="**\*.pdb;**\*.xml"
           target="" />
-    <file src="..\bin\SemVer.Git.MSBuild\**\*.dll"
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.dll"
           target="tools" />
   </files>
 </package>
