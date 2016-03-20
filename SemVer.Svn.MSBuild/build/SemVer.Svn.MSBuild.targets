@@ -7,7 +7,7 @@
   <UsingTask AssemblyFile="..\SemVer.Svn.MSBuild.dll"
              TaskName="SemVerStampTask" />
   <PropertyGroup>
-    <VersionAssembly></VersionAssembly>
+    <VersionAssembly>0.0.0.0</VersionAssembly>
   </PropertyGroup>
   <Target Name="PatchVersionOfAssembly"
           BeforeTargets="CommonBuildDefineModifiedAssemblyVersion">
