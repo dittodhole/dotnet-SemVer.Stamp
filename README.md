@@ -56,6 +56,9 @@ After installing one of the following nugets, you can adapt any of the mentioned
                   BaseRevision="BaseVersion got introduced in" />
     </Weavers>
 
+> SemVer.Svn.Fody and SemVer.Git.Fody leverage their respective SemVer.MSBuild project since version 1.3.0 to calculate and inject a SemVersion in your assembly. Using the MSBuild task is more robust - Fody integration is just to keep the dev in their used and known environment.
+> In short: SemVer.Fody converts the *FodyWeavers.xml* `SemVer...` element to a *SemVer.MSBuild.props* upon every build.
+
 ### SemVer.Git.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
 
     PM > Install-Package SemVer.Git.Fody

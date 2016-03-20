@@ -19,19 +19,10 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Svn.Fody.dll"
+    <file src="..\bin\SemVer.Git.Fody\"
+          exclude="**\*.pdb;**\*.xml"
           target="" />
-    <file src="..\bin\SharpSvn.dll"
-          target="" />
-    <file src="..\bin\SharpPlink-Win32.svnExe"
-          target="" />
-    <file src="..\bin\SharpSvn.dll"
-          target="" />
-    <file src="..\bin\SemVer.Svn.Fody.Console.exe"
-          target="" />
-    <file src="..\tools\verpatch.exe"
-          target="" />
-    <file src="build\"
-          target="build" />
+    <file src="..\bin\SemVer.Git.MSBuild\**\*.dll"
+          target="tools" />
   </files>
 </package>

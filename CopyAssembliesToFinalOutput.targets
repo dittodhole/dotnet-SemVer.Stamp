@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="CopyAdditionalAssembliesToFinalOutput" AfterTargets="Build">
-    <CreateItem Include="@(None)" Condition=" '%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest' ">
-      <Output TaskParameter="Include" ItemName="NoneItems" />
+    <CreateItem Include="@(None)" Condition=" '%(None.Link)' != '' AND ('%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest') ">
+      <Output TaskParameter="Include" ItemName="NoneLinkItems" />
     </CreateItem>
-    <Message Text="None Files that will copied to $(SolutionDir)bin\$(ProjectName): @(NoneItems)" Importance="high" />
-    <Copy SourceFiles="@(NoneItems)"
-          DestinationFiles="@(NoneItems->'$(SolutionDir)bin\$(ProjectName)\%(Link)')" />
+    <CreateItem Include="@(None)" Condition=" '%(None.Link)' == '' AND ('%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest') ">
+      <Output TaskParameter="Include" ItemName="NoneIncludeItems" />
+    </CreateItem>
+    <Message Text="None Link Files that will copied to $(SolutionDir)bin\$(ProjectName): @(NoneLinkItems)" Importance="high" />
+    <Copy SourceFiles="@(NoneLinkItems)"
+          DestinationFiles="@(NoneLinkItems->'$(SolutionDir)bin\$(ProjectName)\%(Link)')" />
+    <Message Text="None Include Files that will copied to $(SolutionDir)bin\$(ProjectName): @(NoneIncludeItems)" Importance="high" />
+    <Copy SourceFiles="@(NoneIncludeItems)"
+          DestinationFiles="@(NoneIncludeItems->'$(SolutionDir)bin\$(ProjectName)\%(RelativeDir)%(Filename)%(Extension)')" />
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin\$(ProjectName)&quot; $(TargetFileName)" IgnoreExitCode="true" />
   </Target>
 </Project>

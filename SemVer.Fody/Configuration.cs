@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace SemVer.Fody
 {
-  public sealed class Configuration
+  public class Configuration
   {
     /// <exception cref="ArgumentNullException"><paramref name="element" /> is <see langword="null" />.</exception>
     /// <exception cref="WeavingException">If 'UseProject' could not be parsed as <see cref="bool" />.</exception>
@@ -89,7 +89,10 @@ namespace SemVer.Fody
         }
         else
         {
-          this.BaseVersion = new Version();
+          this.BaseVersion = new Version(0,
+                                         0,
+                                         0,
+                                         0);
         }
       }
 

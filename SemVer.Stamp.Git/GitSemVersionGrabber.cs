@@ -33,6 +33,34 @@ namespace SemVer.Stamp.Git
 
     private string RepositoryPath { get; }
 
+    /*
+    private void IncludeNativeBinariesFolderInPathEnvironmentVariable()
+    {
+      string architectureSubFolder;
+      if (Environment.Is64BitProcess)
+      {
+        architectureSubFolder = "amd64";
+      }
+      else
+      {
+        architectureSubFolder = "x86";
+      }
+
+      var nativeBinariesPath = Path.Combine(this.AddinDirectoryPath,
+                                            "NativeBinaries",
+                                            architectureSubFolder);
+
+      this.LogInfo?.Invoke($"NativeBinaries path: {nativeBinariesPath}");
+
+      var existingPath = Environment.GetEnvironmentVariable("PATH");
+      var newPath = string.Concat(nativeBinariesPath,
+                                  Path.PathSeparator,
+                                  existingPath);
+      Environment.SetEnvironmentVariable("PATH",
+                                         newPath);
+    }
+    */
+
     protected override IEnumerable<string> GetCommitMessages()
     {
       var gitDirectory = Repository.Discover(this.RepositoryPath);

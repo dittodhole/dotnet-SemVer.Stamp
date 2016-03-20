@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\LibGit2Sharp.NativeBinaries.1.0.129\build\LibGit2Sharp.NativeBinaries.props" Condition="Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.129\build\LibGit2Sharp.NativeBinaries.props')" />
   <Import Project="..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.props" Condition="Exists('..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -34,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LibGit2Sharp, Version=0.22.0.0, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
-      <HintPath>..\packages\LibGit2Sharp.0.22.0\lib\net40\LibGit2Sharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\FodyCecil.1.29.4\lib\net40\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
@@ -63,10 +58,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModuleWeaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
+      <Link>build\SemVer.MSBuild.targets</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="build\SemVer.Git.Fody.targets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ILMerge.props">
       <SubType>Designer</SubType>
     </None>
@@ -81,9 +82,9 @@
       <Project>{b9087e54-c162-48d5-b8a6-699947cca112}</Project>
       <Name>SemVer.Fody</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SemVer.Stamp.Git\SemVer.Stamp.Git.csproj">
-      <Project>{799a40a4-2ad7-43c4-b707-a729888d3a71}</Project>
-      <Name>SemVer.Stamp.Git</Name>
+    <ProjectReference Include="..\SemVer.MSBuild\SemVer.MSBuild.csproj">
+      <Project>{2c7a1440-5126-40c1-92b7-fbc203090462}</Project>
+      <Name>SemVer.MSBuild</Name>
     </ProjectReference>
     <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
       <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
@@ -106,7 +107,6 @@
     <Error Condition="!Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets'))" />
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.props'))" />
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.5-rc1\build\MSBuild.ILMerge.Task.targets'))" />
-    <Error Condition="!Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.129\build\LibGit2Sharp.NativeBinaries.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.NativeBinaries.1.0.129\build\LibGit2Sharp.NativeBinaries.props'))" />
   </Target>
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Import Project="..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets" Condition="Exists('..\packages\SemVer.Git.Fody.1.2.2\build\SemVer.Git.Fody.targets')" />

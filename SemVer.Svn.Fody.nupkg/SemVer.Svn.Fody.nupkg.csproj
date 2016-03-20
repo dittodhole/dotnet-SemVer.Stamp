@@ -49,7 +49,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="build\SemVer.Svn.Fody.targets" />
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
+      <Link>build\SemVer.MSBuild.targets</Link>
+    </None>
+    <None Include="..\SemVer.Svn.Fody\build\SemVer.Svn.Fody.targets">
+      <Link>build\SemVer.Svn.Fody.targets</Link>
+    </None>
     <None Include="NuGetPackage.ps1" />
     <None Include="NuGetSetup.ps1" />
     <None Include="NuGet.exe" />
@@ -60,13 +65,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\SemVer.Svn.Fody.Console\SemVer.Svn.Fody.Console.csproj">
-      <Project>{49ff9f4d-f0b5-424f-b584-6ecfae117d31}</Project>
-      <Name>SemVer.Svn.Fody.Console</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SemVer.Svn.Fody\SemVer.Svn.Fody.csproj">
       <Project>{a421cb55-ce9a-4804-b2af-3c4915b462a9}</Project>
       <Name>SemVer.Svn.Fody</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj">
+      <Project>{14c7f382-b890-45ab-86a6-cf7d1a878f73}</Project>
+      <Name>SemVer.Svn.MSBuild</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
