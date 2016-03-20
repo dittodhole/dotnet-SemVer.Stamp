@@ -16,8 +16,10 @@
                      BreakingChangeFormat="$(BreakingChangeFormat)"
                      FeatureFormat="$(FeatureFormat)"
                      PatchFormat="$(PatchFormat)"
-                     RepositoryPath="$(RepositoryPath)"
-                     PatchedVersion="$(VersionAssembly)" />
+                     RepositoryPath="$(RepositoryPath)">
+      <Output TaskParameter="PatchedVersion"
+              PropertyName="VersionAssembly" />
+    </SemVerStampTask>
     <Message Text="Patched assembly version: $(VersionAssembly)" />
   </Target>
 </Project>

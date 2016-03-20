@@ -18,7 +18,6 @@ namespace SemVer.MSBuild
     [Required]
     public string FeatureFormat { get; set; }
 
-    [Required]
     [Output]
     public string PatchedVersion { get; set; }
 
