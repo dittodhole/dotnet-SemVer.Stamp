@@ -10,39 +10,46 @@ namespace SemVer.Stamp.Svn
 {
   public sealed class SvnSemVersionGrabber : SemVersionGrabberBase
   {
-    public SvnSemVersionGrabber(Action<string> logInfo,
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    public SvnSemVersionGrabber(string repositoryPath,
+                                string baseRevision,
+                                Action<string> logInfo,
                                 Action<string> logWarning,
                                 Action<string> logError)
       : base(logInfo,
              logWarning,
              logError)
     {
-    }
-
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    protected override IEnumerable<string> GetCommitMessages(string repositoryPath,
-                                                             string baseRevision)
-    {
       if (repositoryPath == null)
       {
         throw new ArgumentNullException(nameof(repositoryPath));
       }
 
+      this.RepositoryPath = repositoryPath;
+      this.BaseRevision = baseRevision;
+    }
+
+    private string BaseRevision { get; }
+
+    private string RepositoryPath { get; }
+
+    protected override IEnumerable<string> GetCommitMessages()
+    {
       SvnWorkingCopyVersion svnWorkingCopyVersion;
       using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
       {
-        if (!svnWorkingCopyClient.GetVersion(repositoryPath,
+        if (!svnWorkingCopyClient.GetVersion(this.RepositoryPath,
                                              out svnWorkingCopyVersion) ||
             svnWorkingCopyVersion == null)
         {
-          this.LogError?.Invoke($"Could not get working copy version for {repositoryPath}");
+          this.LogError?.Invoke($"Could not get working copy version for {this.RepositoryPath}");
           return Enumerable.Empty<string>();
         }
       }
 
       if (svnWorkingCopyVersion.Modified)
       {
-        this.LogError?.Invoke($"Could not calculate version for {repositoryPath} due to local uncomitted changes");
+        this.LogError?.Invoke($"Could not calculate version for {this.RepositoryPath} due to local uncomitted changes");
         return Enumerable.Empty<string>();
       }
 
@@ -50,23 +57,23 @@ namespace SemVer.Stamp.Svn
       using (var svnClient = new SvnClient())
       {
         SvnRevision start;
-        if (baseRevision == null)
+        if (this.BaseRevision == null)
         {
           start = SvnRevision.Zero;
         }
         else
         {
           int startRevision;
-          if (!int.TryParse(baseRevision,
+          if (!int.TryParse(this.BaseRevision,
                             out startRevision))
           {
-            this.LogError?.Invoke($"could not parse {nameof(baseRevision)} to {typeof (int).FullName}: {baseRevision}");
+            this.LogError?.Invoke($"could not parse {nameof(this.BaseRevision)} to {typeof (int).FullName}: {this.BaseRevision}");
             return Enumerable.Empty<string>();
           }
           start = startRevision;
         }
 
-        this.LogInfo?.Invoke($"retrieving commits from {repositoryPath} since {start}");
+        this.LogInfo?.Invoke($"retrieving commits from {this.RepositoryPath} since {start}");
 
         var svnLogArgs = new SvnLogArgs
                          {
@@ -74,12 +81,12 @@ namespace SemVer.Stamp.Svn
                            Range = new SvnRevisionRange(start,
                                                         SvnRevision.Head)
                          };
-        if (!svnClient.GetLog(repositoryPath,
+        if (!svnClient.GetLog(this.RepositoryPath,
                               svnLogArgs,
                               out logItems) ||
             logItems == null)
         {
-          this.LogError?.Invoke($"Could not get log for repository in {repositoryPath}");
+          this.LogError?.Invoke($"Could not get log for repository in {this.RepositoryPath}");
           return null;
         }
       }
@@ -90,15 +97,9 @@ namespace SemVer.Stamp.Svn
       return commitMessages;
     }
 
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
-    protected override Version PatchVersionBeforeCalculatingTheSemVersion(string repositoryPath,
-                                                                          Version baseVersion)
+    protected override Version PatchVersionBeforeCalculatingTheSemVersion(Version baseVersion)
     {
-      if (repositoryPath == null)
-      {
-        throw new ArgumentNullException(nameof(repositoryPath));
-      }
       if (baseVersion == null)
       {
         throw new ArgumentNullException(nameof(baseVersion));
@@ -107,11 +108,11 @@ namespace SemVer.Stamp.Svn
       SvnWorkingCopyVersion svnWorkingCopyVersion;
       using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
       {
-        if (!svnWorkingCopyClient.GetVersion(repositoryPath,
+        if (!svnWorkingCopyClient.GetVersion(this.RepositoryPath,
                                              out svnWorkingCopyVersion) ||
             svnWorkingCopyVersion == null)
         {
-          this.LogError?.Invoke($"Could not get working copy version for {repositoryPath}");
+          this.LogError?.Invoke($"Could not get working copy version for {this.RepositoryPath}");
           return baseVersion;
         }
       }

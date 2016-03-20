@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using SemVer.Fody;
+using SemVer.Stamp;
 using SemVer.Stamp.Git;
 
 // ReSharper disable NonLocalizedString
@@ -11,11 +12,18 @@ namespace SemVer.Git.Fody
   {
     protected override void Prerequisites()
     {
-      this.SemVersionGrabber = new GitSemVersionGrabber(this.LogInfo,
-                                                        this.LogWarning,
-                                                        this.LogError);
-
       this.IncludeNativeBinariesFolderInPathEnvironmentVariable();
+    }
+
+    protected override SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
+                                                                  string baseRevision)
+    {
+      var gimtSemVersionGrabber = new GitSemVersionGrabber(repositoryPath,
+                                                           baseRevision,
+                                                           this.LogInfo,
+                                                           this.LogWarning,
+                                                           this.LogError);
+      return gimtSemVersionGrabber;
     }
 
     private void IncludeNativeBinariesFolderInPathEnvironmentVariable()

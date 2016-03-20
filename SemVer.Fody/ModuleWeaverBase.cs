@@ -26,7 +26,6 @@ namespace SemVer.Fody
     public Action<string> LogWarning { get; set; }
     public ModuleDefinition ModuleDefinition { get; set; }
     public string ProjectDirectoryPath { get; set; }
-    protected SemVersionGrabberBase SemVersionGrabber { get; set; }
     public string SolutionDirectoryPath { get; set; }
 
     private Assembly HandleAssemblyResolveFailed(object sender,
@@ -66,7 +65,9 @@ namespace SemVer.Fody
       }
     }
 
-    protected abstract void Prerequisites();
+    protected virtual void Prerequisites()
+    {
+    }
 
     /// <exception cref="ArgumentNullException"><paramref name="config" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="assemblyFullFileName" /> is <see langword="null" />.</exception>
@@ -127,12 +128,12 @@ namespace SemVer.Fody
 
       this.LogInfo?.Invoke($"Starting search for repository in {repositoryLocationLevel}: {repositoryPath}");
 
-      var version = this.SemVersionGrabber.GetVersion(repositoryPath,
-                                                      configuration.BaseVersion,
-                                                      configuration.BaseRevision,
-                                                      configuration.PatchFormat,
-                                                      configuration.FeatureFormat,
-                                                      configuration.BreakingChangeFormat);
+      var semVersionGrabber = this.GetSemVersionGrabber(repositoryPath,
+                                                        configuration.BaseRevision);
+      var version = semVersionGrabber.GetVersion(configuration.BaseVersion,
+                                                 configuration.PatchFormat,
+                                                 configuration.FeatureFormat,
+                                                 configuration.BreakingChangeFormat);
       if (version == null)
       {
         this.LogWarning?.Invoke($"Could not get version for repository in {repositoryLocationLevel} - skipping version patching");
@@ -250,5 +251,8 @@ namespace SemVer.Fody
                                                                               versionString);
       }
     }
+
+    protected abstract SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
+                                                                  string baseRevision);
   }
 }

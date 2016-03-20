@@ -27,16 +27,16 @@ namespace SemVer.MSBuild
     [Required]
     public string RepositoryPath { get; set; }
 
-    protected abstract SemVersionGrabberBase GetSemVersionGrabber();
+    protected abstract SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
+                                                                  string baseRevision);
 
     public sealed override bool Execute()
     {
       var baseVersion = Version.Parse(this.BaseVersion);
 
-      var semVersionGrabber = this.GetSemVersionGrabber();
-      var version = semVersionGrabber.GetVersion(this.RepositoryPath,
-                                                 baseVersion,
-                                                 this.BaseRevision,
+      var semVersionGrabber = this.GetSemVersionGrabber(this.RepositoryPath,
+                                                        this.BaseRevision);
+      var version = semVersionGrabber.GetVersion(baseVersion,
                                                  this.PatchFormat,
                                                  this.FeatureFormat,
                                                  this.BreakingChangeFormat);

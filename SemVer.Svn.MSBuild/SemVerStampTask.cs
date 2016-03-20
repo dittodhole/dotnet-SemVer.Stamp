@@ -6,13 +6,16 @@ namespace SemVer.Svn.MSBuild
 {
   public class SemVerStampTask : SemVerStampTaskBase
   {
-    protected override SemVersionGrabberBase GetSemVersionGrabber()
+    protected override SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
+                                                                  string baseRevision)
     {
-      var svnSemVersionGrabber = new SvnSemVersionGrabber(arg => this.Log?.LogMessage(arg),
-                                                          arg => this.Log?.LogWarning(arg),
-                                                          arg => this.Log?.LogError(arg));
+      var semVersionGrabber = new SvnSemVersionGrabber(repositoryPath,
+                                                       baseRevision,
+                                                       arg => this.Log?.LogMessage(arg),
+                                                       arg => this.Log?.LogWarning(arg),
+                                                       arg => this.Log?.LogError(arg));
 
-      return svnSemVersionGrabber;
+      return semVersionGrabber;
     }
   }
 }
