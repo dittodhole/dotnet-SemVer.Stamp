@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using SemVer.Stamp.Fody;
 using SemVer.Stamp.Git;
 
 // ReSharper disable NonLocalizedString

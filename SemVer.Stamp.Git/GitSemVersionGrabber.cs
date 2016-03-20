@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LibGit2Sharp;
-using Version = System.Version;
 
 // ReSharper disable EventExceptionNotDocumented
-// ReSharper disable ExceptionNotDocumented
-// ReSharper disable ExceptionNotDocumentedOptional
 
 namespace SemVer.Stamp.Git
 {
@@ -23,42 +20,19 @@ namespace SemVer.Stamp.Git
     }
 
     /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="NotSupportedException">
-    ///   If you try to get a version for <paramref name="repositoryPath" /> equals the
-    ///   solution directory and <paramref name="baseVersion" /> equals 0.0.0.?.
-    /// </exception>
-    public override Version GetVersion(string repositoryPath,
-                                       Version baseVersion,
-                                       string baseRevision,
-                                       string patchFormat,
-                                       string featureFormat,
-                                       string breakingChangeFormat)
+    protected override IEnumerable<string> GetCommitMessages(string repositoryPath,
+                                                             string baseRevision)
     {
       if (repositoryPath == null)
       {
         throw new ArgumentNullException(nameof(repositoryPath));
-      }
-      if (patchFormat == null)
-      {
-        throw new ArgumentNullException(nameof(patchFormat));
-      }
-      if (featureFormat == null)
-      {
-        throw new ArgumentNullException(nameof(featureFormat));
-      }
-      if (breakingChangeFormat == null)
-      {
-        throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
       var gitDirectory = Repository.Discover(repositoryPath);
       if (gitDirectory == null)
       {
         this.LogWarning?.Invoke($"found no git repository in {repositoryPath}");
-        return null;
+        return Enumerable.Empty<string>();
       }
 
       this.LogInfo?.Invoke($"found git repository in {repositoryPath}: {gitDirectory}");
@@ -88,8 +62,8 @@ namespace SemVer.Stamp.Git
         var status = repository.RetrieveStatus(statusOptions);
         if (status.IsDirty)
         {
-          this.LogWarning?.Invoke($"Could not calculate version for {relativePath} due to local uncommitted changes");
-          return new Version();
+          this.LogError?.Invoke($"Could not calculate version for {relativePath} due to local uncommitted changes");
+          return Enumerable.Empty<string>();
         }
 
         var branch = repository.Head;
@@ -109,7 +83,8 @@ namespace SemVer.Stamp.Git
                                      };
           if (!string.IsNullOrEmpty(relativePath))
           {
-            throw new NotSupportedException($"retrieving the commits from a {nameof(relativePath)} and a {nameof(baseRevision)} is currently not implemented");
+            this.LogError?.Invoke($"retrieving the commits from a {nameof(relativePath)} and a {nameof(baseRevision)} is currently not implemented");
+            return Enumerable.Empty<string>();
           }
 
           var commitFilter = new CommitFilter
@@ -124,13 +99,7 @@ namespace SemVer.Stamp.Git
                                 .ToArray();
       }
 
-      var version = this.CalculateVersionAccordingToSemVer(commitMessages,
-                                                           baseVersion,
-                                                           patchFormat,
-                                                           featureFormat,
-                                                           breakingChangeFormat);
-
-      return version;
+      return commitMessages;
     }
 
     private string GetRelativePath(string gitDirectoryPath,

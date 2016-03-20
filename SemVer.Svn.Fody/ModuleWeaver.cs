@@ -1,8 +1,6 @@
 ﻿using SemVer.Fody;
 using SemVer.Stamp.Svn;
 
-// ReSharper disable UnusedMember.Global
-
 namespace SemVer.Svn.Fody
 {
   public sealed class ModuleWeaver : ModuleWeaverBase

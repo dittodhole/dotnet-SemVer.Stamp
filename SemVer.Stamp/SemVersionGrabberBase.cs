@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-// ReSharper disable UnusedMember.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable NonLocalizedString
-// ReSharper disable ExceptionNotDocumentedOptional
-// ReSharper disable EventExceptionNotDocumented
-
 namespace SemVer.Stamp
 {
   public abstract class SemVersionGrabberBase
@@ -27,15 +20,77 @@ namespace SemVer.Stamp
     protected Action<string> LogInfo { get; }
     protected Action<string> LogWarning { get; }
 
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
+    public Version GetVersion(string repositoryPath,
+                              Version baseVersion,
+                              string baseRevision,
+                              string patchFormat,
+                              string featureFormat,
+                              string breakingChangeFormat)
+    {
+      if (repositoryPath == null)
+      {
+        throw new ArgumentNullException(nameof(repositoryPath));
+      }
+      if (patchFormat == null)
+      {
+        throw new ArgumentNullException(nameof(patchFormat));
+      }
+      if (featureFormat == null)
+      {
+        throw new ArgumentNullException(nameof(featureFormat));
+      }
+      if (breakingChangeFormat == null)
+      {
+        throw new ArgumentNullException(nameof(breakingChangeFormat));
+      }
+
+      var commitMessages = this.GetCommitMessages(repositoryPath,
+                                                  baseRevision);
+      baseVersion = this.PatchVersionBeforeCalculatingTheSemVersion(repositoryPath,
+                                                                    baseVersion);
+      var version = this.CalculateVersionAccordingToSemVer(commitMessages,
+                                                           baseVersion,
+                                                           patchFormat,
+                                                           featureFormat,
+                                                           breakingChangeFormat);
+
+      return version;
+    }
+
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
+    protected virtual Version PatchVersionBeforeCalculatingTheSemVersion(string repositoryPath,
+                                                                         Version baseVersion)
+    {
+      if (repositoryPath == null)
+      {
+        throw new ArgumentNullException(nameof(repositoryPath));
+      }
+      if (baseVersion == null)
+      {
+        throw new ArgumentNullException(nameof(baseVersion));
+      }
+
+      return baseVersion;
+    }
+
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    protected abstract IEnumerable<string> GetCommitMessages(string repositoryPath,
+                                                             string baseRevision);
+
     /// <exception cref="ArgumentNullException"><paramref name="commitMessages" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    public Version CalculateVersionAccordingToSemVer(IEnumerable<string> commitMessages,
-                                                     Version baseVersion,
-                                                     string patchFormat,
-                                                     string featureFormat,
-                                                     string breakingChangeFormat)
+    private Version CalculateVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+                                                      Version baseVersion,
+                                                      string patchFormat,
+                                                      string featureFormat,
+                                                      string breakingChangeFormat)
     {
       if (commitMessages == null)
       {
@@ -110,17 +165,5 @@ namespace SemVer.Stamp
 
       return version;
     }
-
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="Exception">Some exception occured.</exception>
-    public abstract Version GetVersion(string repositoryPath,
-                                       Version baseVersion,
-                                       string baseRevision,
-                                       string patchFormat,
-                                       string featureFormat,
-                                       string breakingChangeFormat);
   }
 }

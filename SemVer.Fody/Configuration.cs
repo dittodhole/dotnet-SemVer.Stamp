@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Xml.Linq;
 
-// ReSharper disable CheckNamespace
 // ReSharper disable NonLocalizedString
-// ReSharper disable CatchAllClause
 
-namespace SemVer.Stamp.Fody
+namespace SemVer.Fody
 {
   public sealed class Configuration
   {
@@ -89,6 +87,10 @@ namespace SemVer.Stamp.Fody
                                        exception);
           }
         }
+        else
+        {
+          this.BaseVersion = new Version();
+        }
       }
 
       {
@@ -100,8 +102,9 @@ namespace SemVer.Stamp.Fody
       }
     }
 
-    public Version BaseVersion { get; }
     public string BaseRevision { get; }
+
+    public Version BaseVersion { get; }
     public string BreakingChangeFormat { get; }
     public string FeatureFormat { get; }
     public string PatchFormat { get; }

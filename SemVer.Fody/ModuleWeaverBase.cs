@@ -6,13 +6,8 @@ using System.Reflection;
 using System.Xml.Linq;
 using Mono.Cecil;
 using SemVer.Stamp;
-using SemVer.Stamp.Fody;
 
-// ReSharper disable MemberCanBeProtected.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable NonLocalizedString
-// ReSharper disable UnusedMember.Global
 
 namespace SemVer.Fody
 {
@@ -60,15 +55,11 @@ namespace SemVer.Fody
     {
       this.Prerequisites();
 
-      // ReSharper disable ExceptionNotDocumentedOptional
-      // ReSharper disable ExceptionNotDocumented
       var version = this.PatchVersionOfAssemblyTheSemVerWay(this.Config,
                                                             this.AssemblyFilePath,
                                                             this.AddinDirectoryPath,
                                                             this.SolutionDirectoryPath,
                                                             this.ProjectDirectoryPath);
-      // ReSharper restore ExceptionNotDocumented
-      // ReSharper restore ExceptionNotDocumentedOptional
       if (version != null)
       {
         this.PatchAssemblyAttribution(version);

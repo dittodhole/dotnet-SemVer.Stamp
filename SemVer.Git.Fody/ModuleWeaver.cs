@@ -3,7 +3,6 @@ using System.IO;
 using SemVer.Fody;
 using SemVer.Stamp.Git;
 
-// ReSharper disable UnusedMember.Global
 // ReSharper disable NonLocalizedString
 
 namespace SemVer.Git.Fody

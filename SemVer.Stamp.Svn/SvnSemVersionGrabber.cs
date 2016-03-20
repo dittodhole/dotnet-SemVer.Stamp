@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using SharpSvn;
 
 // ReSharper disable EventExceptionNotDocumented
-// ReSharper disable ExceptionNotDocumentedOptional
 
 namespace SemVer.Stamp.Svn
 {
@@ -20,16 +20,8 @@ namespace SemVer.Stamp.Svn
     }
 
     /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    /// <exception cref="ArgumentException">If <paramref name="baseRevision" /> could not be parsed.</exception>
-    public override Version GetVersion(string repositoryPath,
-                                       Version baseVersion,
-                                       string baseRevision,
-                                       string patchFormat,
-                                       string featureFormat,
-                                       string breakingChangeFormat)
+    protected override IEnumerable<string> GetCommitMessages(string repositoryPath,
+                                                             string baseRevision)
     {
       if (repositoryPath == null)
       {
@@ -44,18 +36,17 @@ namespace SemVer.Stamp.Svn
             svnWorkingCopyVersion == null)
         {
           this.LogError?.Invoke($"Could not get working copy version for {repositoryPath}");
-          return null;
+          return Enumerable.Empty<string>();
         }
       }
 
       if (svnWorkingCopyVersion.Modified)
       {
-        this.LogWarning?.Invoke($"Could not calculate version for {repositoryPath} due to local uncomitted changes");
-        return new Version();
+        this.LogError?.Invoke($"Could not calculate version for {repositoryPath} due to local uncomitted changes");
+        return Enumerable.Empty<string>();
       }
 
       Collection<SvnLogEventArgs> logItems;
-      //SvnInfoEventArgs svnInfoEventArgs;
       using (var svnClient = new SvnClient())
       {
         SvnRevision start;
@@ -65,16 +56,14 @@ namespace SemVer.Stamp.Svn
         }
         else
         {
-          try
+          int startRevision;
+          if (!int.TryParse(baseRevision,
+                            out startRevision))
           {
-            start = int.Parse(baseRevision);
+            this.LogError?.Invoke($"could not parse {nameof(baseRevision)} to {typeof (int).FullName}: {baseRevision}");
+            return Enumerable.Empty<string>();
           }
-          catch (Exception excpetion)
-          {
-            throw new ArgumentException($"could not parse {nameof(baseRevision)} to {typeof (int).FullName}: {baseRevision}",
-                                        nameof(baseRevision),
-                                        excpetion);
-          }
+          start = startRevision;
         }
 
         var svnLogArgs = new SvnLogArgs
@@ -91,41 +80,46 @@ namespace SemVer.Stamp.Svn
           this.LogError?.Invoke($"Could not get log for repository in {repositoryPath}");
           return null;
         }
-
-        //if (!svnClient.GetInfo(repositoryPath,
-        //                       out svnInfoEventArgs) ||
-        //    svnInfoEventArgs == null)
-        //{
-        //  this.LogError($"Could not get info for repository in {repositoryPath}");
-        //  return null;
-        //}
-      }
-
-      if (baseVersion == null)
-      {
-        baseVersion = new Version(0,
-                                  0,
-                                  0,
-                                  (int) svnWorkingCopyVersion.End);
-      }
-      else
-      {
-        baseVersion = new Version(baseVersion.Major,
-                                  baseVersion.Minor,
-                                  baseVersion.Build,
-                                  (int) svnWorkingCopyVersion.End);
       }
 
       var commitMessages = logItems.OrderBy(arg => arg.Revision)
                                    .Select(arg => arg.LogMessage);
 
-      var version = this.CalculateVersionAccordingToSemVer(commitMessages,
-                                                           baseVersion,
-                                                           patchFormat,
-                                                           featureFormat,
-                                                           breakingChangeFormat);
+      return commitMessages;
+    }
 
-      return version;
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
+    protected override Version PatchVersionBeforeCalculatingTheSemVersion(string repositoryPath,
+                                                                          Version baseVersion)
+    {
+      if (repositoryPath == null)
+      {
+        throw new ArgumentNullException(nameof(repositoryPath));
+      }
+      if (baseVersion == null)
+      {
+        throw new ArgumentNullException(nameof(baseVersion));
+      }
+
+      SvnWorkingCopyVersion svnWorkingCopyVersion;
+      using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
+      {
+        if (!svnWorkingCopyClient.GetVersion(repositoryPath,
+                                             out svnWorkingCopyVersion) ||
+            svnWorkingCopyVersion == null)
+        {
+          this.LogError?.Invoke($"Could not get working copy version for {repositoryPath}");
+          return baseVersion;
+        }
+      }
+
+      var patchedBaseVersion = new Version(baseVersion.Major,
+                                           baseVersion.Minor,
+                                           baseVersion.Build,
+                                           (int) svnWorkingCopyVersion.End);
+
+      return patchedBaseVersion;
     }
   }
 }
