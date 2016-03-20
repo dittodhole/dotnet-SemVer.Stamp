@@ -5,7 +5,7 @@
     <BaseVersion>0.0.0.0</BaseVersion>
     <BreakingChangeFormat>^perf(\(.*\))*: </BreakingChangeFormat>
     <FeatureFormat>^feat(\(.*\))*: </FeatureFormat>
-    <PathFormat>^fix(\(.*\))*: </PatchFormat>
+    <PatchFormat>^fix(\(.*\))*: </PatchFormat>
     <RepositoryPath>$(ProjectDir)</RepositoryPath>
   </PropertyGroup>
 </Project>
