@@ -11,7 +11,7 @@ namespace SemVer.MSBuild
     public string BaseRevision { get; set; }
 
     [Required]
-    public Version BaseVersion { get; set; }
+    public string BaseVersion { get; set; }
 
     [Required]
     public string BreakingChangeFormat { get; set; }
@@ -21,7 +21,7 @@ namespace SemVer.MSBuild
 
     [Required]
     [Output]
-    public Version PatchedVersion { get; set; }
+    public string PatchedVersion { get; set; }
 
     [Required]
     public string PatchFormat { get; set; }
@@ -33,15 +33,19 @@ namespace SemVer.MSBuild
 
     public sealed override bool Execute()
     {
+      var baseVersion = Version.Parse(this.BaseVersion);
+
       var semVersionGrabber = this.GetSemVersionGrabber();
       var version = semVersionGrabber.GetVersion(this.RepositoryPath,
-                                                 this.BaseVersion,
+                                                 baseVersion,
                                                  this.BaseRevision,
                                                  this.PatchFormat,
                                                  this.FeatureFormat,
                                                  this.BreakingChangeFormat);
 
-      this.PatchedVersion = version;
+      var patchedVersion = version.ToString();
+
+      this.PatchedVersion = patchedVersion;
 
       return true;
     }
