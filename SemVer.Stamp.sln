@@ -26,8 +26,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.nupkg", "Se
 		{A421CB55-CE9A-4804-B2AF-3C4915B462A9} = {A421CB55-CE9A-4804-B2AF-3C4915B462A9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Fody.Tests", "SemVer.Fody.Tests\SemVer.Fody.Tests.csproj", "{A45EE56A-AF2B-43EE-B85F-15825E527E80}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody.Console", "SemVer.Git.Fody.Console\SemVer.Git.Fody.Console.csproj", "{486B6663-A23B-4C7E-8738-74FD130DD823}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.Console", "SemVer.Svn.Fody.Console\SemVer.Svn.Fody.Console.csproj", "{49FF9F4D-F0B5-424F-B584-6ECFAE117D31}"
@@ -64,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild.nupkg", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild.nupkg", "SemVer.Svn.MSBuild.nupkg\SemVer.Svn.MSBuild.nupkg.csproj", "{B72A179D-D3C0-468E-9A88-E7F9C881D908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Tests", "SemVer.Stamp.Tests\SemVer.Stamp.Tests.csproj", "{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -86,10 +86,6 @@ Global
 		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A45EE56A-AF2B-43EE-B85F-15825E527E80}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A45EE56A-AF2B-43EE-B85F-15825E527E80}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A45EE56A-AF2B-43EE-B85F-15825E527E80}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A45EE56A-AF2B-43EE-B85F-15825E527E80}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{486B6663-A23B-4C7E-8738-74FD130DD823}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{486B6663-A23B-4C7E-8738-74FD130DD823}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{486B6663-A23B-4C7E-8738-74FD130DD823}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -134,6 +130,10 @@ Global
 		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
