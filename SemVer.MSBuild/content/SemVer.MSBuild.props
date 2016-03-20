@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseRevision></BaseRevision>
-    <BaseVersion>0.0.0.0</BaseVersion>
+    <BaseVersion>0.0.0</BaseVersion>
     <BreakingChangeFormat>^perf(\(.*\))*: </BreakingChangeFormat>
     <FeatureFormat>^feat(\(.*\))*: </FeatureFormat>
     <PatchFormat>^fix(\(.*\))*: </PatchFormat>
