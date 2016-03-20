@@ -18,5 +18,6 @@
                      PatchFormat="$(PatchFormat)"
                      RepositoryPath="$(RepositoryPath)"
                      PatchedVersion="$(VersionAssembly)" />
+    <Message Text="Patched assembly version: $(VersionAssembly)" />
   </Target>
 </Project>
