@@ -7,7 +7,6 @@ namespace SemVer.MSBuild
 {
   public abstract class SemVerStampTaskBase : Task
   {
-    [Required]
     public string BaseRevision { get; set; }
 
     [Required]
