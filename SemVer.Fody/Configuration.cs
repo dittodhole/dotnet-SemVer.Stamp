@@ -103,7 +103,6 @@ namespace SemVer.Fody
     }
 
     public string BaseRevision { get; }
-
     public Version BaseVersion { get; }
     public string BreakingChangeFormat { get; }
     public string FeatureFormat { get; }
