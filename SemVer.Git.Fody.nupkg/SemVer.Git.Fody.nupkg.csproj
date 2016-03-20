@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SemVer.Git.Fody\build\SemVer.Git.Fody.targets">
-      <Link>content\SemVer.Git.Fody.targets</Link>
+      <Link>build\SemVer.Git.Fody.targets</Link>
     </None>
     <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
       <Link>build\SemVer.MSBuild.targets</Link>
