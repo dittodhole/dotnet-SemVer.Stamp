@@ -68,32 +68,34 @@ namespace SemVer.Stamp.Git
 
         var branch = repository.Head;
 
-        IEnumerable<Commit> commits;
+        List<string> includeReachableFrom;
         if (string.IsNullOrEmpty(baseRevision))
         {
-          commits = repository.Commits.QueryBy(relativePath)
-                              .Select(arg => arg.Commit);
+          includeReachableFrom = new List<string>
+                                 {
+                                   branch.CanonicalName
+                                 };
+        }
+        else if (!string.IsNullOrEmpty(relativePath))
+        {
+          this.LogError?.Invoke($"retrieving the commits from a {nameof(relativePath)} and a {nameof(baseRevision)} is currently not implemented");
+          return Enumerable.Empty<string>();
         }
         else
         {
-          var includeReachableFrom = new List<string>
-                                     {
-                                       branch.CanonicalName,
-                                       baseRevision
-                                     };
-          if (!string.IsNullOrEmpty(relativePath))
-          {
-            this.LogError?.Invoke($"retrieving the commits from a {nameof(relativePath)} and a {nameof(baseRevision)} is currently not implemented");
-            return Enumerable.Empty<string>();
-          }
-
-          var commitFilter = new CommitFilter
-                             {
-                               IncludeReachableFrom = includeReachableFrom,
-                               SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
-                             };
-          commits = repository.Commits.QueryBy(commitFilter);
+          includeReachableFrom = new List<string>
+                                 {
+                                   branch.CanonicalName,
+                                   baseRevision
+                                 };
         }
+
+        var commitFilter = new CommitFilter
+                           {
+                             IncludeReachableFrom = includeReachableFrom,
+                             SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
+                           };
+        var commits = repository.Commits.QueryBy(commitFilter);
 
         commitMessages = commits.Select(arg => arg.Message)
                                 .ToArray();
