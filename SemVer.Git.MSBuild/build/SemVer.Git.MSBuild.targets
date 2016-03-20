@@ -4,7 +4,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="SemVer.MSBuild.targets" />
   <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
-  <UsingTask AssemblyFile="SemVer.Git.MSBuild.dll"
+  <UsingTask AssemblyFile="..\SemVer.Git.MSBuild.dll"
              TaskName="SemVerStampTask" />
   <PropertyGroup>
     <VersionAssembly></VersionAssembly>
