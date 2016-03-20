@@ -20,14 +20,14 @@ namespace SemVer.MSBuild
     public string FeatureFormat { get; set; }
 
     [Required]
+    [Output]
+    public Version PatchedVersion { get; set; }
+
+    [Required]
     public string PatchFormat { get; set; }
 
     [Required]
     public string RepositoryPath { get; set; }
-
-    [Required]
-    [Output]
-    public Version Version { get; set; }
 
     protected abstract SemVersionGrabberBase GetSemVersionGrabber();
 
@@ -41,7 +41,7 @@ namespace SemVer.MSBuild
                                                  this.FeatureFormat,
                                                  this.BreakingChangeFormat);
 
-      this.Version = version;
+      this.PatchedVersion = version;
 
       return true;
     }

@@ -58,6 +58,16 @@
       <Name>SemVer.Stamp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
+      <Link>build\SemVer.MSBuild.targets</Link>
+    </None>
+    <None Include="..\SemVer.MSBuild\content\SemVer.MSBuild.props">
+      <Link>content\SemVer.MSBuild.props</Link>
+    </None>
+    <None Include="build\SemVer.Svn.MSBuild.targets" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
   </Target>
