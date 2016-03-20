@@ -4,9 +4,9 @@
     <CreateItem Include="@(None)" Condition=" '%(None.CopyToOutputDirectory)' == 'Always' OR '%(None.CopyToOutputDirectory)' == 'PreserveNewest' ">
       <Output TaskParameter="Include" ItemName="NoneItems" />
     </CreateItem>
-    <Message Text="None Files that will copied to $(SolutionDir)bin: @(NoneItems)" Importance="high" />
+    <Message Text="None Files that will copied to $(SolutionDir)bin\$(ProjectName): @(NoneItems)" Importance="high" />
     <Copy SourceFiles="@(NoneItems)"
-          DestinationFiles="@(NoneItems->'$(SolutionDir)bin\%(Link)')" />
-    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin&quot; $(TargetFileName)" IgnoreExitCode="true" />
+          DestinationFiles="@(NoneItems->'$(SolutionDir)bin\$(ProjectName)\%(Link)')" />
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin\$(ProjectName)&quot; $(TargetFileName)" IgnoreExitCode="true" />
   </Target>
 </Project>
