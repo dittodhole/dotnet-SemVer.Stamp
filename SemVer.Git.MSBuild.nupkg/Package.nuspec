@@ -13,8 +13,11 @@
     <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Git.MSBuild\"
-          exclude="**\*.pdb;**\*.xml;NativeBinaries\linux\*.*;NativeBinaries\osx\*.*"
+    <file src="..\bin\SemVer.Git.MSBuild\**\*.dll"
+          target="tools" />
+    <file src="..\bin\SemVer.Git.MSBuild\**\*.targets"
+          target="" />
+    <file src="..\bin\SemVer.Git.MSBuild\**\*.props"
           target="" />
   </files>
 </package>
