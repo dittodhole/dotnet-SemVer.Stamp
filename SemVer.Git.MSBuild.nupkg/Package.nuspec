@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemVer.Git.MSBuild</id>
-    <version>1.0.0-alpha09</version>
+    <version>1.0.0</version>
     <title>SemVer.Git.MSBuild</title>
     <authors>Andreas Niedermair</authors>
     <description>
