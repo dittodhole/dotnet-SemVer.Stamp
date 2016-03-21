@@ -19,10 +19,16 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Svn.Fody\"
-          exclude="**\*.pdb;**\*.xml"
+    <file src="..\bin\SemVer.Svn.Fody\**\*.dll"
+          target="" />
+    <file src="..\bin\SemVer.Svn.Fody\**\*.targets"
           target="" />
     <file src="..\bin\SemVer.Svn.MSBuild\**\*.dll"
+          exclude="**\SharpSvn.UI.dll"
+          target="tools" />
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnExe"
+          target="tools" />
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnDll"
           target="tools" />
   </files>
 </package>
