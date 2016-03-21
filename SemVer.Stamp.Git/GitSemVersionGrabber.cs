@@ -30,7 +30,6 @@ namespace SemVer.Stamp.Git
     }
 
     private string BaseRevision { get; }
-
     private string RepositoryPath { get; }
 
     /*
