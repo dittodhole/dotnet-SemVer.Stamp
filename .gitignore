@@ -38,3 +38,5 @@ _ReSharper*/
 *.bak
 NativeBinaries/
 *.log
+SemVer.Git.Fody/SemVer.MSBuild.props
+SemVer.Svn.Fody/SemVer.MSBuild.props
