@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Weavers>
   <Stamp />
-  <SemVer.Git UseProject="False" BaseVersion="1.1.0" BaseRevision="0428c901d9447b47edd2e1d8e5f03ffef1e09871" />
+  <SemVer.Git UseProject="False" BaseVersion="1.3.0" BaseRevision="ff47dda5d0bedefa18f5d0b67d2d2f7606e1828c" />
 </Weavers>
