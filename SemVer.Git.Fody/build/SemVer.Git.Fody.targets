@@ -11,7 +11,8 @@
     <VersionAssembly>0.0.0.0</VersionAssembly>
   </PropertyGroup>
   <Target Name="PatchVersionOfAssembly"
-          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion">
+          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion"
+          Condition="Exists('$(ProjectDir)SemVer.MSBuild.props')">
     <SemVerStampTask BaseRevision="$(BaseRevision)"
                      BaseVersion="$(BaseVersion)"
                      BreakingChangeFormat="$(BreakingChangeFormat)"
