@@ -18,7 +18,7 @@ Depending on the chosen injection technology, you can set different properties t
 
 Hey, awesome ... You have introduced SemVer'sioning. Somewhere after several releases. That's no problem, just set a `BaseVersion` (which may be combined with a `BaseRevision` to ignore any commits before that very revision for parsing) which is then used as the baseline for SemVer.
 
-## ![](https://raw.github.com/DanielTheCoder/MSBuild.MSBNuget/master/media/MSBuild.ico) SemVer.MSBuild
+## ![](https://raw.github.com/DanielTheCoder/MSBuild.MSBNuget/master/media/MSBuild.ico) [MSBuild](https://github.com/Microsoft/msbuild) integration
 
 After installing one of the following nugets, you can adapt any of the mentioned options in the *SemVer.MSBuild.props*-file in your project's root directory:
 
@@ -42,7 +42,7 @@ After installing one of the following nugets, you can adapt any of the mentioned
     PM > Install-Package SemVer.Svn.MSBuild
 
 
-## [![Fody](https://camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67)](https://github.com/Fody/Fody/) SemVer.Fody
+## [![Fody](https://camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67)](https://github.com/Fody/Fody/) [Fody](https://github.com/Fody/Fody) integration
 
 After installing one of the following nugets, you can adapt any of the mentioned options in the *FodyWeavers.xml*-file in your project's root directory:
 
