@@ -52,12 +52,12 @@ After installing one of the following nugets, you can adapt any of the mentioned
                   PatchFormat="^fix(\(.*\))*: "
                   FeatureFormat="^feat(\(.*\))*: "
                   BreakingChangeFormat="^perf(\(.*\))*: "
-                  BaseVersion="17.1.3.5"
+                  BaseVersion="17.1.3"
                   BaseRevision="BaseVersion got introduced in" />
     </Weavers>
 
 > SemVer.Svn.Fody and SemVer.Git.Fody leverage their respective SemVer.MSBuild project since version 1.3.0 to calculate and inject a SemVersion in your assembly. Using the MSBuild task is more robust - Fody integration is just to keep the dev in their used and known environment.
-> In short: SemVer.Fody converts the *FodyWeavers.xml* `SemVer...` element to a *SemVer.MSBuild.props* upon every build.
+> In short: SemVer.Fody converts the `SemVer.???`-element in *FodyWeavers.xml* to a *SemVer.MSBuild.props*-file upon every build.
 
 ### SemVer.Git.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
 
