@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Linq;
+using Mono.Cecil;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -13,6 +14,7 @@ namespace SemVer.Fody
   {
     public XElement Config { get; set; }
     public string ProjectDirectoryPath { get; set; }
+    public ModuleDefinition ModuleDefinition { get; set; }
 
     public void Execute()
     {
