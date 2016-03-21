@@ -19,8 +19,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Git.Fody\"
-          exclude="**\*.pdb;**\*.xml"
+    <file src="..\bin\SemVer.Git.Fody\**\*.dll"
+          target="" />
+    <file src="..\bin\SemVer.Git.Fody\**\*.targets"
           target="" />
     <file src="..\bin\SemVer.Git.MSBuild\**\*.dll"
           target="tools" />

@@ -18,7 +18,7 @@
     <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnDll"
           target="tools" />
     <file src="..\bin\SemVer.Svn.MSBuild\**\*.dll"
-          exclude="SharpSvn.UI.dll"
+          exclude="**\SharpSvn.UI.dll"
           target="tools" />
     <file src="..\bin\SemVer.Svn.MSBuild\**\*.targets"
           target="" />
