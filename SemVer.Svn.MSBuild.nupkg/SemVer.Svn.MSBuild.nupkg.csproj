@@ -49,14 +49,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\bin\SemVer.Svn.MSBuild\build\SemVer.MSBuild.targets">
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
       <Link>build\SemVer.MSBuild.targets</Link>
     </None>
-    <None Include="..\bin\SemVer.Svn.MSBuild\build\SemVer.Svn.MSBuild.targets">
-      <Link>build\SemVer.Svn.MSBuild.targets</Link>
-    </None>
-    <None Include="..\bin\SemVer.Svn.MSBuild\content\SemVer.MSBuild.props">
+    <None Include="..\SemVer.MSBuild\content\SemVer.MSBuild.props">
       <Link>content\SemVer.MSBuild.props</Link>
+    </None>
+    <None Include="..\SemVer.Svn.MSBuild\build\SemVer.Svn.MSBuild.targets">
+      <Link>build\SemVer.Svn.MSBuild.targets</Link>
     </None>
     <None Include="NuGetPackage.ps1" />
     <None Include="NuGetSetup.ps1" />
