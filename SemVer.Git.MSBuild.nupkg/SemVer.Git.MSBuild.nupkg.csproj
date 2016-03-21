@@ -73,29 +73,6 @@
       <Name>SemVer.Git.MSBuild</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\bin\SemVer.Git.MSBuild\LibGit2Sharp.dll">
-      <Link>tools\LibGit2Sharp.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\NativeBinaries\amd64\git2-785d8c4.dll">
-      <Link>tools\NativeBinaries\amd64\git2-785d8c4.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\NativeBinaries\x86\git2-785d8c4.dll">
-      <Link>tools\NativeBinaries\x86\git2-785d8c4.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\SemVer.Git.MSBuild.dll">
-      <Link>tools\SemVer.Git.MSBuild.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\SemVer.MSBuild.dll">
-      <Link>tools\SemVer.MSBuild.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\SemVer.Stamp.dll">
-      <Link>tools\SemVer.Stamp.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Git.MSBuild\SemVer.Stamp.Git.dll">
-      <Link>tools\SemVer.Stamp.Git.dll</Link>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

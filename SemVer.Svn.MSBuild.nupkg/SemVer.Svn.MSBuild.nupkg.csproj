@@ -71,20 +71,6 @@
       <Name>SemVer.Svn.MSBuild</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\bin\SemVer.Svn.MSBuild\SemVer.MSBuild.dll">
-      <Link>tools\SemVer.MSBuild.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Svn.MSBuild\SemVer.Stamp.dll">
-      <Link>tools\SemVer.Stamp.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Svn.MSBuild\SemVer.Stamp.Svn.dll">
-      <Link>tools\SemVer.Stamp.Svn.dll</Link>
-    </Content>
-    <Content Include="..\bin\SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.dll">
-      <Link>tools\SemVer.Svn.MSBuild.dll</Link>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
