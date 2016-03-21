@@ -89,11 +89,11 @@
   <Target Name="AfterBuild">
     <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin\SemVer.Svn.MSBuild&quot; * /MIR" IgnoreExitCode="true" />
   </Target>
-  <Import Project="..\packages\SemVer.Git.MSBuild.1.0.0-alpha07\build\SemVer.Git.MSBuild.targets" Condition="Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha07\build\SemVer.Git.MSBuild.targets')" />
+  <Import Project="..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets" Condition="Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha07\build\SemVer.Git.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.MSBuild.1.0.0-alpha07\build\SemVer.Git.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets'))" />
   </Target>
 </Project>
