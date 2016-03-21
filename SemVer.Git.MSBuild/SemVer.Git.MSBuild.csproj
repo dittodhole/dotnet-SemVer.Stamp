@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SemVer.Git.MSBuild</RootNamespace>
+    <AssemblyName>SemVer.Git.MSBuild</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SemVerStampTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SemVer.MSBuild\SemVer.MSBuild.csproj">
+      <Project>{2c7a1440-5126-40c1-92b7-fbc203090462}</Project>
+      <Name>SemVer.MSBuild</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Stamp.Git\SemVer.Stamp.Git.csproj">
+      <Project>{799a40a4-2ad7-43c4-b707-a729888d3a71}</Project>
+      <Name>SemVer.Stamp.Git</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
+      <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
+      <Name>SemVer.Stamp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
+      <Link>build\SemVer.MSBuild.targets</Link>
+    </None>
+    <None Include="..\SemVer.MSBuild\content\SemVer.MSBuild.props">
+      <Link>content\SemVer.MSBuild.props</Link>
+    </None>
+    <None Include="build\SemVer.Git.MSBuild.targets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SemVer.MSBuild.props" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin\SemVer.Git.MSBuild&quot; * /MIR" IgnoreExitCode="true" />
+  </Target>
+  <Import Project="..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets" Condition="Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SemVer.Git.MSBuild.1.0.0-alpha09\build\SemVer.Git.MSBuild.targets'))" />
+  </Target>
+</Project>

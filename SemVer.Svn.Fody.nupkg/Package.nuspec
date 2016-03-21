@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>SemVer.Svn.Fody</id>
-    <version>1.2.3</version>
+    <version>1.3.0</version>
     <title>SemVer.Svn.Fody</title>
     <authors>Andreas Niedermair</authors>
     <description>
@@ -19,27 +19,16 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SemVer.Svn.Fody.dll"
+    <file src="..\bin\SemVer.Svn.Fody\**\*.dll"
           target="" />
-    <file src="..\bin\SharpSvn.dll"
+    <file src="..\bin\SemVer.Svn.Fody\**\*.targets"
           target="" />
-    <file src="..\bin\SharpPlink-Win32.svnExe"
-          target="" />
-    <file src="..\bin\SharpSvn.dll"
-          target="" />
-    <file src="..\bin\SemVer.Svn.Fody.Console.exe"
-          target="" />
-    <file src="..\tools\verpatch.exe"
-          target="" />
-    <file src="build\"
-          target="build" />
-    <file src="tools\"
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.dll"
+          exclude="**\SharpSvn.UI.dll"
           target="tools" />
-    <file src="lib\"
-          target="lib" />
-    <file src="tools\"
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnExe"
           target="tools" />
-    <file src="content\"
-          target="content" />
+    <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnDll"
+          target="tools" />
   </files>
 </package>

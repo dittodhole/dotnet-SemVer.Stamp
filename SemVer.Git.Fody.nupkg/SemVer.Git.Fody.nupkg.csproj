@@ -49,7 +49,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="build\SemVer.Git.Fody.targets" />
+    <None Include="..\SemVer.Git.Fody\build\SemVer.Git.Fody.targets">
+      <Link>build\SemVer.Git.Fody.targets</Link>
+    </None>
+    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
+      <Link>build\SemVer.MSBuild.targets</Link>
+    </None>
     <None Include="NuGetPackage.ps1" />
     <None Include="NuGetSetup.ps1" />
     <None Include="NuGet.exe" />
@@ -57,15 +62,17 @@
     <None Include="Package.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="tools\init.ps1" />
-    <None Include="tools\install.ps1" />
-    <None Include="tools\uninstall.ps1" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="content\" />
-    <Folder Include="lib\" />
-    <Folder Include="NativeBinaries\" />
-    <Folder Include="src\" />
+    <ProjectReference Include="..\SemVer.Git.Fody\SemVer.Git.Fody.csproj">
+      <Project>{9674aaf9-2107-4bb6-9f93-129c2021296e}</Project>
+      <Name>SemVer.Git.Fody</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj">
+      <Project>{5cb5c952-2a7d-4847-bb5d-d34f51ca97a7}</Project>
+      <Name>SemVer.Git.MSBuild</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
