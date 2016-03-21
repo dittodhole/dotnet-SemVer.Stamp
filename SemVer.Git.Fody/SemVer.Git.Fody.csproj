@@ -82,14 +82,6 @@
       <Project>{b9087e54-c162-48d5-b8a6-699947cca112}</Project>
       <Name>SemVer.Fody</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SemVer.MSBuild\SemVer.MSBuild.csproj">
-      <Project>{2c7a1440-5126-40c1-92b7-fbc203090462}</Project>
-      <Name>SemVer.MSBuild</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
-      <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
-      <Name>SemVer.Stamp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
