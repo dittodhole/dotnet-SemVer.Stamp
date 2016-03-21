@@ -3,7 +3,8 @@
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="SemVer.MSBuild.targets" />
-  <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
+  <Import Project="$(ProjectDir)SemVer.MSBuild.props"
+          Condition="Exists('$(ProjectDir)SemVer.MSBuild.props')" />
   <UsingTask AssemblyFile="..\tools\SemVer.Git.MSBuild.dll"
              TaskName="SemVerStampTask" />
   <PropertyGroup>
