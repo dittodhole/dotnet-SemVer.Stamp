@@ -102,14 +102,16 @@ namespace SemVer.Stamp.Git
 
         var branch = repository.Head;
 
-        List<string> includeReachableFrom;
+        List<object> excludeReachableFrom;
+        List<object> includeReachableFrom;
         if (string.IsNullOrEmpty(this.BaseRevision))
         {
           this.LogInfo?.Invoke($"retrieving commits from {branch.CanonicalName}");
-          includeReachableFrom = new List<string>
+          excludeReachableFrom = new List<object>
                                  {
                                    branch.CanonicalName
                                  };
+          includeReachableFrom = null;
         }
         else if (!string.IsNullOrEmpty(relativePath))
         {
@@ -119,16 +121,20 @@ namespace SemVer.Stamp.Git
         else
         {
           this.LogInfo?.Invoke($"retrieving commits from {branch.CanonicalName} since {this.BaseRevision}");
-          includeReachableFrom = new List<string>
-                                 {
-                                   branch.CanonicalName,
-                                   this.BaseRevision
-                                 };
+          excludeReachableFrom  = new List<object>
+                                  {
+                                    this.BaseRevision
+                                  };
+          includeReachableFrom= new List<object>
+                                {
+                                  branch.Tip.Id
+                                };
         }
 
         var commitFilter = new CommitFilter
                            {
                              IncludeReachableFrom = includeReachableFrom,
+                             ExcludeReachableFrom = excludeReachableFrom,
                              SortBy = CommitSortStrategies.Reverse | CommitSortStrategies.Time
                            };
         var commits = repository.Commits.QueryBy(commitFilter);
