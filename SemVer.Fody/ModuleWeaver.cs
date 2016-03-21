@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Xml.Linq;
 using Mono.Cecil;
 
@@ -19,8 +20,15 @@ namespace SemVer.Fody
     public void Execute()
     {
       var configuration = new Configuration(this.Config);
-      var msBuildConfigurationTemplate = new MSBuildConfigurationTemplate();
-      msBuildConfigurationTemplate.Session["configuration"] = configuration;
+      var msBuildConfigurationTemplate = new MSBuildConfigurationTemplate
+                                         {
+                                           Session = new Dictionary<string, object>
+                                                     {
+                                                       {
+                                                         "Configuration", configuration
+                                                       }
+                                                     }
+                                         };
       msBuildConfigurationTemplate.Initialize();
       var msbuildConfiguration = msBuildConfigurationTemplate.TransformText();
 

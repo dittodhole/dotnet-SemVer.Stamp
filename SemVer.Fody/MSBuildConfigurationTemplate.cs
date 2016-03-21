@@ -9,16 +9,13 @@
 // ------------------------------------------------------------------------------
 namespace SemVer.Fody
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+    #line 1 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class MSBuildConfigurationTemplate : MSBuildConfigurationTemplateBase
     {
@@ -28,45 +25,45 @@ namespace SemVer.Fody
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project xmlns=\"http://schemas.microsof" +
-                    "t.com/developer/msbuild/2003\">\r\n  <PropertyGroup>\r\n    <BaseRevision>");
+            this.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project xmlns=\"http://schemas.microsoft." +
+                    "com/developer/msbuild/2003\">\r\n  <PropertyGroup>\r\n    <BaseRevision>");
             
-            #line 11 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            #line 6 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.BaseRevision));
             
             #line default
             #line hidden
             this.Write("</BaseRevision>\r\n    <BaseVersion>");
             
-            #line 12 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.BaseRevision));
+            #line 7 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.BaseVersion));
             
             #line default
             #line hidden
             this.Write("</BaseVersion>\r\n    <BreakingChangeFormat>");
             
-            #line 13 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            #line 8 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.BreakingChangeFormat));
             
             #line default
             #line hidden
             this.Write("</BreakingChangeFormat>\r\n    <FeatureFormat>");
             
-            #line 14 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            #line 9 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.FeatureFormat));
             
             #line default
             #line hidden
             this.Write("</FeatureFormat>\r\n    <PatchFormat>");
             
-            #line 15 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            #line 10 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.PatchFormat));
             
             #line default
             #line hidden
             this.Write("</PatchFormat>\r\n    <RepositoryPath>");
             
-            #line 16 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+            #line 11 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Configuration.UseProject ? "$(ProjectDir)" : "$(SolutionDir)"));
             
             #line default
@@ -75,7 +72,7 @@ namespace SemVer.Fody
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "D:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
+        #line 1 "W:\GitHub\dotnet-SemVer.Stamp\SemVer.Fody\MSBuildConfigurationTemplate.tt"
 
 private global::SemVer.Fody.Configuration _ConfigurationField;
 
