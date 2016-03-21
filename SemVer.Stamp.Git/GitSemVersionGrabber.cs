@@ -91,7 +91,7 @@ namespace SemVer.Stamp.Git
                                            relativePath
                                          },
                               RecurseIgnoredDirs = false,
-                              Show = StatusShowOption.IndexAndWorkDir
+                              Show = StatusShowOption.WorkDirOnly
                             };
         var status = repository.RetrieveStatus(statusOptions);
         if (status.IsDirty)
