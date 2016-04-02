@@ -20,6 +20,7 @@ namespace SemVer.Stamp
     protected Action<string> LogInfo { get; }
     protected Action<string> LogWarning { get; }
 
+    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
@@ -28,6 +29,10 @@ namespace SemVer.Stamp
                               string featureFormat,
                               string breakingChangeFormat)
     {
+      if (baseVersion == null)
+      {
+        throw new ArgumentNullException(nameof(baseVersion));
+      }
       if (patchFormat == null)
       {
         throw new ArgumentNullException(nameof(patchFormat));
@@ -52,7 +57,7 @@ namespace SemVer.Stamp
       return version;
     }
 
-    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="baseVersion"/> is <see langword="null" />.</exception>
     protected virtual Version PatchVersionBeforeCalculatingTheSemVersion(Version baseVersion)
     {
       if (baseVersion == null)
