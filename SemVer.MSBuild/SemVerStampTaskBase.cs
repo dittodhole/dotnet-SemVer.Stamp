@@ -53,12 +53,21 @@ namespace SemVer.MSBuild
         return false;
       }
 
+      Version version;
       var semVersionGrabber = this.GetSemVersionGrabber(this.RepositoryPath,
                                                         this.BaseRevision);
-      var version = semVersionGrabber.GetVersion(baseVersion,
-                                                 this.PatchFormat,
-                                                 this.FeatureFormat,
-                                                 this.BreakingChangeFormat);
+      try
+      {
+        version = semVersionGrabber.GetVersion(baseVersion,
+                                               this.PatchFormat,
+                                               this.FeatureFormat,
+                                               this.BreakingChangeFormat);
+      }
+      catch (ArgumentNullException argumentNullException)
+      {
+        this.Log.LogErrorFromException(argumentNullException);
+        return false;
+      }
 
       var patchedVersion = version.ToString();
 
