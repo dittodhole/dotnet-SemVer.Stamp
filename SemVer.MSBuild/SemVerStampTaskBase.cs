@@ -27,6 +27,7 @@ namespace SemVer.MSBuild
     [Required]
     public string RepositoryPath { get; set; }
 
+    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
     protected abstract SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
                                                                   string baseRevision);
 
