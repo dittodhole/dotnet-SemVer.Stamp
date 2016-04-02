@@ -32,7 +32,26 @@ namespace SemVer.MSBuild
 
     public sealed override bool Execute()
     {
-      var baseVersion = Version.Parse(this.BaseVersion);
+      Version baseVersion;
+      try
+      {
+        baseVersion = Version.Parse(this.BaseVersion);
+      }
+      catch (ArgumentException argumentException)
+      {
+        this.Log.LogErrorFromException(argumentException);
+        return false;
+      }
+      catch (FormatException formatException)
+      {
+        this.Log.LogErrorFromException(formatException);
+        return false;
+      }
+      catch (OverflowException overflowException)
+      {
+        this.Log.LogErrorFromException(overflowException);
+        return false;
+      }
 
       var semVersionGrabber = this.GetSemVersionGrabber(this.RepositoryPath,
                                                         this.BaseRevision);
