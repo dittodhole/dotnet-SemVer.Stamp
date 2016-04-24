@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemVer.Svn.MSBuild</id>
-    <version>1.0.0</version>
+    <version>1.1.0-alpha-00</version>
     <title>SemVer.Svn.MSBuild</title>
     <authors>Andreas Niedermair</authors>
     <description>
