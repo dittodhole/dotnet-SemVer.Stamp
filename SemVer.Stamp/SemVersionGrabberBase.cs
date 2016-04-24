@@ -41,13 +41,15 @@ namespace SemVer.Stamp
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
+      var commitMessages = this.GetCommitMessages()
+                               .ToArray();
+      this.LogInfo($"Processing {commitMessages.Count()} commit messages");
+
       if (baseVersion == null)
       {
         baseVersion = new Version(0,
                                   0);
       }
-
-      var commitMessages = this.GetCommitMessages();
       baseVersion = this.PatchVersionBeforeCalculatingTheSemVersion(baseVersion);
       var version = this.CalculateVersionAccordingToSemVer(commitMessages,
                                                            baseVersion,
@@ -75,7 +77,7 @@ namespace SemVer.Stamp
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
-    private Version CalculateVersionAccordingToSemVer(IEnumerable<string> commitMessages,
+    private Version CalculateVersionAccordingToSemVer(ICollection<string> commitMessages,
                                                       Version baseVersion,
                                                       string patchFormat,
                                                       string featureFormat,
