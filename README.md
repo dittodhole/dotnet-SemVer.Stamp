@@ -18,6 +18,22 @@ Depending on the chosen injection technology, you can set different properties t
 
 Hey, awesome ... You have introduced SemVer'sioning. Somewhere after several releases. That's no problem, just set a `BaseVersion` (which may be combined with a `BaseRevision` to ignore any commits before that very revision for parsing) which is then used as the baseline for SemVer.
 
+## Active-Switch
+
+The switch `SemVerStampActive` controls the execution of stamping - this can be especially useful, if you do not want DEBUG builds to be stamped (as it requires a change-free working-copy).
+
+To disable stamping in DEBUG builds, one can adapt the *.props*-file like:
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+      <PropertyGroup>
+        <SemVerStampActive>False</SemVerStampActive>
+        <SemVerStampActive Condition="'$(Configuration)' == 'Release'">True</SemVerStampActive>
+        <!-- other properties -->
+      </PropertyGroup>
+    </Project>
+
+
 ## ![](https://raw.github.com/DanielTheCoder/MSBuild.MSBNuget/master/media/MSBuild.ico) [MSBuild](https://github.com/Microsoft/msbuild) integration
 
 After installing one of the following nugets, you can adapt any of the mentioned options in the *SemVer.MSBuild.props*-file in your project's root directory:
@@ -31,6 +47,7 @@ After installing one of the following nugets, you can adapt any of the mentioned
         <FeatureFormat>^feat(\(.*\))*: </FeatureFormat>
         <PatchFormat>^fix(\(.*\))*: </PatchFormat>
         <RepositoryPath>$(ProjectDir)</RepositoryPath>
+        <SemVerStampActive>True</SemVerStampActive>
       </PropertyGroup>
     </Project>
 
@@ -53,7 +70,8 @@ After installing one of the following nugets, you can adapt any of the mentioned
                   FeatureFormat="^feat(\(.*\))*: "
                   BreakingChangeFormat="^perf(\(.*\))*: "
                   BaseVersion="17.1.3"
-                  BaseRevision="BaseVersion got introduced in" />
+                  BaseRevision="BaseVersion got introduced in"
+                  SemVerStampActive="True" />
     </Weavers>
 
 > SemVer.Svn.Fody and SemVer.Git.Fody leverage their respective SemVer.MSBuild project since version 1.3.0 to calculate and inject a SemVersion in your assembly. Using the MSBuild task is more robust - Fody integration is just to keep the dev in their used and known environment.
