@@ -9,5 +9,6 @@
     <FeatureFormat><#= this.Configuration.FeatureFormat #></FeatureFormat>
     <PatchFormat><#= this.Configuration.PatchFormat #></PatchFormat>
     <RepositoryPath><#= this.Configuration.UseProject ? "$(ProjectDir)" : "$(SolutionDir)" #></RepositoryPath>
+    <SemVerStampActive><#= this.Configuration.SemVerStampActive #></SemVerStampActive>
   </PropertyGroup>
 </Project>

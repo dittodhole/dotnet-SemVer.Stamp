@@ -27,7 +27,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof (bool).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
                                        exception);
           }
         }
@@ -83,7 +83,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof (Version).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(Version).FullName} from configuartion",
                                        exception);
           }
         }
@@ -103,6 +103,26 @@ namespace SemVer.Fody
           this.BaseRevision = attribute.Value;
         }
       }
+
+      {
+        var attribute = element.Attribute("SemVerStampActive");
+        if (attribute != null)
+        {
+          try
+          {
+            this.SemVerStampActive = bool.Parse(attribute.Value);
+          }
+          catch (Exception exception)
+          {
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
+                                       exception);
+          }
+        }
+        else
+        {
+          this.SemVerStampActive = true;
+        }
+      }
     }
 
     public string BaseRevision { get; }
@@ -111,5 +131,6 @@ namespace SemVer.Fody
     public string FeatureFormat { get; }
     public string PatchFormat { get; }
     public bool UseProject { get; }
+    public bool SemVerStampActive { get; }
   }
 }
