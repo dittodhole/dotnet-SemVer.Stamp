@@ -9,7 +9,6 @@ namespace SemVer.MSBuild
   {
     public string BaseRevision { get; set; }
 
-    [Required]
     public string BaseVersion { get; set; }
 
     [Required]

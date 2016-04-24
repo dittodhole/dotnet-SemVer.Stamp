@@ -20,7 +20,6 @@ namespace SemVer.Stamp
     protected Action<string> LogInfo { get; }
     protected Action<string> LogWarning { get; }
 
-    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="patchFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="featureFormat" /> is <see langword="null" />.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="breakingChangeFormat" /> is <see langword="null" />.</exception>
@@ -29,10 +28,6 @@ namespace SemVer.Stamp
                               string featureFormat,
                               string breakingChangeFormat)
     {
-      if (baseVersion == null)
-      {
-        throw new ArgumentNullException(nameof(baseVersion));
-      }
       if (patchFormat == null)
       {
         throw new ArgumentNullException(nameof(patchFormat));
@@ -46,6 +41,12 @@ namespace SemVer.Stamp
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
+      if (baseVersion == null)
+      {
+        baseVersion = new Version(0,
+                                  0);
+      }
+
       var commitMessages = this.GetCommitMessages();
       baseVersion = this.PatchVersionBeforeCalculatingTheSemVersion(baseVersion);
       var version = this.CalculateVersionAccordingToSemVer(commitMessages,
@@ -57,7 +58,7 @@ namespace SemVer.Stamp
       return version;
     }
 
-    /// <exception cref="ArgumentNullException"><paramref name="baseVersion"/> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="baseVersion" /> is <see langword="null" />.</exception>
     protected virtual Version PatchVersionBeforeCalculatingTheSemVersion(Version baseVersion)
     {
       if (baseVersion == null)
@@ -97,11 +98,14 @@ namespace SemVer.Stamp
         throw new ArgumentNullException(nameof(breakingChangeFormat));
       }
 
-      var patch = baseVersion?.Build ?? 0;
-      var feature = baseVersion?.Minor ?? 0;
-      var breakingChange = baseVersion?.Major ?? 0;
-      var revision = Math.Max(0,
-                              baseVersion?.Revision ?? 0);
+      var patch = Math.Max(baseVersion?.Build ?? 0,
+                           0);
+      var feature = Math.Max(baseVersion?.Minor ?? 0,
+                             0);
+      var breakingChange = Math.Max(baseVersion?.Major ?? 0,
+                                    0);
+      var revision = Math.Max(baseVersion?.Revision ?? 0,
+                              0);
 
       this.LogInfo?.Invoke($"baseVersion: {breakingChange}.{feature}.{patch}.{revision}");
 
