@@ -7,5 +7,6 @@
     <FeatureFormat>^feat(\(.*\))*: </FeatureFormat>
     <PatchFormat>^fix(\(.*\))*: </PatchFormat>
     <RepositoryPath>$(ProjectDir)</RepositoryPath>
+    <SemVerStampActive>True</SemVerStampActive>
   </PropertyGroup>
 </Project>

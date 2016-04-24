@@ -9,7 +9,6 @@ namespace SemVer.MSBuild
   {
     public string BaseRevision { get; set; }
 
-    [Required]
     public string BaseVersion { get; set; }
 
     [Required]
@@ -34,24 +33,31 @@ namespace SemVer.MSBuild
     public sealed override bool Execute()
     {
       Version baseVersion;
-      try
+      if (this.BaseVersion == null)
       {
-        baseVersion = Version.Parse(this.BaseVersion);
+        baseVersion = null;
       }
-      catch (ArgumentException argumentException)
+      else
       {
-        this.Log.LogErrorFromException(argumentException);
-        return false;
-      }
-      catch (FormatException formatException)
-      {
-        this.Log.LogErrorFromException(formatException);
-        return false;
-      }
-      catch (OverflowException overflowException)
-      {
-        this.Log.LogErrorFromException(overflowException);
-        return false;
+        try
+        {
+          baseVersion = Version.Parse(this.BaseVersion);
+        }
+        catch (ArgumentException argumentException)
+        {
+          this.Log.LogErrorFromException(argumentException);
+          return false;
+        }
+        catch (FormatException formatException)
+        {
+          this.Log.LogErrorFromException(formatException);
+          return false;
+        }
+        catch (OverflowException overflowException)
+        {
+          this.Log.LogErrorFromException(overflowException);
+          return false;
+        }
       }
 
       Version version;
