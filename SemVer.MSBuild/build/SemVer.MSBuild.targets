@@ -74,4 +74,21 @@
       </Code>
     </Task>
   </UsingTask>
+  <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
+  <PropertyGroup>
+    <VersionAssembly>0.0.0.0</VersionAssembly>
+  </PropertyGroup>
+  <Target Name="PatchVersionOfAssembly"
+          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion">
+    <SemVerStampTask BaseRevision="$(BaseRevision)"
+                     BaseVersion="$(BaseVersion)"
+                     BreakingChangeFormat="$(BreakingChangeFormat)"
+                     FeatureFormat="$(FeatureFormat)"
+                     PatchFormat="$(PatchFormat)"
+                     RepositoryPath="$(RepositoryPath)">
+      <Output TaskParameter="PatchedVersion"
+              PropertyName="VersionAssembly" />
+    </SemVerStampTask>
+    <Message Text="Patched assembly version: $(VersionAssembly)" />
+  </Target>
 </Project>
