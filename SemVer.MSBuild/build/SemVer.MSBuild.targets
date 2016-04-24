@@ -77,9 +77,11 @@
   <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
   <PropertyGroup>
     <VersionAssembly>0.0.0.0</VersionAssembly>
+    <SemVerStampActive Condition="'$(SemVerStampActive)' == ''">True</SemVerStampActive>
   </PropertyGroup>
   <Target Name="PatchVersionOfAssembly"
-          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion">
+          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion"
+          Condition="$(SemVerStampActive)">
     <SemVerStampTask BaseRevision="$(BaseRevision)"
                      BaseVersion="$(BaseVersion)"
                      BreakingChangeFormat="$(BreakingChangeFormat)"
