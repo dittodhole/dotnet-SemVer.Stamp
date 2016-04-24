@@ -1,21 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- see http://www.lionhack.com/2014/02/13/msbuild-override-assembly-version/ -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--
-      Defining custom Targets to execute before project compilation starts.
-  -->
+  <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
   <PropertyGroup>
-    <CompileDependsOn>
-      CommonBuildDefineModifiedAssemblyVersion;
-      $(CompileDependsOn);
-    </CompileDependsOn>
+    <VersionAssembly />
+    <SemVerStampActive Condition="'$(SemVerStampActive)' == ''">True</SemVerStampActive>
   </PropertyGroup>
-  <!--
-      Creates modified version of AssemblyInfo.cs, replaces [AssemblyVersion] attribute with the one specifying actual build version (from MSBuild properties), and includes that file instead of the original AssemblyInfo.cs in the compilation.
-
-      Works with both, .cs and .vb version of the AssemblyInfo file, meaning it supports C# and VB.Net projects simultaneously.
-  -->
-  <Target Name="CommonBuildDefineModifiedAssemblyVersion" Condition="'$(VersionAssembly)' != ''">
+  <Target Name="PatchVersionOfAssembly"
+          BeforeTargets="CoreCompile"
+          Condition="$(SemVerStampActive)">
+    <SemVerStampTask BaseRevision="$(BaseRevision)"
+                     BaseVersion="$(BaseVersion)"
+                     BreakingChangeFormat="$(BreakingChangeFormat)"
+                     FeatureFormat="$(FeatureFormat)"
+                     PatchFormat="$(PatchFormat)"
+                     RepositoryPath="$(RepositoryPath)">
+      <Output TaskParameter="PatchedVersion"
+              PropertyName="VersionAssembly" />
+    </SemVerStampTask>
+    <Message Text="Patched assembly version: $(VersionAssembly)" />
     <!-- Find AssemblyInfo.cs or AssemblyInfo.vb in the "Compile" Items. Remove it from "Compile" Items because we will use a modified version instead. -->
     <ItemGroup>
       <OriginalAssemblyInfo Include="@(Compile)" Condition="%(Filename) == 'AssemblyInfo' And (%(Extension) == '.vb' Or %(Extension) == '.cs')" />
@@ -74,23 +77,4 @@
       </Code>
     </Task>
   </UsingTask>
-  <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
-  <PropertyGroup>
-    <VersionAssembly>0.0.0.0</VersionAssembly>
-    <SemVerStampActive Condition="'$(SemVerStampActive)' == ''">True</SemVerStampActive>
-  </PropertyGroup>
-  <Target Name="PatchVersionOfAssembly"
-          BeforeTargets="CommonBuildDefineModifiedAssemblyVersion"
-          Condition="$(SemVerStampActive)">
-    <SemVerStampTask BaseRevision="$(BaseRevision)"
-                     BaseVersion="$(BaseVersion)"
-                     BreakingChangeFormat="$(BreakingChangeFormat)"
-                     FeatureFormat="$(FeatureFormat)"
-                     PatchFormat="$(PatchFormat)"
-                     RepositoryPath="$(RepositoryPath)">
-      <Output TaskParameter="PatchedVersion"
-              PropertyName="VersionAssembly" />
-    </SemVerStampTask>
-    <Message Text="Patched assembly version: $(VersionAssembly)" />
-  </Target>
 </Project>
