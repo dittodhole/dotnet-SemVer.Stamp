@@ -4,7 +4,7 @@
     <id>SemVer.Git.MSBuild</id>
     <version>1.1.0</version>
     <title>SemVer.Git.MSBuild</title>
-    <authors>Andreas Niedermair</authors>
+    <authors>Andreas Niedermair (@dittodhole)</authors>
     <description>Versions your assemblies according to SemVer based on your Git commit messages.</description>
     <projectUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/dittodhole/dotnet-SemVer.Stamp/master/Icons/package_icon.png</iconUrl>

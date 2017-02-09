@@ -4,7 +4,7 @@
     <id>SemVer.Git.Fody</id>
     <version>1.4.0</version>
     <title>SemVer.Git.Fody</title>
-    <authors>Andreas Niedermair</authors>
+    <authors>Andreas Niedermair (@dittodhole)</authors>
     <description>Versions your assemblies according to SemVer based on your Git commit messages.</description>
     <projectUrl>https://github.com/dittodhole/csharp-Fody.SemVer</projectUrl>
     <iconUrl>https://raw.github.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png</iconUrl>
