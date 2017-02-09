@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SemVer.Svn.Fody</id>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <title>SemVer.Svn.Fody</title>
     <authors>Andreas Niedermair (@dittodhole)</authors>
     <description>Versions your assemblies according to SemVer based on your SVN commit messages.</description>

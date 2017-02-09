@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SemVer.Svn.MSBuild</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>SemVer.Svn.MSBuild</title>
     <authors>Andreas Niedermair (@dittodhole)</authors>
     <description>Versions your assemblies according to SemVer based on your SVN commit messages.</description>
