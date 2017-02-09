@@ -9,6 +9,7 @@
     <projectUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/dittodhole/dotnet-SemVer.Stamp/master/Icons/package_icon.png</iconUrl>
     <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>
+    <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
     <file src="..\bin\SemVer.Svn.MSBuild\**\*.svnExe"

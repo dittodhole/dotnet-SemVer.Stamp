@@ -10,6 +10,7 @@
     <iconUrl>https://raw.github.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png</iconUrl>
     <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>
     <tags>Git, Versioning, ILWeaving, Fody, Stamp, Cecil</tags>
+    <developmentDependency>true</developmentDependency>
     <dependencies>
       <dependency id="Fody"
                   version="1.29.4" />
