@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>SemVer.Svn.MSBuild</id>
     <version>1.1.0</version>
     <title>SemVer.Svn.MSBuild</title>
     <authors>Andreas Niedermair</authors>
-    <description>
-      Versions your assemblies according to SemVer based on your SVN commit messages.
-    </description>
+    <description>Versions your assemblies according to SemVer based on your SVN commit messages.</description>
     <projectUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/dittodhole/dotnet-SemVer.Stamp/master/Icons/package_icon.png</iconUrl>
     <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>

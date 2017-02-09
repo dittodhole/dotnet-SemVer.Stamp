@@ -1,14 +1,11 @@
 <?xml version="1.0"?>
-
 <package>
   <metadata>
     <id>SemVer.Svn.Fody</id>
     <version>1.4.0</version>
     <title>SemVer.Svn.Fody</title>
     <authors>Andreas Niedermair</authors>
-    <description>
-      Versions your assemblies according to SemVer based on your SVN commit messages.
-    </description>
+    <description>Versions your assemblies according to SemVer based on your SVN commit messages.</description>
     <projectUrl>https://github.com/dittodhole/csharp-Fody.SemVer</projectUrl>
     <iconUrl>https://raw.github.com/dittodhole/csharp-Fody.SemVer/master/Icons/package_icon.png</iconUrl>
     <licenseUrl>https://raw.githubusercontent.com/dittodhole/WTFNMFPLv3/master/LICENSE</licenseUrl>
