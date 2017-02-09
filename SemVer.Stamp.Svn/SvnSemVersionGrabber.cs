@@ -105,22 +105,32 @@ namespace SemVer.Stamp.Svn
         throw new ArgumentNullException(nameof(baseVersion));
       }
 
-      SvnWorkingCopyVersion svnWorkingCopyVersion;
-      using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
+      Collection<SvnLogEventArgs> logItems;
+      using (var svnClient = new SvnClient())
       {
-        if (!svnWorkingCopyClient.GetVersion(this.RepositoryPath,
-                                             out svnWorkingCopyVersion) ||
-            svnWorkingCopyVersion == null)
+        // TODO if there is any chance, rather use svnClient.GetInfo(URL)...LastChangeRevision
+        var svnLogArgs = new SvnLogArgs
+                         {
+                           StrictNodeHistory = false,
+                           Range = new SvnRevisionRange(SvnRevision.Head,
+                                                        SvnRevision.Zero),
+                           Limit = 1
+                         };
+        if (!svnClient.GetLog(this.RepositoryPath,
+                              svnLogArgs,
+                              out logItems)
+            || logItems == null)
         {
-          this.LogError?.Invoke($"Could not get working copy version for {this.RepositoryPath}");
-          return baseVersion;
+          this.LogError?.Invoke($"Could not get log for repository in {this.RepositoryPath}");
+          return null;
         }
       }
 
+      var recentLogItem = logItems.Single();
       var patchedBaseVersion = new Version(baseVersion.Major,
                                            baseVersion.Minor,
                                            baseVersion.Build,
-                                           (int) svnWorkingCopyVersion.End);
+                                           (int) recentLogItem.Revision);
 
       return patchedBaseVersion;
     }
