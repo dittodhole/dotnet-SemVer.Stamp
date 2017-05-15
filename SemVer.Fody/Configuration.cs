@@ -27,7 +27,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuration",
                                        exception);
           }
         }
@@ -83,7 +83,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(Version).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(Version).FullName} from configuration",
                                        exception);
           }
         }
@@ -114,7 +114,7 @@ namespace SemVer.Fody
           }
           catch (Exception exception)
           {
-            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuartion",
+            throw new WeavingException($"Unable to parse {attribute.Value} as {typeof(bool).FullName} from configuration",
                                        exception);
           }
         }
