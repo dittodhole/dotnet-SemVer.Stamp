@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SemVer.Git.Fody</id>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <title>SemVer.Git.Fody</title>
     <authors>Andreas Niedermair (@dittodhole)</authors>
     <description>Versions your assemblies according to SemVer based on your Git commit messages.</description>
