@@ -65,7 +65,3 @@ After installing one of the following nugets, you can adapt any of the mentioned
 ## License
 
 csharp-SemVer.Stamp is published under [WTFNMFPLv3](https://andreas.niedermair.name/introducing-wtfnmfplv3).
-
-## Spotify Playlist
-
-Good in the mood, [listen to the playlist](https://open.spotify.com/user/dittodhole/playlist/0KF2OFBoetcBt59qdHlbx7).
