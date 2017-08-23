@@ -1,4 +1,4 @@
-# ![Icon](Icons/package_icon.png) SemVer.Stamp
+# ![Icon](assets/package_icon.png) SemVer.Stamp
 
 This is a solution for various plugins to achieve SemVer'sioning your assemblies.
 
