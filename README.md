@@ -34,7 +34,7 @@ To disable stamping in DEBUG builds, one can adapt the *.props*-file like:
     </Project>
 
 
-## ![](https://raw.github.com/DanielTheCoder/MSBuild.MSBNuget/master/media/MSBuild.ico) [MSBuild](https://github.com/Microsoft/msbuild) integration
+## ![](assets/MSBuild.ico) [MSBuild](https://github.com/Microsoft/msbuild) integration
 
 After installing one of the following nugets, you can adapt any of the mentioned options in the *SemVer.MSBuild.props*-file in your project's root directory:
 
