@@ -1,17 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody", "SemVer.Svn.Fody\SemVer.Svn.Fody.csproj", "{A421CB55-CE9A-4804-B2AF-3C4915B462A9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody", "SemVer.Git.Fody\SemVer.Git.Fody.csproj", "{9674AAF9-2107-4BB6-9F93-129C2021296E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.Fody.nupkg", "SemVer.Git.Fody.nupkg\SemVer.Git.Fody.nupkg.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9674AAF9-2107-4BB6-9F93-129C2021296E} = {9674AAF9-2107-4BB6-9F93-129C2021296E}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
 		CopyAssembliesToFinalOutput.targets = CopyAssembliesToFinalOutput.targets
@@ -19,14 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.Fody.nupkg", "SemVer.Svn.Fody.nupkg\SemVer.Svn.Fody.nupkg.csproj", "{61AC4173-090B-482C-80B8-032E0C86F8A9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9} = {A421CB55-CE9A-4804-B2AF-3C4915B462A9}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp", "SemVer.Stamp\SemVer.Stamp.csproj", "{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Fody", "SemVer.Fody\SemVer.Fody.csproj", "{B9087E54-C162-48D5-B8A6-699947CCA112}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Git", "SemVer.Stamp.Git\SemVer.Stamp.Git.csproj", "{799A40A4-2AD7-43C4-B707-A729888D3A71}"
 EndProject
@@ -46,13 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Tests", "SemVe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{C5808664-6748-4208-A91C-3BFE66F7D4CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fody", "Fody", "{0973445B-6A2E-47DB-A389-14A359E77615}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base Implementation", "Base Implementation", "{C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{00BE509A-6FB7-4D0E-BB70-00233F5BB041}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,30 +40,10 @@ Global
 		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9}.Release|Mixed Platforms.Build.0 = Release|x86
-		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9674AAF9-2107-4BB6-9F93-129C2021296E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{61AC4173-090B-482C-80B8-032E0C86F8A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B9087E54-C162-48D5-B8A6-699947CCA112}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B9087E54-C162-48D5-B8A6-699947CCA112}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -121,12 +81,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A421CB55-CE9A-4804-B2AF-3C4915B462A9} = {70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65}
-		{9674AAF9-2107-4BB6-9F93-129C2021296E} = {70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65}
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389} = {70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65}
-		{61AC4173-090B-482C-80B8-032E0C86F8A9} = {70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65}
 		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
-		{B9087E54-C162-48D5-B8A6-699947CCA112} = {0973445B-6A2E-47DB-A389-14A359E77615}
 		{799A40A4-2AD7-43C4-B707-A729888D3A71} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
 		{BC16772E-21F8-451F-9B16-B65BF5C289A1} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
 		{2C7A1440-5126-40C1-92B7-FBC203090462} = {C5808664-6748-4208-A91C-3BFE66F7D4CC}
@@ -136,6 +91,8 @@ Global
 		{B72A179D-D3C0-468E-9A88-E7F9C881D908} = {00BE509A-6FB7-4D0E-BB70-00233F5BB041}
 		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
 		{00BE509A-6FB7-4D0E-BB70-00233F5BB041} = {C5808664-6748-4208-A91C-3BFE66F7D4CC}
-		{70C77D95-C3FE-4DDD-A4D1-5BAB935C0C65} = {0973445B-6A2E-47DB-A389-14A359E77615}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D03F7C07-4A43-429C-AAFA-FB3B5F5A944C}
 	EndGlobalSection
 EndGlobal
