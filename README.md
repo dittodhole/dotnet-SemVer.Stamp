@@ -58,32 +58,6 @@ After installing one of the following nugets, you can adapt any of the mentioned
 ###  SemVer.Svn.MSBuild [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.MSBuild/)
     PM > Install-Package SemVer.Svn.MSBuild
 
-
-## [![Fody](https://camo.githubusercontent.com/5765643b25e9e30770ce1b9a7719e36f82739c9f/68747470733a2f2f7261772e6769746875622e636f6d2f466f64792f466f64792f6d61737465722f49636f6e732f7061636b6167655f69636f6e2e706e67)](https://github.com/Fody/Fody/) [Fody](https://github.com/Fody/Fody) integration
-
-After installing one of the following nugets, you can adapt any of the mentioned options in the *FodyWeavers.xml*-file in your project's root directory:
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <Weavers>
-      <SemVer.??? UseProjectDir="True"
-                  PatchFormat="^fix(\(.*\))*: "
-                  FeatureFormat="^feat(\(.*\))*: "
-                  BreakingChangeFormat="^perf(\(.*\))*: "
-                  BaseVersion="17.1.3"
-                  BaseRevision="BaseVersion got introduced in"
-                  SemVerStampActive="True" />
-    </Weavers>
-
-> SemVer.Svn.Fody and SemVer.Git.Fody leverage their respective SemVer.MSBuild project since version 1.3.0 to calculate and inject a SemVersion in your assembly. Using the MSBuild task is more robust - Fody integration is just to keep the dev in their used and known environment.
-> In short: SemVer.Fody converts the `SemVer.???`-element in *FodyWeavers.xml* to a *SemVer.MSBuild.props*-file upon every build.
-
-### SemVer.Git.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.Fody/)
-
-    PM > Install-Package SemVer.Git.Fody
-
-###  SemVer.Svn.Fody [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.Fody.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.Fody/)
-    PM > Install-Package SemVer.Svn.Fody
-
 ## Icon
 
 [Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.
