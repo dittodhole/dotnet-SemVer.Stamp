@@ -64,4 +64,4 @@ After installing one of the following nugets, you can adapt any of the mentioned
 
 ## License
 
-csharp-SemVer.Stamp is published under [WTFNMFPLv3](https://andreas.niedermair.name/introducing-wtfnmfplv3).
+dotnet-SemVer.Stamp is published under [WTFNMFPLv3](//github.com/dittodhole/WTFNMFPLv3).
