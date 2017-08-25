@@ -13,10 +13,12 @@
 ### Releases
 
 [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.MSBuild.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.MSBuild/)
+https://www.nuget.org/packages/SemVer.Git.MSBuild/
 
     PM > Install-Package SemVer.Git.MSBuild
 
 [![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.MSBuild/)
+https://www.nuget.org/packages/SemVer.Svn.MSBuild/
 
     PM > Install-Package SemVer.Svn.MSBuild
 
