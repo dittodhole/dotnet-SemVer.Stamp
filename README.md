@@ -3,20 +3,20 @@
 # dotnet-SemVer.Stamp
 
 **master** branch status
-[![Build status](//ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k?svg=true)](//ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
+[![Build status](https://ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
 
 **develop** branch status
-[![Build status](//ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k/branch/develop?svg=true)](//ci.appveyor.com/project/dittodhole/dotnet-semver-stamp/branch/develop)
+[![Build status](https://ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k/branch/develop?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp/branch/develop)
 
 ## Installing
 
 ### Releases
 
-[![NuGet Status](//img.shields.io/nuget/v/SemVer.Git.MSBuild.svg?style=flat)](//www.nuget.org/packages/SemVer.Git.MSBuild/)
+[![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.MSBuild.svg?style=flat)](https://www.nuget.org/packages/SemVer.Git.MSBuild/)
 
     PM > Install-Package SemVer.Git.MSBuild
 
-[![NuGet Status](//img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg?style=flat)](//www.nuget.org/packages/SemVer.Svn.MSBuild/)
+[![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg?style=flat)](https://www.nuget.org/packages/SemVer.Svn.MSBuild/)
 
     PM > Install-Package SemVer.Svn.MSBuild
 
@@ -24,12 +24,12 @@
 
     PM> nuget sources Add "dittodhole" https://www.myget.org/F/dittodhole/api/v3/index.json
 
-[![MyGet Pre Release](//img.shields.io/myget/dittodhole/vpre/SemVer.Git.MSBuild.svg?style=flat-square)](//www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild)
+[![MyGet Pre Release](https://img.shields.io/myget/dittodhole/vpre/SemVer.Git.MSBuild.svg?style=flat-square)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild)
 https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild
 
     PM> Install-Package SemVer.Git.MSBuild -pre
 
-[![MyGet Pre Release](//img.shields.io/myget/dittodhole/vpre/SemVer.Svn.MSBuild.svg?style=flat-square)](//www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild)
+[![MyGet Pre Release](https://img.shields.io/myget/dittodhole/vpre/SemVer.Svn.MSBuild.svg?style=flat-square)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild)
 https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild
 
     PM> Install-Package SemVer.Svn.MSBuild -pre
@@ -98,8 +98,8 @@ To disable stamping in DEBUG builds, one can adapt the *.props*-file like:
 
 ## Icon
 
-[Cyclops](//thenounproject.com/term/cyclops/60203/) by [Mike Hince](//thenounproject.com/zer0mike) from the Noun Project.
+[Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.
 
 ## License
 
-dotnet-SemVer.Stamp is published under [WTFNMFPLv3](//github.com/dittodhole/WTFNMFPLv3).
+dotnet-SemVer.Stamp is published under [WTFNMFPLv3](https://github.com/dittodhole/WTFNMFPLv3).
