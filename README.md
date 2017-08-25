@@ -3,10 +3,10 @@
 # dotnet-SemVer.Stamp
 
 **master** branch status
-[![Build status](https://ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
+[![Build status](https://ci.appveyor.com/api/projects/status/0j7qk24lhj0mh7ad?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
 
 **develop** branch status
-[![Build status](https://ci.appveyor.com/api/projects/status/pfhxvmnefxmga46k/branch/develop?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp/branch/develop)
+[![Build status](https://ci.appveyor.com/api/projects/status/0j7qk24lhj0mh7ad/branch/develop?svg=true)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp/branch/develop)
 
 ## Installing
 
