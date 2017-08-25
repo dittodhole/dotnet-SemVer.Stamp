@@ -1,86 +1,98 @@
 ﻿using System;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using SemVer.Stamp;
+using JetBrains.Annotations;
 
 namespace SemVer.MSBuild
 {
   public abstract class SemVerStampTaskBase : Task
   {
+    /// <remarks>TODO: rename</remarks>
+    [CanBeNull]
     public string BaseRevision { get; set; }
 
+    /// <remarks>TODO: rename</remarks>
+    [CanBeNull]
     public string BaseVersion { get; set; }
 
     [Required]
+    [NotNull]
     public string BreakingChangeFormat { get; set; }
 
     [Required]
+    [NotNull]
     public string FeatureFormat { get; set; }
 
     [Output]
     public string PatchedVersion { get; set; }
 
     [Required]
+    [NotNull]
     public string PatchFormat { get; set; }
 
+    /// <remarks>TODO: rename</remarks>
     [Required]
+    [NotNull]
     public string RepositoryPath { get; set; }
 
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    protected abstract SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
-                                                                  string baseRevision);
-
-    public sealed override bool Execute()
+    public override bool Execute()
     {
-      Version baseVersion;
-      if (this.BaseVersion == null)
-      {
-        baseVersion = null;
-      }
-      else
-      {
-        try
-        {
-          baseVersion = Version.Parse(this.BaseVersion);
-        }
-        catch (ArgumentException argumentException)
-        {
-          this.Log.LogErrorFromException(argumentException);
-          return false;
-        }
-        catch (FormatException formatException)
-        {
-          this.Log.LogErrorFromException(formatException);
-          return false;
-        }
-        catch (OverflowException overflowException)
-        {
-          this.Log.LogErrorFromException(overflowException);
-          return false;
-        }
-      }
+      var commitMessageProvider = this.CreateCommitMessageProvider();
 
-      Version version;
-      var semVersionGrabber = this.GetSemVersionGrabber(this.RepositoryPath,
-                                                        this.BaseRevision);
+      string[] commitMessages;
       try
       {
-        version = semVersionGrabber.GetVersion(baseVersion,
-                                               this.PatchFormat,
-                                               this.FeatureFormat,
-                                               this.BreakingChangeFormat);
+        commitMessages = commitMessageProvider.GetCommitMessages();
       }
-      catch (ArgumentNullException argumentNullException)
+      catch (Exception exception)
       {
-        this.Log.LogErrorFromException(argumentNullException);
+        this.Log.LogErrorFromException(exception);
         return false;
       }
 
-      var patchedVersion = version.ToString();
+      var versionCalculator = this.CreateVersionCalculator();
 
-      this.PatchedVersion = patchedVersion;
+      Version version;
+      try
+      {
+        version = versionCalculator.Process(commitMessages);
+      }
+      catch (Exception exception)
+      {
+        this.Log.LogErrorFromException(exception);
+        return false;
+      }
+
+      var versionPatcher = this.CreateVersionPatcher();
+      try
+      {
+        version = versionPatcher.PatchBaseVersionWithVersion(this.BaseVersion,
+                                                             version);
+      }
+      catch (Exception exception)
+      {
+        this.Log.LogErrorFromException(exception);
+        return false;
+      }
+
+      this.PatchedVersion = version.ToString();
 
       return true;
+    }
+
+    [NotNull]
+    public abstract ICommitMessageProvider CreateCommitMessageProvider();
+
+    [NotNull]
+    public virtual IVersionCalculator CreateVersionCalculator()
+    {
+      return new VersionCalculator();
+    }
+
+    [NotNull]
+    public virtual IVersionPatcher CreateVersionPatcher()
+    {
+      return new VersionPatcher();
     }
   }
 }

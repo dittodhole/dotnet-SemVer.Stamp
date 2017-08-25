@@ -2,9 +2,7 @@
 bin/
 obj/
 packages/
+TestResults/
 *.user
 *.suo
-*.nupkg
 *.log
-SemVer.Git.Fody/SemVer.MSBuild.props
-SemVer.Svn.Fody/SemVer.MSBuild.props

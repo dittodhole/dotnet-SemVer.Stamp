@@ -5,34 +5,13 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
-		LICENSE = LICENSE
-		assets\MSBuild.ico = assets\MSBuild.ico
-		README.md = README.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp", "SemVer.Stamp\SemVer.Stamp.csproj", "{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Git", "SemVer.Stamp.Git\SemVer.Stamp.Git.csproj", "{799A40A4-2AD7-43C4-B707-A729888D3A71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Svn", "SemVer.Stamp.Svn\SemVer.Stamp.Svn.csproj", "{BC16772E-21F8-451F-9B16-B65BF5C289A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.csproj", "{2C7A1440-5126-40C1-92B7-FBC203090462}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{14C7F382-B890-45AB-86A6-CF7D1A878F73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild.nupkg", "SemVer.Git.MSBuild.nupkg\SemVer.Git.MSBuild.nupkg.csproj", "{5D083AFE-4CBD-4730-833E-0D49178682FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild.nupkg", "SemVer.Svn.MSBuild.nupkg\SemVer.Svn.MSBuild.nupkg.csproj", "{B72A179D-D3C0-468E-9A88-E7F9C881D908}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Stamp.Tests", "SemVer.Stamp.Tests\SemVer.Stamp.Tests.csproj", "{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{C5808664-6748-4208-A91C-3BFE66F7D4CC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base Implementation", "Base Implementation", "{C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{00BE509A-6FB7-4D0E-BB70-00233F5BB041}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{17C86302-8E55-4064-98F9-36E358C6B94A}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,28 +19,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{17C863
 		assets\package_icon.png = assets\package_icon.png
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.shproj", "{D57819E7-3DA0-4C86-893F-FDB85CD1A80B}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SemVer.MSBuild\SemVer.MSBuild.projitems*{5cb5c952-2a7d-4847-bb5d-d34f51ca97a7}*SharedItemsImports = 4
+		SemVer.MSBuild\SemVer.MSBuild.projitems*{d57819e7-3da0-4c86-893f-fdb85cd1a80b}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{799A40A4-2AD7-43C4-B707-A729888D3A71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1}.Release|Mixed Platforms.Build.0 = Release|x86
-		{2C7A1440-5126-40C1-92B7-FBC203090462}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{2C7A1440-5126-40C1-92B7-FBC203090462}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{2C7A1440-5126-40C1-92B7-FBC203090462}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{2C7A1440-5126-40C1-92B7-FBC203090462}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Release|Mixed Platforms.ActiveCfg = Release|x86
@@ -70,33 +39,11 @@ Global
 		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{5D083AFE-4CBD-4730-833E-0D49178682FF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{5D083AFE-4CBD-4730-833E-0D49178682FF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{5D083AFE-4CBD-4730-833E-0D49178682FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{5D083AFE-4CBD-4730-833E-0D49178682FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B72A179D-D3C0-468E-9A88-E7F9C881D908}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{44D81ACC-4145-4220-88C3-DD5D8FE7FB81} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
-		{799A40A4-2AD7-43C4-B707-A729888D3A71} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
-		{BC16772E-21F8-451F-9B16-B65BF5C289A1} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
-		{2C7A1440-5126-40C1-92B7-FBC203090462} = {C5808664-6748-4208-A91C-3BFE66F7D4CC}
-		{14C7F382-B890-45AB-86A6-CF7D1A878F73} = {00BE509A-6FB7-4D0E-BB70-00233F5BB041}
-		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7} = {00BE509A-6FB7-4D0E-BB70-00233F5BB041}
-		{5D083AFE-4CBD-4730-833E-0D49178682FF} = {00BE509A-6FB7-4D0E-BB70-00233F5BB041}
-		{B72A179D-D3C0-468E-9A88-E7F9C881D908} = {00BE509A-6FB7-4D0E-BB70-00233F5BB041}
-		{70172D2B-25B6-4B5B-ADD2-7D8BA8D744F9} = {C52B25E0-7386-4CD6-9CD0-32C4F23A2A52}
-		{00BE509A-6FB7-4D0E-BB70-00233F5BB041} = {C5808664-6748-4208-A91C-3BFE66F7D4CC}
 		{17C86302-8E55-4064-98F9-36E358C6B94A} = {4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

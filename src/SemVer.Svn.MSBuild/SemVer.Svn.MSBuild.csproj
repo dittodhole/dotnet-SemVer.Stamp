@@ -62,10 +62,6 @@
       <Project>{bc16772e-21f8-451f-9b16-b65bf5c289a1}</Project>
       <Name>SemVer.Stamp.Svn</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SemVer.Stamp\SemVer.Stamp.csproj">
-      <Project>{44d81acc-4145-4220-88c3-dd5d8fe7fb81}</Project>
-      <Name>SemVer.Stamp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

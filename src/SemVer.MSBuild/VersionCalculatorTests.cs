@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SemVer.Stamp.Tests
+namespace SemVer.MSBuild
 {
   [TestClass]
-  public class SemVersionGrabberBaseTests
+  public class VersionCalculatorTests
   {
     [TestMethod]
     public void Version_Should_Be_Calculated_For_One_Fix()
@@ -110,16 +109,9 @@ namespace SemVer.Stamp.Tests
     private void Get_Version_According_To_SemVer_Base(string[] commitMessages,
                                                       string expectedVersion)
     {
-      var semVersionGrabber = new InjectedCommitMessagesSemVersionGrabber();
-      semVersionGrabber.CommitMessagesFn = () => commitMessages;
-      var baseVersion = new Version(0,
-                                    0,
-                                    0,
-                                    0);
-      var version = semVersionGrabber.GetVersion(baseVersion,
-                                                 @"^fix(\(.*\))*: ",
-                                                 @"^feat(\(.*\))*: ",
-                                                 @"^perf(\(.*\))*: ");
+      var versionCalculator = new VersionCalculator();
+
+      var version = versionCalculator.Process(commitMessages);
 
       Assert.AreEqual(expectedVersion,
                       version.ToString(3));
