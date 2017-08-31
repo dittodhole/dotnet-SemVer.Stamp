@@ -16,7 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild", "SemVe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{17C86302-8E55-4064-98F9-36E358C6B94A}"
 	ProjectSection(SolutionItems) = preProject
-		assets\MSBuild.ico = assets\MSBuild.ico
 		assets\package_icon.png = assets\package_icon.png
 	EndProjectSection
 EndProject
