@@ -9,6 +9,7 @@
     <Import_RootNamespace>SemVer.MSBuild</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommitMessageProviderBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICommitMessageProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JetBrains.Annotations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SemVerStampTaskBase.cs" />
