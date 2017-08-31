@@ -24,6 +24,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SemVer.MSBuild", "SemVer.MS
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SemVer.MSBuild\SemVer.MSBuild.projitems*{14c7f382-b890-45ab-86a6-cf7d1a878f73}*SharedItemsImports = 4
 		SemVer.MSBuild\SemVer.MSBuild.projitems*{5cb5c952-2a7d-4847-bb5d-d34f51ca97a7}*SharedItemsImports = 4
 		SemVer.MSBuild\SemVer.MSBuild.projitems*{d57819e7-3da0-4c86-893f-fdb85cd1a80b}*SharedItemsImports = 13
 	EndGlobalSection

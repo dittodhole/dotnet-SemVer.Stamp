@@ -1,23 +1,14 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 using SemVer.MSBuild;
-using SemVer.Stamp;
-using SemVer.Stamp.Svn;
 
 namespace SemVer.Svn.MSBuild
 {
+  [UsedImplicitly]
   public class SemVerStampTask : SemVerStampTaskBase
   {
-    /// <exception cref="ArgumentNullException"><paramref name="repositoryPath" /> is <see langword="null" />.</exception>
-    protected override SemVersionGrabberBase GetSemVersionGrabber(string repositoryPath,
-                                                                  string baseRevision)
+    public override ICommitMessageProvider CreateCommitMessageProvider()
     {
-      var semVersionGrabber = new SvnSemVersionGrabber(repositoryPath,
-                                                       baseRevision,
-                                                       arg => this.Log?.LogMessage(arg),
-                                                       arg => this.Log?.LogWarning(arg),
-                                                       arg => this.Log?.LogError(arg));
-
-      return semVersionGrabber;
+      return new SvnCommitMessageProvider();
     }
   }
 }

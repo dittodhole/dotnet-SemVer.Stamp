@@ -49,38 +49,42 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
     <Compile Include="SemVerStampTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SvnCommitMessageProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SemVer.MSBuild\SemVer.MSBuild.csproj">
-      <Project>{2c7a1440-5126-40c1-92b7-fbc203090462}</Project>
-      <Name>SemVer.MSBuild</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SemVer.Stamp.Svn\SemVer.Stamp.Svn.csproj">
-      <Project>{bc16772e-21f8-451f-9b16-b65bf5c289a1}</Project>
-      <Name>SemVer.Stamp.Svn</Name>
-    </ProjectReference>
+    <Folder Include="content\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="..\SemVer.MSBuild\build\SemVer.MSBuild.targets">
-      <Link>build\SemVer.MSBuild.targets</Link>
-    </None>
-    <None Include="..\SemVer.MSBuild\content\SemVer.MSBuild.props">
-      <Link>content\SemVer.MSBuild.props</Link>
-    </None>
     <None Include="build\SemVer.Svn.MSBuild.targets">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="SemVer.MSBuild.props" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="..\SemVer.MSBuild\SemVer.MSBuild.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Exec Command="ROBOCOPY &quot;$(OutDir)\&quot; &quot;$(SolutionDir)\bin\SemVer.Svn.MSBuild&quot; * /MIR" IgnoreExitCode="true" />
   </Target>
+  -->
 </Project>
