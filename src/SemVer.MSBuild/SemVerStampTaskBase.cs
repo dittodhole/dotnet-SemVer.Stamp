@@ -86,7 +86,9 @@ namespace SemVer.MSBuild
     [NotNull]
     public virtual IVersionCalculator CreateVersionCalculator()
     {
-      return new VersionCalculator();
+      return new VersionCalculator(this.PatchFormat,
+                                   this.FeatureFormat,
+                                   this.BreakingChangeFormat);
     }
 
     [NotNull]
