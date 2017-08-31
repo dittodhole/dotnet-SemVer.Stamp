@@ -67,7 +67,7 @@ namespace SemVer.Git.MSBuild
         var status = repository.RetrieveStatus(statusOptions);
         if (status.IsDirty)
         {
-          throw new InvalidOperationException($"Path {relativePath} in {commonPath} has local uncommitted changes.");
+          throw new InvalidOperationException($"Path {relativePath} in {commonPath} has uncommitted changes.");
         }
 
         var excludeReachableFrom = new List<object>

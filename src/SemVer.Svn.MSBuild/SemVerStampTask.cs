@@ -8,7 +8,8 @@ namespace SemVer.Svn.MSBuild
   {
     public override ICommitMessageProvider CreateCommitMessageProvider()
     {
-      return new SvnCommitMessageProvider();
+      return new SvnCommitMessageProvider(this.RepositoryPath,
+                                          this.BaseRevision);
     }
   }
 }
