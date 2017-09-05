@@ -8,9 +8,9 @@ environment:
   git_project_name: SemVer.Git.MSBuild
   git_project_dir: '%solution_dir%%git_project_name%\'
   git_project_file: '%git_project_dir%%git_project_name%.csproj'
-#  svn_project_name: SemVer.Svn.MSBuild
-#  svn_project_dir: '%solution_dir%%svn_project_name%\'
-#  svn_project_file: '%svn_project_dir%%svn_project_name%.csproj'
+  svn_project_name: SemVer.Svn.MSBuild
+  svn_project_dir: '%solution_dir%%svn_project_name%\'
+  svn_project_file: '%svn_project_dir%%svn_project_name%.csproj'
 install:
 - cmd: choco install gitversion.portable -y
 before_build:
@@ -23,9 +23,9 @@ build:
   publish_nuget: false
   publish_nuget_symbols: false
   verbosity: detailed
-#after_build:
-#- cmd: nuget pack "%git_project_file%" -properties "Configuration=%configuration%" -symbols
-#- cmd: nuget pack "%svn_project_file%" -properties "Configuration=%configuration%" -symbols
+after_build:
+- cmd: nuget pack "%git_project_file%" -properties "Configuration=%configuration%" -tool -symbols
+- cmd: nuget pack "%svn_project_file%" -properties "Configuration=%configuration%" -tool -symbols
 #- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.nupkg"
 #- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.symbols.nupkg"
 #- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%svn_project_name%.%GitVersion_NuGetVersion%.nupkg"
