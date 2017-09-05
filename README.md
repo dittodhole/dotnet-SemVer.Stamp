@@ -1,4 +1,4 @@
-![Icon](assets/package_icon.png)
+![Icon](assets/noun_60203_cc.png)
 
 # dotnet-SemVer.Stamp
 
