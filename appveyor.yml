@@ -26,10 +26,10 @@ build:
 after_build:
 - cmd: nuget pack "%git_project_file%" -properties "Configuration=%configuration%" -tool -symbols
 - cmd: nuget pack "%svn_project_file%" -properties "Configuration=%configuration%" -tool -symbols
-#- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.nupkg"
-#- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.symbols.nupkg"
-#- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%svn_project_name%.%GitVersion_NuGetVersion%.nupkg"
-#- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%svn_project_name%.%GitVersion_NuGetVersion%.symbols.nupkg"
+- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.nupkg"
+- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%git_project_name%.%GitVersion_NuGetVersion%.symbols.nupkg"
+- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%svn_project_name%.%GitVersion_NuGetVersion%.nupkg"
+- cmd: appveyor PushArtifact "%APPVEYOR_BUILD_FOLDER%\%svn_project_name%.%GitVersion_NuGetVersion%.symbols.nupkg"
 test: off
 deploy:
 - provider: NuGet
