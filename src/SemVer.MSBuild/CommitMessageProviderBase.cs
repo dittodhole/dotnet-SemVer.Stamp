@@ -70,6 +70,7 @@ namespace SemVer.MSBuild
       return path + separator1;
     }
 
+    /// <inheritdoc />
     public abstract string[] GetCommitMessages();
   }
 }

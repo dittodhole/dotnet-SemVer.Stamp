@@ -16,7 +16,6 @@ namespace SemVer.Svn.MSBuild
              baseRevision) { }
 
     /// <exception cref="InvalidOperationException" />
-    /// <exception cref="Exception" />
     public override string[] GetCommitMessages()
     {
       SvnWorkingCopyVersion svnWorkingCopyVersion;

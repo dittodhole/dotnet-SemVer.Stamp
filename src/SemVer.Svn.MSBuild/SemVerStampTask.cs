@@ -6,6 +6,7 @@ namespace SemVer.Svn.MSBuild
   [UsedImplicitly]
   public class SemVerStampTask : SemVerStampTaskBase
   {
+    /// <inheritdoc />
     public override ICommitMessageProvider CreateCommitMessageProvider()
     {
       return new SvnCommitMessageProvider(this.RepositoryPath,

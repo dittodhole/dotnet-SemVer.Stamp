@@ -53,6 +53,8 @@ namespace SemVer.MSBuild
     private string BreakingChangeFormat { get; }
 
     /// <exception cref="ArgumentNullException"><paramref name="commitMessages" /> is <see langword="null" /></exception>
+    /// <exception cref="ArgumentException" />
+    /// <exception cref="ArgumentOutOfRangeException" />
     /// <exception cref="Exception" />
     public virtual Version Process(string[] commitMessages)
     {

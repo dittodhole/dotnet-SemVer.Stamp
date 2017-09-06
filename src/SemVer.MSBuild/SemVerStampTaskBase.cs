@@ -35,6 +35,7 @@ namespace SemVer.MSBuild
     [NotNull]
     public string RepositoryPath { get; set; }
 
+    /// <inheritdoc />
     public override bool Execute()
     {
       var commitMessageProvider = this.CreateCommitMessageProvider();

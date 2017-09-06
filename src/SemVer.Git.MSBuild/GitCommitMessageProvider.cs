@@ -20,7 +20,6 @@ namespace SemVer.Git.MSBuild
              baseRevision) { }
 
     /// <exception cref="InvalidOperationException" />
-    /// <exception cref="Exception" />
     public override string[] GetCommitMessages()
     {
       var repositoryPath = Repository.Discover(this.Path);
@@ -38,7 +37,17 @@ namespace SemVer.Git.MSBuild
 
       commonPath = this.PathAddBackslash(commonPath);
 
-      var relativePath = this.Path.Substring(commonPath.Length);
+      string relativePath;
+      try
+      {
+        relativePath = this.Path.Substring(commonPath.Length);
+      }
+      catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+      {
+        throw new InvalidOperationException($"Could not get {nameof(relativePath)}.",
+                                            argumentOutOfRangeException);
+      }
+
       if (!string.IsNullOrEmpty(relativePath))
       {
         relativePath = relativePath.Replace("\\",
