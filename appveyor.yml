@@ -22,7 +22,7 @@ build:
   project: '%solution_file%'
   publish_nuget: false
   publish_nuget_symbols: false
-  verbosity: detailed
+  verbosity: quiet
 after_build:
 - cmd: nuget pack "%git_project_file%" -properties "Configuration=%configuration%" -tool -symbols
 - cmd: nuget pack "%svn_project_file%" -properties "Configuration=%configuration%" -tool -symbols
