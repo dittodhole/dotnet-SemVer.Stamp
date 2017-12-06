@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="App_Packages\Source.JetBrains.Annotations_11.1.0\JetBrains.Annotations.cs" />
     <Compile Include="GitCommitMessageProvider.cs" />
     <Compile Include="GitCommitMessageProviderTests.cs" />
     <Compile Include="SemVerStampTask.cs" />
