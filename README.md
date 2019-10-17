@@ -9,7 +9,7 @@
 
 ## Installing
 
-### [myget.org]
+### myget.org
 
 [![](https://img.shields.io/myget/dittodhole/vpre/SemVer.Git.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild)
 [![](https://img.shields.io/myget/dittodhole/vpre/SemVer.Svn.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild)
@@ -20,7 +20,7 @@ PM> Install-Package -Id SemVer.Git.MSBuild -pre --source https://www.myget.org/F
 PM> Install-Package -Id SemVer.Svn.MSBuild -pre --source https://www.myget.org/F/dittodhole/api/v2
 ```
 
-### [nuget.org]
+### nuget.org
 
 [![](https://img.shields.io/nuget/v/SemVer.Git.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Git.MSBuild)
 [![](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Svn.MSBuild)
