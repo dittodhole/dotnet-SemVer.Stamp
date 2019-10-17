@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using JetBrains.Annotations;
@@ -38,41 +40,15 @@ namespace SemVer.MSBuild
     /// <inheritdoc />
     public override bool Execute()
     {
-      var commitMessageProvider = this.CreateCommitMessageProvider();
-
-      string[] commitMessages;
-      try
-      {
-        commitMessages = commitMessageProvider.GetCommitMessages();
-      }
-      catch (Exception exception)
-      {
-        this.Log.LogErrorFromException(exception);
-        return false;
-      }
-
-      var versionCalculator = this.CreateVersionCalculator();
-
       Version version;
       try
       {
-        version = versionCalculator.Process(commitMessages);
+        version = this.CalculateVersion();
       }
       catch (Exception exception)
       {
         this.Log.LogErrorFromException(exception);
-        return false;
-      }
 
-      var versionPatcher = this.CreateVersionPatcher();
-      try
-      {
-        version = versionPatcher.PatchBaseVersionWithVersion(this.BaseVersion,
-                                                             version);
-      }
-      catch (Exception exception)
-      {
-        this.Log.LogErrorFromException(exception);
         return false;
       }
 
@@ -81,21 +57,85 @@ namespace SemVer.MSBuild
       return true;
     }
 
+    /// <exception cref="Exception"/>
     [NotNull]
-    public abstract ICommitMessageProvider CreateCommitMessageProvider();
-
-    [NotNull]
-    public virtual IVersionCalculator CreateVersionCalculator()
+    private Version CalculateVersion()
     {
-      return new VersionCalculator(this.PatchFormat,
-                                   this.FeatureFormat,
-                                   this.BreakingChangeFormat);
+      int breakingChange;
+      int feature;
+      int patch;
+
+      if (this.BaseVersion == null)
+      {
+        breakingChange = 0;
+        feature = 0;
+        patch = 0;
+      }
+      else
+      {
+        // TODO parse as semVer
+        Version baseline;
+        try
+        {
+          baseline = Version.Parse(this.BaseVersion);
+        }
+        catch (Exception exception)
+        {
+          throw new ArgumentOutOfRangeException($"Failed to parse {nameof(this.BaseVersion)} '{this.BaseVersion}'",
+                                                exception);
+        }
+
+        breakingChange = baseline.Major;
+        feature = baseline.Minor;
+        patch = baseline.Build;
+      }
+
+      foreach (var commitMessage in this.GetCommitMessages())
+      {
+        var patchMatches = Regex.Matches(commitMessage,
+                                         this.PatchFormat,
+                                         RegexOptions.Multiline | RegexOptions.IgnoreCase)
+                                .OfType<Match>()
+                                .ToArray();
+        if (patchMatches.Any())
+        {
+          patch += patchMatches.Length;
+        }
+
+        var featureMatches = Regex.Matches(commitMessage,
+                                           this.FeatureFormat,
+                                           RegexOptions.Multiline | RegexOptions.IgnoreCase)
+                                  .OfType<Match>()
+                                  .ToArray();
+        if (featureMatches.Any())
+        {
+          patch = 0;
+          feature += featureMatches.Length;
+        }
+
+        var breakingChangeMatches = Regex.Matches(commitMessage,
+                                                  this.BreakingChangeFormat,
+                                                  RegexOptions.Multiline | RegexOptions.IgnoreCase)
+                                         .OfType<Match>()
+                                         .ToArray();
+        if (breakingChangeMatches.Any())
+        {
+          patch = 0;
+          feature = 0;
+          breakingChange += breakingChangeMatches.Length;
+        }
+      }
+
+      var result = new Version(breakingChange,
+                               feature,
+                               patch);
+
+      return result;
     }
 
+    /// <exception cref="Exception"/>
     [NotNull]
-    public virtual IVersionPatcher CreateVersionPatcher()
-    {
-      return new VersionPatcher();
-    }
+    [ItemNotNull]
+    protected abstract string[] GetCommitMessages();
   }
 }

@@ -7,6 +7,7 @@
     <BaseRevision></BaseRevision>
     <BaseVersion>0.0.0</BaseVersion>
     <RepositoryPath>$(ProjectDir)</RepositoryPath>
-    <SemVerStampActive>True</SemVerStampActive>
+    <SemVerStampActive>False</SemVerStampActive>
+    <SemVerStampActive Condition="'$(Configuration)' == 'Release'">True</SemVerStampActive>
   </PropertyGroup>
 </Project>
