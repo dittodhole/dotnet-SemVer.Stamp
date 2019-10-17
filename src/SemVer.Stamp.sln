@@ -1,25 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
-		..\appveyor.yml = ..\appveyor.yml
-		..\GitVersion.yml = ..\GitVersion.yml
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{14C7F382-B890-45AB-86A6-CF7D1A878F73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{17C86302-8E55-4064-98F9-36E358C6B94A}"
-	ProjectSection(SolutionItems) = preProject
-		..\assets\noun_60203_cc.png = ..\assets\noun_60203_cc.png
-		..\assets\noun_60203_cc.svg = ..\assets\noun_60203_cc.svg
-	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.shproj", "{D57819E7-3DA0-4C86-893F-FDB85CD1A80B}"
 EndProject
@@ -45,9 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{17C86302-8E55-4064-98F9-36E358C6B94A} = {4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D03F7C07-4A43-429C-AAFA-FB3B5F5A944C}
