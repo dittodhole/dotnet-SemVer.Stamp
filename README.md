@@ -1,42 +1,38 @@
+![](assets/noun_60203_cc.png)
+
 # dotnet-SemVer.Stamp
+> Version your assemblies according to SemVer based on your VCS commit messages.
 
-**master** branch status
-[![Build status](https://ci.appveyor.com/api/projects/status/0j7qk24lhj0mh7ad)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
+## Build status
 
-**develop** branch status
-[![Build status](https://ci.appveyor.com/api/projects/status/0j7qk24lhj0mh7ad/branch/develop)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp/branch/develop)
+[![](https://img.shields.io/appveyor/ci/dittodhole/dotnet-semver-stamp.svg)](https://ci.appveyor.com/project/dittodhole/dotnet-semver-stamp)
 
 ## Installing
 
-### Releases
+### [myget.org]
 
-[![NuGet Status](https://img.shields.io/nuget/v/SemVer.Git.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Git.MSBuild/)
-https://www.nuget.org/packages/SemVer.Git.MSBuild/
+[![](https://img.shields.io/myget/dittodhole/vpre/SemVer.Git.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild)
+[![](https://img.shields.io/myget/dittodhole/vpre/SemVer.Svn.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild)
 
-    PM > Install-Package SemVer.Git.MSBuild
 
-[![NuGet Status](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Svn.MSBuild/)
-https://www.nuget.org/packages/SemVer.Svn.MSBuild/
+```powershell
+PM> Install-Package -Id SemVer.Git.MSBuild -pre --source https://www.myget.org/F/dittodhole/api/v2
+PM> Install-Package -Id SemVer.Svn.MSBuild -pre --source https://www.myget.org/F/dittodhole/api/v2
+```
 
-    PM > Install-Package SemVer.Svn.MSBuild
+### [nuget.org]
 
-### Pre Releases
+[![](https://img.shields.io/nuget/v/SemVer.Git.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Git.MSBuild)
+[![](https://img.shields.io/nuget/v/SemVer.Svn.MSBuild.svg)](https://www.nuget.org/packages/SemVer.Svn.MSBuild)
 
-    PM> nuget sources Add "dittodhole" https://www.myget.org/F/dittodhole/api/v3/index.json
-
-[![MyGet Pre Release](https://img.shields.io/myget/dittodhole/vpre/SemVer.Git.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild)
-https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Git.MSBuild
-
-    PM> Install-Package SemVer.Git.MSBuild -pre
-
-[![MyGet Pre Release](https://img.shields.io/myget/dittodhole/vpre/SemVer.Svn.MSBuild.svg)](https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild)
-https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild
-
-    PM> Install-Package SemVer.Svn.MSBuild -pre
+```powershell
+PM> Install-Package -Id SemVer.Git.MSBuild
+PM> Install-Package -Id SemVer.Svn.MSBuild
+```
 
 ## Configuration
 
-[SemVer.MSBuild.props](src/SemVer.MSBuild/content/SemVer.MSBuild.props)-file can be found in your project's root directory:
+*SemVer.MSBuild.props*-file can be found in your project's root directory:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -48,7 +44,8 @@ https://www.myget.org/feed/dittodhole/package/nuget/SemVer.Svn.MSBuild
     <BaseRevision></BaseRevision>
     <BaseVersion>0.0.0</BaseVersion>
     <RepositoryPath>$(ProjectDir)</RepositoryPath>
-    <SemVerStampActive>True</SemVerStampActive>
+    <SemVerStampActive>False</SemVerStampActive>
+    <SemVerStampActive Condition="'$(Configuration)' == 'Release'">True</SemVerStampActive>
   </PropertyGroup>
 </Project>
 ```
@@ -80,22 +77,24 @@ Depending on the chosen injection technology, you can set different properties t
 </Project>
 ```
 
-### Active-Switch
+## Developing & Building
 
-To disable stamping in DEBUG builds, one can adapt the *.props*-file like:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <!-- other properties -->
-    <SemVerStampActive>False</SemVerStampActive>
-    <SemVerStampActive Condition="'$(Configuration)' == 'Release'">True</SemVerStampActive>
-    <!-- other properties -->
-  </PropertyGroup>
-</Project>
+```cmd
+> git clone https://github.com/dittodhole/dotnet-SemVer.Stamp.git
+> cd dotnet-SemVer.Stamp
+dotnet-SemVer.Stamp> cd build
+dotnet-SemVer.Stamp/build> build.bat
 ```
+
+This will create the following artifacts:
+
+- `artifacts/SemVer.Git.MSBuild.{version}.nupkg`
+- `artifacts/SemVer.Svn.MSBuild.{version}.nupkg`
 
 ## License
 
 dotnet-SemVer.Stamp is published under [WTFNMFPLv3](https://github.com/dittodhole/WTFNMFPLv3).
+
+## Icon
+
+[Cyclops](https://thenounproject.com/term/cyclops/60203/) by [Mike Hince](https://thenounproject.com/zer0mike) from the Noun Project.
