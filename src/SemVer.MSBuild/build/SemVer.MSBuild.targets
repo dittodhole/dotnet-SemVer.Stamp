@@ -14,8 +14,8 @@
       <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(SemVer_Version)</AssemblyVersion>
       <FileVersion Condition="'$(FileVersion)' == ''">$(SemVer_Version)</FileVersion>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(WixTargetsImported)' == 'true' And '$(GenerateGitVersionWixDefines)' == 'true' ">
-      <DefineConstants Condition=" '$(SemVer_Version)' != '' ">SemVer_Version=$(SemVer_Version);$(DefineConstants)</DefineConstants>
+    <PropertyGroup Condition="'$(WixTargetsImported)' == 'true' And '$(GenerateGitVersionWixDefines)' == 'true'">
+      <DefineConstants Condition="'$(SemVer_Version)' != ''">SemVer_Version=$(SemVer_Version);$(DefineConstants)</DefineConstants>
     </PropertyGroup>
   </Target>
 </Project>
