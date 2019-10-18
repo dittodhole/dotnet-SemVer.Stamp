@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <UsingTask TaskName="GetVersion" AssemblyFile="$(SemVerAssemblyFile)" />
+  <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStampActive)' == 'true'">
+    <GetVersion BreakingChangeFormat="$(BreakingChangeFormat)" FeatureFormat="$(FeatureFormat)" PatchFormat="$(PatchFormat)" BaseRevision="$(BaseRevision)" BaseVersion="$(BaseVersion)" RepositoryPath="$(RepositoryPath)">
+      <Output TaskParameter="PatchedVersion" PropertyName="SemVer_Version" />
+    </GetVersion>
+    <PropertyGroup Condition=" '$(SemVerStampActive)' == 'true' ">
+      <Version>$(SemVer_Version)</Version>
+      <VersionPrefix>$(SemVer_Version)</VersionPrefix>
+      <VersionSuffix></VersionSuffix>
+      <PackageVersion>$(SemVer_Version)</PackageVersion>
+      <InformationalVersion Condition="'$(InformationalVersion)' == ''">$(SemVer_Version)</InformationalVersion>
+      <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(SemVer_Version)</AssemblyVersion>
+      <FileVersion Condition="'$(FileVersion)' == ''">$(SemVer_Version)</FileVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(WixTargetsImported)' == 'true' And '$(GenerateGitVersionWixDefines)' == 'true' ">
+      <DefineConstants Condition=" '$(SemVer_Version)' != '' ">SemVer_Version=$(SemVer_Version);$(DefineConstants)</DefineConstants>
+    </PropertyGroup>
+  </Target>
+</Project>

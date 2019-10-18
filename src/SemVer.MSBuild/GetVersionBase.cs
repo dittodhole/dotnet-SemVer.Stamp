@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace SemVer.MSBuild
 {
-  public abstract class SemVerStampTaskBase : Task
+  public abstract class GetVersionBase : Task
   {
     /// <remarks>TODO: rename</remarks>
     [CanBeNull]

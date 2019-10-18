@@ -9,15 +9,15 @@
     <Import_RootNamespace>SemVer.MSBuild</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)SemVerStampTaskBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetVersionBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)SemVer.MSBuild.props" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)SemVer.MSBuild.targets">
+    <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.targets">
       <Pack>true</Pack>
-      <PackagePath>tools</PackagePath>
+      <PackagePath>build</PackagePath>
     </None>
   </ItemGroup>
 </Project>

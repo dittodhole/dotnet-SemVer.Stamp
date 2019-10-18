@@ -6,7 +6,7 @@ using SharpSvn;
 
 namespace SemVer.Svn.MSBuild
 {
-  public sealed class SemVerStampTask : SemVerStampTaskBase
+  public sealed class GetVersion : GetVersionBase
   {
     /// <inheritdoc/>
     protected override string[] GetCommitMessages()

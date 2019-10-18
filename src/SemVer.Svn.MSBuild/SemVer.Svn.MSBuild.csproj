@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net40;net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -17,16 +18,10 @@
     <PackageTags />
     <PackageType>Dependency</PackageType>
     <IncludeSymbols>true</IncludeSymbols>
-    <IsTool>true</IsTool>
     <RepositoryUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,39 +43,49 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Update="@(PackageReference)">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="build\SemVer.Svn.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
+    <None Include="build\SemVer.Svn.MSBuild.targets">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
+    <None Include="buildMultiTargeting\SemVer.Svn.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>buildMultiTargeting</PackagePath>
+    </None>
+    <None Include="buildMultiTargeting\SemVer.Svn.MSBuild.targets">
+      <Pack>true</Pack>
+      <PackagePath>buildMultiTargeting</PackagePath>
+    </None>
+    <Compile Include="GetVersion.cs" />
     <None Include="..\..\assets\noun_60203_cc.png">
       <Pack>true</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="SemVer.Svn.MSBuild.targets">
-      <Pack>true</Pack>
-      <PackagePath>tools</PackagePath>
-    </None>
-    <Compile Include="SemVerStampTask.cs" />
   </ItemGroup>
-  <!--
-  <Target Name="RemoveReferences" BeforeTargets="GenerateNuspec">
-    <ItemGroup>
-      <Reference Remove="@(Reference)" />
-    </ItemGroup>
-  </Target>
-  <Target Name="RemovePackageReferences" BeforeTargets="GenerateNuspec">
-    <ItemGroup>
-      <PackageReference Remove="@(PackageReference)" />
-    </ItemGroup>
-  </Target>
-  -->
-  <Target Name="UpdateRepositoryBranch" BeforeTargets="GenerateNuspec">
+  <Target Name="UpdateRepositoryBranch" AfterTargets="GetVersion">
     <PropertyGroup>
       <RepositoryBranch>$(GitVersion_BranchName)</RepositoryBranch>
     </PropertyGroup>
   </Target>
-  <Target Name="UpdateRepositoryCommit" BeforeTargets="GenerateNuspec">
+  <Target Name="UpdateRepositoryCommit" AfterTargets="GetVersion">
     <PropertyGroup>
       <RepositoryCommit>$(GitVersion_Sha)</RepositoryCommit>
     </PropertyGroup>
+  </Target>
+  <Target Name="PackPackageReferences" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_PackageFiles Include="$(OutputPath)\*\**\*" Exclude="$(OutputPath)\*\**\*.pdb;$(OutputPath)\*\**\*.deps.json">
+        <PackagePath>$(BuildOutputTargetFolder)\%(RecursiveDir)</PackagePath>
+      </_PackageFiles>
+    </ItemGroup>
   </Target>
   <Import Project="..\SemVer.MSBuild\SemVer.MSBuild.projitems" Label="Shared" />
 </Project>
