@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -34,7 +34,7 @@ namespace SemVer.Git.MSBuild
                                             "/");
       }
 
-      string[] commitMessages;
+      string[] result;
       using (var repository = new Repository(repositoryPath))
       {
         // Unfortunately, CommitSortStrategies.Time | CommitSortStrategies.Reverse is not
@@ -58,12 +58,12 @@ namespace SemVer.Git.MSBuild
                               .Select(arg => arg.Commit);
         }
 
-        commitMessages = commits.OrderBy(arg => arg.Author.When)
-                                .Select(arg => arg.Message)
-                                .ToArray();
+        result = commits.OrderBy(arg => arg.Author.When)
+                        .Select(arg => arg.Message)
+                        .ToArray();
       }
 
-      return commitMessages;
+      return result;
     }
 
     [CanBeNull]
