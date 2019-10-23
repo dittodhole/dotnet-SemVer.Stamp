@@ -4,6 +4,5 @@
   <PropertyGroup>
     <SemVerStamp_Assembly Condition="'$(SemVerStamp_Assembly)' == '' And '$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)..\tasks\netstandard2.0\SemVer.Git.MSBuild.dll</SemVerStamp_Assembly>
     <SemVerStamp_Assembly Condition="'$(SemVerStamp_Assembly)' == '' And '$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)..\tasks\net46\SemVer.Git.MSBuild.dll</SemVerStamp_Assembly>
-
-</PropertyGroup>
+  </PropertyGroup>
 </Project>
