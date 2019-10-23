@@ -41,13 +41,13 @@ PM> Install-Package -Id SemVer.Svn.MSBuild
 
 You can override following properties with `Directory.Build.props`:
 
-- `SemVerStamp_BreakingChangeFormat` (default: *^perf(\(.*\))*: *)
-- `SemVerStamp_FeatureFormat` (default: *^feat(\(.*\))*: *)
-- `SemVerStamp_PatchFormat` (default: *^fix(\(.*\))*: *)
+- `SemVerStamp_BreakingChangeFormat` (default: `^perf(\(.*\))*: `)
+- `SemVerStamp_FeatureFormat` (default: `^feat(\(.*\))*: `)
+- `SemVerStamp_PatchFormat` (default: `^fix(\(.*\))*: `)
 - `SemVerStamp_BaseRevision`
-- `SemVerStamp_BaseVersion` (default: *0.0.0*)
-- `SemVerStamp_SourcePath` (default: *$(MSBuildProjectDirectory)*)
-- `SemVerStamp_Active` (default: *true* on release builds, otherwise *false*)
+- `SemVerStamp_BaseVersion` (default: `0.0.0`)
+- `SemVerStamp_SourcePath` (default: `$(MSBuildProjectDirectory)`)
+- `SemVerStamp_Active` (default: `true` on release builds, otherwise `false`)
 
 ## Developing & Building
 
