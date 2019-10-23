@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask TaskName="GetVersion" AssemblyFile="$(SemVerAssemblyFile)" />
   <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStampActive)' == 'true'">
     <GetVersion BreakingChangeFormat="$(BreakingChangeFormat)" FeatureFormat="$(FeatureFormat)" PatchFormat="$(PatchFormat)" BaseRevision="$(BaseRevision)" BaseVersion="$(BaseVersion)" RepositoryPath="$(RepositoryPath)">
