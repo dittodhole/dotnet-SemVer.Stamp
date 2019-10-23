@@ -96,9 +96,7 @@ dotnet-SemVer.Stamp/build> build.bat
 This will create the following artifacts:
 
 - `artifacts/SemVer.Git.MSBuild.{version}.nupkg`
-- `artifacts/SemVer.Git.MSBuild.{version}.symbols.nupkg`
 - `artifacts/SemVer.Svn.MSBuild.{version}.nupkg`
-- `artifacts/SemVer.Svn.MSBuild.{version}.symbols.nupkg`
 
 ## License
 

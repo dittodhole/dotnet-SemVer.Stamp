@@ -18,7 +18,6 @@
     <PackageIcon>noun_60203_cc.png</PackageIcon>
     <PackageTags />
     <PackageType>Dependency</PackageType>
-    <IncludeSymbols>true</IncludeSymbols>
     <RepositoryUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
