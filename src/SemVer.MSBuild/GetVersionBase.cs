@@ -26,7 +26,7 @@ namespace SemVer.MSBuild
     public string FeatureFormat { get; set; }
 
     [Output]
-    public string PatchedVersion { get; set; }
+    public string Version { get; set; }
 
     [Required]
     [NotNull]
@@ -51,7 +51,7 @@ namespace SemVer.MSBuild
         return false;
       }
 
-      this.PatchedVersion = version.ToString();
+      this.Version = version.ToString();
 
       return true;
     }
@@ -76,7 +76,7 @@ namespace SemVer.MSBuild
         Version baseline;
         try
         {
-          baseline = Version.Parse(this.BaseVersion);
+          baseline = System.Version.Parse(this.BaseVersion);
         }
         catch (Exception exception)
         {

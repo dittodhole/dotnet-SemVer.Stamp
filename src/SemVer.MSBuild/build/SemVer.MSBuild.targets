@@ -3,7 +3,7 @@
   <UsingTask TaskName="GetVersion" AssemblyFile="$(SemVerAssemblyFile)" />
   <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStamp_Active)' == 'true'">
     <GetVersion BreakingChangeFormat="$(SemVerStamp_BreakingChangeFormat)" FeatureFormat="$(SemVerStamp_FeatureFormat)" PatchFormat="$(SemVerStamp_PatchFormat)" BaseRevision="$(SemVerStamp_BaseRevision)" BaseVersion="$(SemVerStamp_BaseVersion)" SourcePath="$(SemVerStamp_SourcePath)">
-      <Output TaskParameter="PatchedVersion" PropertyName="SemVerStamp_Version" />
+      <Output TaskParameter="Version" PropertyName="SemVerStamp_Version" />
     </GetVersion>
     <PropertyGroup Condition=" '$(SemVerStamp_Active)' == 'true' ">
       <Version>$(SemVerStamp_Version)</Version>
