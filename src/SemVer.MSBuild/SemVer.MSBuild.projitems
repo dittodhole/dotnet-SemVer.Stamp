@@ -9,21 +9,19 @@
     <Import_RootNamespace>SemVer.MSBuild</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CommitMessageProviderBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ICommitMessageProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)JetBrains.Annotations.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SemVerStampTaskBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VersionCalculator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VersionCalculatorTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VersionPatcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VersionPatcherTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetVersionBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.targets">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="$(MSBuildThisFileDirectory)SemVer.Stamp.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)content\SemVer.MSBuild.props">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.targets">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
     </None>
   </ItemGroup>
 </Project>

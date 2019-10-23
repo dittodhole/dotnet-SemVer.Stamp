@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(ProjectDir)SemVer.Stamp.props" />
+  <PropertyGroup>
+    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
+  </PropertyGroup>
+</Project>

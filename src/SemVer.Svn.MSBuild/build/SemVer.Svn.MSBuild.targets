@@ -1,8 +1,4 @@
-﻿<?xml version="1.0"
-      encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <UsingTask AssemblyFile="..\tools\SemVer.Svn.MSBuild.dll"
-             TaskName="SemVerStampTask" />
-  <Import Project="SemVer.MSBuild.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SemVer.MSBuild.targets" />
 </Project>

@@ -1,9 +1,8 @@
-.vs/
-bin/
-obj/
-packages/
-TestResults/
-*.user
-*.suo
-*.log
-*.nupkg
+artifacts/
+build/build.ps1
+build/tools/
+src/.vs/
+src/**/*.user
+src/**/*.suo
+src/*/bin/
+src/*/obj/

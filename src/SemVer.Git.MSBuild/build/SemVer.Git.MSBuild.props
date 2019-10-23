@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildThisFileDirectory)SemVer.MSBuild.props" />
+  <PropertyGroup>
+    <SemVerAssemblyFile Condition="'$(SemVerAssemblyFile)' == '' And '$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)..\tasks\netstandard2.0\SemVer.Git.MSBuild.dll</SemVerAssemblyFile>
+    <SemVerAssemblyFile Condition="'$(SemVerAssemblyFile)' == '' And '$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)..\tasks\net46\SemVer.Git.MSBuild.dll</SemVerAssemblyFile>
+  </PropertyGroup>
+</Project>

@@ -1,55 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}"
-	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
-		..\appveyor.yml = ..\appveyor.yml
-		..\GitVersion.yml = ..\GitVersion.yml
-		..\README.md = ..\README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{015B0426-7F46-47EB-A67A-208F798B4C65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{14C7F382-B890-45AB-86A6-CF7D1A878F73}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{17C86302-8E55-4064-98F9-36E358C6B94A}"
-	ProjectSection(SolutionItems) = preProject
-		..\assets\noun_60203_cc.png = ..\assets\noun_60203_cc.png
-		..\assets\noun_60203_cc.svg = ..\assets\noun_60203_cc.svg
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{BF8B77A6-AF10-469B-A552-6DC9608824EE}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.shproj", "{D57819E7-3DA0-4C86-893F-FDB85CD1A80B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1058865-1891-4767-97C1-40A80EE44C6B}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SemVer.MSBuild\SemVer.MSBuild.projitems*{14c7f382-b890-45ab-86a6-cf7d1a878f73}*SharedItemsImports = 4
-		SemVer.MSBuild\SemVer.MSBuild.projitems*{5cb5c952-2a7d-4847-bb5d-d34f51ca97a7}*SharedItemsImports = 4
 		SemVer.MSBuild\SemVer.MSBuild.projitems*{d57819e7-3da0-4c86-893f-fdb85cd1a80b}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Mixed Platforms = Debug|Mixed Platforms
-		Release|Mixed Platforms = Release|Mixed Platforms
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{14C7F382-B890-45AB-86A6-CF7D1A878F73}.Release|Mixed Platforms.Build.0 = Release|x86
-		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{5CB5C952-2A7D-4847-BB5D-D34F51CA97A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{17C86302-8E55-4064-98F9-36E358C6B94A} = {4F9F4CA8-7041-4DE4-9146-1B350F87FCD8}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D03F7C07-4A43-429C-AAFA-FB3B5F5A944C}
+		SolutionGuid = {87ED29E1-F45F-4290-935D-5339114B1B39}
 	EndGlobalSection
 EndGlobal
