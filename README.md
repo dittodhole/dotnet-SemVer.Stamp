@@ -39,7 +39,7 @@ PM> Install-Package -Id SemVer.Svn.MSBuild
 
 ## Configuration
 
-*SemVer.MSBuild.props*-file can be found in your project's root directory:
+*SemVer.Stamp.props*-file can be found in your project's root directory:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

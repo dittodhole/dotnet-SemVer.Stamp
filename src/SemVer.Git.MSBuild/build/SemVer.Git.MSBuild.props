@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Import Project="$(ProjectDir)SemVer.MSBuild.props" />
+  <Import Project="$(MSBuildThisFileDirectory)SemVer.MSBuild.props" />
   <PropertyGroup>
     <SemVerAssemblyFile Condition="'$(SemVerAssemblyFile)' == '' And '$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)..\tasks\netstandard2.0\SemVer.Git.MSBuild.dll</SemVerAssemblyFile>
     <SemVerAssemblyFile Condition="'$(SemVerAssemblyFile)' == '' And '$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)..\tasks\net46\SemVer.Git.MSBuild.dll</SemVerAssemblyFile>
-    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
 </Project>

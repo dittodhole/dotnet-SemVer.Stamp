@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="$(ProjectDir)SemVer.Stamp.props" />
+  <PropertyGroup>
+    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
+  </PropertyGroup>
+</Project>

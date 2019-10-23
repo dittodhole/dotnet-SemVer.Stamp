@@ -12,9 +12,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)GetVersionBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)SemVer.MSBuild.props" />
+    <Content Include="$(MSBuildThisFileDirectory)SemVer.Stamp.props" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)build\SemVer.MSBuild.targets">
       <Pack>true</Pack>
       <PackagePath>build</PackagePath>
