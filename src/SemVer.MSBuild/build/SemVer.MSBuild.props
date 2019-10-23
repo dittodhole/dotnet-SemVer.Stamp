@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(ProjectDir)SemVer.Stamp.props" />
   <PropertyGroup>
+    <SemVerStamp_BreakingChangeFormat>^perf(\(.*\))*: </SemVerStamp_BreakingChangeFormat>
+    <SemVerStamp_FeatureFormat>^feat(\(.*\))*: </SemVerStamp_FeatureFormat>
+    <SemVerStamp_PatchFormat>^fix(\(.*\))*: </SemVerStamp_PatchFormat>
+    <SemVerStamp_BaseRevision></SemVerStamp_BaseRevision>
+    <SemVerStamp_BaseVersion>0.0.0</SemVerStamp_BaseVersion>
+    <SemVerStamp_SourcePath>$(MSBuildProjectDirectory)</SemVerStamp_SourcePath>
+    <SemVerStamp_Active>False</SemVerStamp_Active>
+    <SemVerStamp_Active Condition="'$(Configuration)' == 'Release'">True</SemVerStamp_Active>
     <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>

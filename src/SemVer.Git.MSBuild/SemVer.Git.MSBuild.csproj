@@ -13,12 +13,11 @@
     <Authors>dittodhole</Authors>
     <developmentDependency>true</developmentDependency>
     <PackageDescription>Versions your assemblies according to SemVer based on your Git commit messages.</PackageDescription>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp</PackageProjectUrl>
     <PackageIcon>noun_60203_cc.png</PackageIcon>
     <PackageTags />
     <PackageType>Dependency</PackageType>
-    <IncludeSymbols>true</IncludeSymbols>
     <RepositoryUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
@@ -67,6 +66,10 @@
       <PackagePath>buildMultiTargeting</PackagePath>
     </None>
     <Compile Include="GetVersion.cs" />
+    <None Include="..\..\LICENSE.txt">
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\..\assets\noun_60203_cc.png">
       <Pack>true</Pack>
       <PackagePath></PackagePath>
