@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -13,18 +13,9 @@ namespace SemVer.Git.MSBuild
     /// <inheritdoc />
     protected override string[] GetCommitMessages()
     {
-      var repositoryPath = Repository.Discover(this.RepositoryPath);
-      if (repositoryPath == null)
-      {
-        throw new InvalidOperationException($"Could not find repository for '{this.RepositoryPath}'");
-      }
-
+      var repositoryPath = Repository.Discover(this.RepositoryPath) ?? throw new InvalidOperationException($"Could not find repository for '{this.RepositoryPath}'");
       var commonPath = GetVersion.GetCommonPath(repositoryPath,
-                                                this.RepositoryPath);
-      if (commonPath == null)
-      {
-        throw new InvalidOperationException($"'{this.RepositoryPath}' has no common path with '{repositoryPath}'");
-      }
+                                                this.RepositoryPath) ?? throw new InvalidOperationException($"'{this.RepositoryPath}' has no common path with '{repositoryPath}'");
 
       string relativePath;
       try
