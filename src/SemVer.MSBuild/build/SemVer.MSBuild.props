@@ -9,8 +9,5 @@
     <SemVerStamp_SourcePath>$(MSBuildProjectDirectory)</SemVerStamp_SourcePath>
     <SemVerStamp_Active>False</SemVerStamp_Active>
     <SemVerStamp_Active Condition="'$(Configuration)' == 'Release'">True</SemVerStamp_Active>
-    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
 </Project>
