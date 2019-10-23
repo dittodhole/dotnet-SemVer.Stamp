@@ -2,8 +2,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(ProjectDir)SemVer.Stamp.props" />
   <PropertyGroup>
-    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStampActive)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute Condition="'$(SemVerStamp_Active)' == 'true'">false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
 </Project>

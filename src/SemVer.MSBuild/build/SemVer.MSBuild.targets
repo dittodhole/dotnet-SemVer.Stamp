@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask TaskName="GetVersion" AssemblyFile="$(SemVerAssemblyFile)" />
-  <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStampActive)' == 'true'">
-    <GetVersion BreakingChangeFormat="$(BreakingChangeFormat)" FeatureFormat="$(FeatureFormat)" PatchFormat="$(PatchFormat)" BaseRevision="$(BaseRevision)" BaseVersion="$(BaseVersion)" RepositoryPath="$(RepositoryPath)">
+  <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStamp_Active)' == 'true'">
+    <GetVersion BreakingChangeFormat="$(SemVerStamp_BreakingChangeFormat)" FeatureFormat="$(SemVerStamp_FeatureFormat)" PatchFormat="$(SemVerStamp_PatchFormat)" BaseRevision="$(SemVerStamp_BaseRevision)" BaseVersion="$(SemVerStamp_BaseVersion)" SourcePath="$(SemVerStamp_SourcePath)">
       <Output TaskParameter="PatchedVersion" PropertyName="SemVerStamp_Version" />
     </GetVersion>
-    <PropertyGroup Condition=" '$(SemVerStampActive)' == 'true' ">
+    <PropertyGroup Condition=" '$(SemVerStamp_Active)' == 'true' ">
       <Version>$(SemVerStamp_Version)</Version>
       <VersionPrefix>$(SemVerStamp_Version)</VersionPrefix>
       <VersionSuffix></VersionSuffix>

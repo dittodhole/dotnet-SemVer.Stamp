@@ -45,14 +45,14 @@ PM> Install-Package -Id SemVer.Svn.MSBuild
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <BreakingChangeFormat>^perf(\(.*\))*: </BreakingChangeFormat>
-    <FeatureFormat>^feat(\(.*\))*: </FeatureFormat>
-    <PatchFormat>^fix(\(.*\))*: </PatchFormat>
-    <BaseRevision></BaseRevision>
-    <BaseVersion>0.0.0</BaseVersion>
-    <RepositoryPath>$(ProjectDir)</RepositoryPath>
-    <SemVerStampActive>False</SemVerStampActive>
-    <SemVerStampActive Condition="'$(Configuration)' == 'Release'">True</SemVerStampActive>
+    <SemVerStamp_BreakingChangeFormat>^perf(\(.*\))*: </SemVerStamp_BreakingChangeFormat>
+    <SemVerStamp_FeatureFormat>^feat(\(.*\))*: </SemVerStamp_FeatureFormat>
+    <SemVerStamp_PatchFormat>^fix(\(.*\))*: </SemVerStamp_PatchFormat>
+    <SemVerStamp_BaseRevision></SemVerStamp_BaseRevision>
+    <SemVerStamp_BaseVersion>0.0.0</SemVerStamp_BaseVersion>
+    <SemVerStamp_SourcePath>$(ProjectDir)</SemVerStamp_SourcePath>
+    <SemVerStamp_Active>False</SemVerStamp_Active>
+    <SemVerStamp_Active Condition="'$(Configuration)' == 'Release'">True</SemVerStamp_Active>
   </PropertyGroup>
 </Project>
 ```
@@ -61,13 +61,13 @@ PM> Install-Package -Id SemVer.Svn.MSBuild
 
 The default formats - for parsing the level of a commit - are:
 
-- PatchFormat `^fix(\(.*\))*: `
-- FeatureFormat `^feat(\(.*\))*: `
-- BreakingChangeFormat `^perf(\(.*\))*: `
+- SemVerStamp_BreakingChangeFormat `^perf(\(.*\))*: `
+- SemVerStamp_FeatureFormat `^feat(\(.*\))*: `
+- SemVerStamp_PatchFormat `^fix(\(.*\))*: `
 
 ### Baseline your version
 
-Hey, awesome ... You have introduced SemVer'sioning. Somewhere after several releases. That's no problem, just set a `BaseVersion` (which may be combined with a `BaseRevision` to ignore any commits before that very revision for parsing) which is then used as the baseline for SemVer.
+Hey, awesome ... You have introduced SemVer'sioning. Somewhere after several releases. That's no problem, just set a `SemVerStamp_BaseVersion` (which may be combined with a `SemVerStamp_BaseRevision` to ignore any commits before that very revision for parsing) which is then used as the baseline for SemVer.
 
 ### Source of commits
 
@@ -78,7 +78,7 @@ Depending on the chosen injection technology, you can set different properties t
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- other properties -->
-    <RepositoryPath>$(SolutionDir)</RepositoryPath>
+    <SemVerStamp_SourcePath>$(SolutionDir)</SemVerStamp_SourcePath>
     <!-- other properties -->
   </PropertyGroup>
 </Project>

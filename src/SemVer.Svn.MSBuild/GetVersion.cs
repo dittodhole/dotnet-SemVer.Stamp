@@ -35,7 +35,7 @@ namespace SemVer.Svn.MSBuild
           start = startRevision;
         }
 
-        if (!svnClient.GetLog(this.RepositoryPath,
+        if (!svnClient.GetLog(this.SourcePath,
                               new SvnLogArgs
                               {
                                 StrictNodeHistory = false,
@@ -44,7 +44,7 @@ namespace SemVer.Svn.MSBuild
                               },
                               out logItems))
         {
-          throw new InvalidOperationException($"Could not get log for '{this.RepositoryPath}'");
+          throw new InvalidOperationException($"Could not get log for '{this.SourcePath}'");
         }
       }
 

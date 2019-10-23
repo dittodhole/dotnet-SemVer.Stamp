@@ -32,10 +32,9 @@ namespace SemVer.MSBuild
     [NotNull]
     public string PatchFormat { get; set; }
 
-    /// <remarks>TODO: rename</remarks>
     [Required]
     [NotNull]
-    public string RepositoryPath { get; set; }
+    public string SourcePath { get; set; }
 
     /// <inheritdoc />
     public override bool Execute()

@@ -13,14 +13,14 @@ namespace SemVer.Git.MSBuild
     /// <inheritdoc />
     protected override string[] GetCommitMessages()
     {
-      var repositoryPath = Repository.Discover(this.RepositoryPath) ?? throw new InvalidOperationException($"Could not find repository for '{this.RepositoryPath}'");
+      var repositoryPath = Repository.Discover(this.SourcePath) ?? throw new InvalidOperationException($"Could not find repository for '{this.SourcePath}'");
       var commonPath = GetVersion.GetCommonPath(repositoryPath,
-                                                this.RepositoryPath) ?? throw new InvalidOperationException($"'{this.RepositoryPath}' has no common path with '{repositoryPath}'");
+                                                this.SourcePath) ?? throw new InvalidOperationException($"'{this.SourcePath}' has no common path with '{repositoryPath}'");
 
       string relativePath;
       try
       {
-        relativePath = this.RepositoryPath.Substring(commonPath.Length);
+        relativePath = this.SourcePath.Substring(commonPath.Length);
       }
       catch (Exception exception)
       {
