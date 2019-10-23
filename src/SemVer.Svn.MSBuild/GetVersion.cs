@@ -11,16 +11,6 @@ namespace SemVer.Svn.MSBuild
     /// <inheritdoc/>
     protected override string[] GetCommitMessages()
     {
-      SvnWorkingCopyVersion svnWorkingCopyVersion;
-      using (var svnWorkingCopyClient = new SvnWorkingCopyClient())
-      {
-        if (!svnWorkingCopyClient.GetVersion(this.RepositoryPath,
-                                             out svnWorkingCopyVersion))
-        {
-          throw new InvalidOperationException($"Could not get version for '{this.RepositoryPath}'");
-        }
-      }
-
       Collection<SvnLogEventArgs> logItems;
       using (var svnClient = new SvnClient())
       {
