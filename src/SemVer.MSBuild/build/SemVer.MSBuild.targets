@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask TaskName="GetVersion" AssemblyFile="$(SemVerStamp_Assembly)" />
-  <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack;EnsureWixToolsetInstalled" Condition="'$(SemVerStamp_Active)' == 'True'">
+  <Target Name="GetVersion" BeforeTargets="CoreCompile;GetAssemblyVersion;GenerateNuspec;_GenerateRestoreProjectSpec;_GetOutputItemsFromPack" Condition="'$(SemVerStamp_Active)' == 'True'">
     <Message Text="MSBuildBinPath:             $(MSBuildBinPath)" />
     <Message Text="MSBuildExtensionsPath:      $(MSBuildExtensionsPath)" />
     <Message Text="MSBuildExtensionsPath32:    $(MSBuildExtensionsPath32)" />
