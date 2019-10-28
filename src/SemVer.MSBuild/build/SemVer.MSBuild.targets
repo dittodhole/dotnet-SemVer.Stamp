@@ -17,7 +17,8 @@
     <GetVersion BreakingChangeFormat="$(SemVerStamp_BreakingChangeFormat)" FeatureFormat="$(SemVerStamp_FeatureFormat)" PatchFormat="$(SemVerStamp_PatchFormat)" BaseRevision="$(SemVerStamp_BaseRevision)" BaseVersion="$(SemVerStamp_BaseVersion)" SourcePath="$(SemVerStamp_SourcePath)">
       <Output TaskParameter="Version" PropertyName="SemVerStamp_Version" />
     </GetVersion>
-    <PropertyGroup Condition="'$(SemVerStamp_Active)' == 'True'">
+    <Message Text="_Version:                   $(SemVerStamp_Version)" />
+    <PropertyGroup>
       <Version>$(SemVerStamp_Version)</Version>
       <VersionPrefix>$(SemVerStamp_Version)</VersionPrefix>
       <VersionSuffix></VersionSuffix>
@@ -26,8 +27,12 @@
       <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(SemVerStamp_Version)</AssemblyVersion>
       <FileVersion Condition="'$(FileVersion)' == ''">$(SemVerStamp_Version)</FileVersion>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(WixTargetsImported)' == 'True' And '$(GenerateGitVersionWixDefines)' == 'True'">
-      <DefineConstants Condition="'$(SemVerStamp_Version)' != ''">SemVerStamp_Version=$(SemVerStamp_Version);$(DefineConstants)</DefineConstants>
-    </PropertyGroup>
+    <Message Text="Version:                    $(Version)" />
+    <Message Text="VersionPrefix:              $(VersionPrefix)" />
+    <Message Text="VersionSuffix:              $(VersionSuffix)" />
+    <Message Text="PackageVersion:             $(PackageVersion)" />
+    <Message Text="InformationalVersion:       $(InformationalVersion)" />
+    <Message Text="AssemblyVersion:            $(AssemblyVersion)" />
+    <Message Text="FileVersion:                $(FileVersion)" />
   </Target>
 </Project>
