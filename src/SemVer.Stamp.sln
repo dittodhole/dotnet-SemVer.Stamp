@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemVer.Svn.MSBuild", "SemVer.Svn.MSBuild\SemVer.Svn.MSBuild.csproj", "{015B0426-7F46-47EB-A67A-208F798B4C65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemVer.Git.MSBuild", "SemVer.Git.MSBuild\SemVer.Git.MSBuild.csproj", "{BF8B77A6-AF10-469B-A552-6DC9608824EE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SemVer.MSBuild", "SemVer.MSBuild\SemVer.MSBuild.shproj", "{D57819E7-3DA0-4C86-893F-FDB85CD1A80B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1058865-1891-4767-97C1-40A80EE44C6B}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+		..\appveyor.yml = ..\appveyor.yml
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SemVer.MSBuild\SemVer.MSBuild.projitems*{d57819e7-3da0-4c86-893f-fdb85cd1a80b}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015B0426-7F46-47EB-A67A-208F798B4C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF8B77A6-AF10-469B-A552-6DC9608824EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87ED29E1-F45F-4290-935D-5339114B1B39}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SemVer.Git.MSBuild</PackageId>
+    <Authors>dittodhole</Authors>
+    <developmentDependency>true</developmentDependency>
+    <PackageDescription>Versions your assemblies according to SemVer based on your Git commit messages.</PackageDescription>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp</PackageProjectUrl>
+    <PackageIcon>noun_60203_cc.png</PackageIcon>
+    <PackageTags />
+    <PackageType>Dependency</PackageType>
+    <RepositoryUrl>https://github.com/dittodhole/dotnet-SemVer.Stamp.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="LibGit2Sharp" Version="0.26.1" />
+    <PackageReference Include="NDepend.Path" Version="1.0.0" />
+    <PackageReference Include="Source.JetBrains.Annotations" Version="2019.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="@(PackageReference)">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build\SemVer.Git.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
+    <None Include="build\SemVer.Git.MSBuild.targets">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
+    <None Include="buildMultiTargeting\SemVer.Git.MSBuild.targets">
+      <Pack>true</Pack>
+      <PackagePath>buildMultiTargeting</PackagePath>
+    </None>
+    <None Include="buildMultiTargeting\SemVer.Git.MSBuild.props">
+      <Pack>true</Pack>
+      <PackagePath>buildMultiTargeting</PackagePath>
+    </None>
+    <Compile Include="GetVersion.cs" />
+    <None Include="..\..\LICENSE.txt">
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\assets\noun_60203_cc.png">
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <Target Name="UpdateRepositoryBranch" AfterTargets="GetVersion">
+    <PropertyGroup>
+      <RepositoryBranch>$(GitVersion_BranchName)</RepositoryBranch>
+    </PropertyGroup>
+  </Target>
+  <Target Name="UpdateRepositoryCommit" AfterTargets="GetVersion">
+    <PropertyGroup>
+      <RepositoryCommit>$(GitVersion_Sha)</RepositoryCommit>
+    </PropertyGroup>
+  </Target>
+  <Target Name="PackPackageReferences" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_PackageFiles Include="$(OutputPath)\*\**\*" Exclude="$(OutputPath)\*\**\*.pdb;$(OutputPath)\*\**\*.deps.json">
+        <PackagePath>$(BuildOutputTargetFolder)\%(RecursiveDir)</PackagePath>
+      </_PackageFiles>
+    </ItemGroup>
+  </Target>
+  <Import Project="..\SemVer.MSBuild\SemVer.MSBuild.projitems" Label="Shared" />
+</Project>
